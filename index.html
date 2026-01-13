@@ -258,6 +258,7 @@
             border-radius: 10px;
             margin-bottom: 25px;
             display: none;
+            align-items: center;
         }
         
         .error-message {
@@ -348,14 +349,29 @@
         .nav-user {
             display: flex;
             align-items: center;
+            gap: 15px;
         }
         
         .nav-user img {
             width: 45px;
             height: 45px;
             border-radius: 50%;
-            margin-left: 15px;
             border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .logout-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
         }
         
         .welcome-message {
@@ -397,6 +413,7 @@
             transition: all 0.3s;
             border-right: 4px solid transparent;
             font-weight: 500;
+            cursor: pointer;
         }
         
         .menu-item:hover {
@@ -489,41 +506,43 @@
             border-bottom: 2px solid #eee;
         }
         
-        .table-container {
+        /* تصميم جدول الطلاب */
+        .students-table-container {
             background: white;
             border-radius: 18px;
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
             overflow-x: auto;
+            margin-bottom: 30px;
         }
         
-        table {
+        .students-table {
             width: 100%;
             border-collapse: collapse;
             min-width: 800px;
         }
         
-        thead {
+        .students-table thead {
             background: var(--gradient);
             color: white;
         }
         
-        th {
+        .students-table th {
             padding: 20px;
             text-align: right;
             font-weight: 600;
         }
         
-        tbody tr {
+        .students-table tbody tr {
             border-bottom: 1px solid #eee;
             transition: background-color 0.2s;
         }
         
-        tbody tr:hover {
+        .students-table tbody tr:hover {
             background-color: #f9f9f9;
         }
         
-        td {
+        .students-table td {
             padding: 18px 20px;
         }
         
@@ -553,6 +572,7 @@
             font-weight: 600;
             margin-left: 8px;
             transition: all 0.2s;
+            font-size: 0.9rem;
         }
         
         .btn-edit {
@@ -572,21 +592,6 @@
         
         .action-btn:hover {
             transform: scale(1.05);
-        }
-        
-        .logout-btn {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            padding: 10px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        
-        .logout-btn:hover {
-            background-color: rgba(255, 255, 255, 0.3);
         }
         
         /* تصميم نموذج الإضافة */
@@ -748,6 +753,11 @@
             .modal-content {
                 padding: 20px;
             }
+            
+            .nav-user {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -773,8 +783,13 @@
             
             .action-btn {
                 padding: 6px 10px;
-                font-size: 0.9rem;
+                font-size: 0.8rem;
                 margin-left: 5px;
+                margin-bottom: 5px;
+            }
+            
+            .students-table td, .students-table th {
+                padding: 12px 10px;
             }
         }
         
@@ -795,6 +810,85 @@
                 margin-left: 0;
                 margin-bottom: 15px;
             }
+        }
+        
+        /* أقسام المحتوى */
+        .content-section {
+            display: none;
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* تصميم خاص لإنشاء الحسابات */
+        .students-list {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .student-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            transition: background 0.3s;
+        }
+        
+        .student-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .student-info {
+            flex: 1;
+        }
+        
+        .student-name {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .student-email {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .no-students {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+        
+        /* زر إضافة طالب */
+        .add-student-btn {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .add-student-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.3);
         }
     </style>
 </head>
@@ -907,27 +1001,27 @@
         
         <!-- القائمة الجانبية -->
         <div class="sidebar">
-            <a href="#" class="menu-item active" onclick="showSection('home')">
+            <a class="menu-item active" onclick="showSection('home')">
                 <i class="fas fa-home"></i>
                 <span>الرئيسية</span>
             </a>
-            <a href="#" class="menu-item" onclick="showSection('users')">
+            <a class="menu-item" onclick="showSection('students')">
                 <i class="fas fa-users"></i>
-                <span>إدارة المستخدمين</span>
+                <span>إدارة الطلاب</span>
             </a>
-            <a href="#" class="menu-item" onclick="showSection('files')">
+            <a class="menu-item" onclick="showSection('files')">
                 <i class="fas fa-file-upload"></i>
                 <span>رفع الملفات</span>
             </a>
-            <a href="#" class="menu-item" onclick="showSection('tests')">
+            <a class="menu-item" onclick="showSection('tests')">
                 <i class="fas fa-file-alt"></i>
                 <span>الاختبارات الإلكترونية</span>
             </a>
-            <a href="#" class="menu-item" onclick="showSection('reports')">
-                <i class="fas fa-chart-line"></i>
-                <span>تقارير الطلاب</span>
+            <a class="menu-item" onclick="showSection('streak')">
+                <i class="fas fa-fire"></i>
+                <span>نظام الستريك</span>
             </a>
-            <a href="#" class="menu-item" onclick="showSection('settings')">
+            <a class="menu-item" onclick="showSection('settings')">
                 <i class="fas fa-cog"></i>
                 <span>الإعدادات</span>
             </a>
@@ -935,7 +1029,8 @@
         
         <!-- المحتوى الرئيسي -->
         <div class="main-content">
-            <div id="homeSection">
+            <!-- قسم الرئيسية -->
+            <div id="homeSection" class="content-section active">
                 <h2 class="section-title">لوحة التحكم الإدارية</h2>
                 
                 <!-- بطاقات الإحصاءات -->
@@ -944,9 +1039,11 @@
                         <div class="card-icon">
                             <i class="fas fa-users"></i>
                         </div>
-                        <h3 class="card-title">إدارة المستخدمين</h3>
-                        <p class="card-desc">إنشاء حسابات جديدة للطلاب والمعلمين، وتعديل بياناتهم، وإدارة صلاحياتهم.</p>
-                        <button class="card-btn" onclick="showAddUserModal()">إضافة مستخدم جديد</button>
+                        <h3 class="card-title">إدارة الطلاب</h3>
+                        <p class="card-desc">إنشاء حسابات جديدة للطلاب، تعديل بياناتهم، وإدارة حساباتهم.</p>
+                        <button class="card-btn" onclick="showSection('students')">
+                            <i class="fas fa-users"></i> إدارة الطلاب
+                        </button>
                     </div>
                     
                     <div class="card">
@@ -955,7 +1052,9 @@
                         </div>
                         <h3 class="card-title">رفع الملفات</h3>
                         <p class="card-desc">رفع ملفات تعليمية وتحديد الطلاب المستفيدين منها مع إمكانية التعديل والحذف.</p>
-                        <button class="card-btn" onclick="showUploadModal()">رفع ملف جديد</button>
+                        <button class="card-btn" onclick="showSection('files')">
+                            <i class="fas fa-upload"></i> رفع ملفات
+                        </button>
                     </div>
                     
                     <div class="card">
@@ -964,7 +1063,9 @@
                         </div>
                         <h3 class="card-title">الاختبارات الإلكترونية</h3>
                         <p class="card-desc">إنشاء اختبارات إلكترونية مع خيارات متعددة للأسئلة وتحديد الإجابات الصحيحة.</p>
-                        <button class="card-btn" onclick="showAddTestModal()">إنشاء اختبار جديد</button>
+                        <button class="card-btn" onclick="showSection('tests')">
+                            <i class="fas fa-plus-circle"></i> إنشاء اختبار
+                        </button>
                     </div>
                     
                     <div class="card">
@@ -973,14 +1074,16 @@
                         </div>
                         <h3 class="card-title">نظام الستريك</h3>
                         <p class="card-desc">متابعة دخول الطلاب وتحصيلهم على ستريك لكل يوم يدخلون فيه إلى المنصة.</p>
-                        <button class="card-btn" onclick="showStreakReport()">عرض تقرير الستريك</button>
+                        <button class="card-btn" onclick="showSection('streak')">
+                            <i class="fas fa-chart-line"></i> عرض التقارير
+                        </button>
                     </div>
                 </div>
                 
-                <!-- جدول الطلاب -->
-                <h2 class="section-title">الطلاب المسجلين</h2>
-                <div class="table-container">
-                    <table>
+                <!-- جدول الطلاب الأخير -->
+                <h2 class="section-title">أحدث الطلاب المسجلين</h2>
+                <div class="students-table-container">
+                    <table class="students-table">
                         <thead>
                             <tr>
                                 <th>اسم الطالب</th>
@@ -991,55 +1094,8 @@
                                 <th>الإجراءات</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>أحمد محمد</td>
-                                <td>ahmed@example.com</td>
-                                <td>2023-10-15</td>
-                                <td><span class="status-badge status-active">نشط</span></td>
-                                <td><strong>15 يوم</strong></td>
-                                <td>
-                                    <button class="action-btn btn-view"><i class="fas fa-eye"></i> عرض</button>
-                                    <button class="action-btn btn-edit"><i class="fas fa-edit"></i> تعديل</button>
-                                    <button class="action-btn btn-delete"><i class="fas fa-trash"></i> حذف</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>سارة عبدالله</td>
-                                <td>sara@example.com</td>
-                                <td>2023-10-20</td>
-                                <td><span class="status-badge status-active">نشط</span></td>
-                                <td><strong>8 أيام</strong></td>
-                                <td>
-                                    <button class="action-btn btn-view"><i class="fas fa-eye"></i> عرض</button>
-                                    <button class="action-btn btn-edit"><i class="fas fa-edit"></i> تعديل</button>
-                                    <button class="action-btn btn-delete"><i class="fas fa-trash"></i> حذف</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>خالد فيصل</td>
-                                <td>khaled@example.com</td>
-                                <td>2023-10-25</td>
-                                <td><span class="status-badge status-pending">غير نشط</span></td>
-                                <td><strong>3 أيام</strong></td>
-                                <td>
-                                    <button class="action-btn btn-view"><i class="fas fa-eye"></i> عرض</button>
-                                    <button class="action-btn btn-edit"><i class="fas fa-edit"></i> تعديل</button>
-                                    <button class="action-btn btn-delete"><i class="fas fa-trash"></i> حذف</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>نورة سعيد</td>
-                                <td>noura@example.com</td>
-                                <td>2023-11-01</td>
-                                <td><span class="status-badge status-active">نشط</span></td>
-                                <td><strong>21 يوم</strong></td>
-                                <td>
-                                    <button class="action-btn btn-view"><i class="fas fa-eye"></i> عرض</button>
-                                    <button class="action-btn btn-edit"><i class="fas fa-edit"></i> تعديل</button>
-                                    <button class="action-btn btn-delete"><i class="fas fa-trash"></i> حذف</button>
-                                </td>
-                            </tr>
+                        <tbody id="studentsTableBody">
+                            <!-- سيتم ملء البيانات جافاسكريبت -->
                         </tbody>
                     </table>
                 </div>
@@ -1051,89 +1107,137 @@
                     </div>
                     <div class="streak-info">
                         <h3>أعلى ستريك للطلاب هذا الشهر</h3>
-                        <p>الطالب نورة سعيد حصلت على أعلى ستريك دخول للمنصة</p>
-                        <div class="streak-days">21 يوم</div>
+                        <p id="topStreakText">جاري تحميل البيانات...</p>
+                        <div class="streak-days" id="topStreakDays">0 يوم</div>
                     </div>
                 </div>
             </div>
             
-            <!-- أقسام أخرى مخفية -->
-            <div id="usersSection" class="content-section" style="display: none;">
-                <h2 class="section-title">إدارة المستخدمين</h2>
-                <div class="card">
-                    <h3 class="card-title">قائمة المستخدمين</h3>
-                    <p>يمكنك هنا إضافة مستخدمين جدد، تعديل بياناتهم، أو حذفهم من النظام.</p>
-                    <button class="card-btn" onclick="showAddUserModal()"><i class="fas fa-user-plus"></i> إضافة مستخدم جديد</button>
+            <!-- قسم إدارة الطلاب -->
+            <div id="studentsSection" class="content-section">
+                <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                    <h2 class="section-title">إدارة الطلاب</h2>
+                    <button class="add-student-btn" onclick="showAddStudentModal()">
+                        <i class="fas fa-user-plus"></i> إضافة طالب جديد
+                    </button>
+                </div>
+                
+                <div class="students-list" id="studentsList">
+                    <!-- سيتم ملء قائمة الطلاب جافاسكريبت -->
                 </div>
             </div>
             
-            <div id="filesSection" class="content-section" style="display: none;">
+            <!-- قسم رفع الملفات -->
+            <div id="filesSection" class="content-section">
                 <h2 class="section-title">إدارة الملفات</h2>
                 <div class="card">
+                    <h3 class="card-title">رفع ملفات تعليمية</h3>
+                    <p>يمكنك رفع ملفات تعليمية وتحديد الطلاب المستفيدين منها.</p>
+                    <button class="card-btn" onclick="showUploadFileModal()">
+                        <i class="fas fa-cloud-upload-alt"></i> رفع ملف جديد
+                    </button>
+                </div>
+                
+                <div class="card" style="margin-top: 20px;">
                     <h3 class="card-title">الملفات المرفوعة</h3>
-                    <p>رفع ملفات تعليمية وتحديد الطلاب المستفيدين منها مع إمكانية التعديل والحذف.</p>
-                    <button class="card-btn" onclick="showUploadModal()"><i class="fas fa-upload"></i> رفع ملف جديد</button>
+                    <div id="uploadedFilesList">
+                        <!-- سيتم عرض الملفات هنا -->
+                    </div>
                 </div>
             </div>
             
-            <div id="testsSection" class="content-section" style="display: none;">
+            <!-- قسم الاختبارات -->
+            <div id="testsSection" class="content-section">
                 <h2 class="section-title">الاختبارات الإلكترونية</h2>
                 <div class="card">
-                    <h3 class="card-title">إدارة الاختبارات</h3>
-                    <p>إنشاء اختبارات إلكترونية مع خيارات متعددة للأسئلة وتحديد الإجابات الصحيحة.</p>
-                    <button class="card-btn" onclick="showAddTestModal()"><i class="fas fa-plus-circle"></i> إنشاء اختبار جديد</button>
+                    <h3 class="card-title">إنشاء اختبار جديد</h3>
+                    <p>يمكنك إنشاء اختبارات إلكترونية مع خيارات متنوعة للأسئلة.</p>
+                    <button class="card-btn" onclick="showCreateTestModal()">
+                        <i class="fas fa-plus-circle"></i> إنشاء اختبار جديد
+                    </button>
+                </div>
+            </div>
+            
+            <!-- قسم الستريك -->
+            <div id="streakSection" class="content-section">
+                <h2 class="section-title">نظام متابعة الستريك</h2>
+                <div class="card">
+                    <h3 class="card-title">تقارير دخول الطلاب</h3>
+                    <p>عرض تقارير دخول الطلاب ومتابعة الستريك الخاص بهم.</p>
+                    <div id="streakReports">
+                        <!-- سيتم عرض التقارير هنا -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- نموذج إضافة مستخدم -->
-    <div id="addUserModal" class="modal">
+    <!-- نموذج إضافة طالب جديد -->
+    <div id="addStudentModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title">إضافة مستخدم جديد</h2>
-                <span class="close-modal" onclick="closeModal('addUserModal')">&times;</span>
+                <h2 class="modal-title">إضافة طالب جديد</h2>
+                <span class="close-modal" onclick="closeModal('addStudentModal')">&times;</span>
             </div>
-            <form id="addUserForm">
+            <form id="addStudentForm">
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label" for="userName">اسم المستخدم</label>
-                        <input type="text" id="userName" class="form-control" placeholder="أدخل اسم المستخدم" required>
+                        <label class="form-label" for="studentName">اسم الطالب الكامل</label>
+                        <input type="text" id="studentName" class="form-control" placeholder="أدخل اسم الطالب" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="userEmail">البريد الإلكتروني</label>
-                        <input type="email" id="userEmail" class="form-control" placeholder="أدخل البريد الإلكتروني" required>
+                        <label class="form-label" for="studentEmail">البريد الإلكتروني</label>
+                        <input type="email" id="studentEmail" class="form-control" placeholder="example@email.com" required>
                     </div>
                 </div>
                 
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label" for="userPassword">كلمة المرور</label>
-                        <input type="password" id="userPassword" class="form-control" placeholder="أدخل كلمة المرور" required>
+                        <label class="form-label" for="studentUsername">اسم المستخدم</label>
+                        <input type="text" id="studentUsername" class="form-control" placeholder="اسم المستخدم للطالب" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="userType">نوع المستخدم</label>
-                        <select id="userType" class="form-control" required>
-                            <option value="student">طالب</option>
-                            <option value="teacher">معلم</option>
-                            <option value="admin">مسؤول</option>
-                        </select>
+                        <label class="form-label" for="studentPassword">كلمة المرور</label>
+                        <input type="password" id="studentPassword" class="form-control" placeholder="أدخل كلمة المرور" required>
                     </div>
                 </div>
                 
-                <button type="submit" class="card-btn" style="width: 100%; margin-top: 20px;">إضافة المستخدم</button>
+                <div class="form-group">
+                    <label class="form-label" for="studentPhone">رقم الهاتف (اختياري)</label>
+                    <input type="tel" id="studentPhone" class="form-control" placeholder="05xxxxxxxx">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="studentGrade">الصف الدراسي</label>
+                    <select id="studentGrade" class="form-control" required>
+                        <option value="">اختر الصف الدراسي</option>
+                        <option value="first">الأول الثانوي</option>
+                        <option value="second">الثاني الثانوي</option>
+                        <option value="third">الثالث الثانوي</option>
+                        <option value="graduate">خريج</option>
+                    </select>
+                </div>
+                
+                <div style="margin-top: 20px; display: flex; gap: 10px;">
+                    <button type="submit" class="card-btn" style="flex: 1;">
+                        <i class="fas fa-save"></i> حفظ الطالب
+                    </button>
+                    <button type="button" class="card-btn" onclick="generateCredentials()" style="background: var(--accent); flex: 1;">
+                        <i class="fas fa-key"></i> توليد بيانات تلقائي
+                    </button>
+                </div>
             </form>
         </div>
     </div>
     
     <!-- نموذج رفع ملف -->
-    <div id="uploadModal" class="modal">
+    <div id="uploadFileModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title">رفع ملف جديد</h2>
-                <span class="close-modal" onclick="closeModal('uploadModal')">&times;</span>
+                <h2 class="modal-title">رفع ملف تعليمي</h2>
+                <span class="close-modal" onclick="closeModal('uploadFileModal')">&times;</span>
             </div>
-            <form id="uploadForm">
+            <form id="uploadFileForm">
                 <div class="form-group">
                     <label class="form-label" for="fileName">اسم الملف</label>
                     <input type="text" id="fileName" class="form-control" placeholder="أدخل اسم الملف" required>
@@ -1141,38 +1245,53 @@
                 
                 <div class="form-group">
                     <label class="form-label" for="fileDescription">وصف الملف</label>
-                    <textarea id="fileDescription" class="form-control" rows="3" placeholder="أدخل وصف للملف"></textarea>
+                    <textarea id="fileDescription" class="form-control" rows="3" placeholder="وصف مختصر للملف"></textarea>
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label" for="fileUpload">رفع الملف</label>
-                    <input type="file" id="fileUpload" class="form-control" required>
+                    <label class="form-label" for="fileCategory">تصنيف الملف</label>
+                    <select id="fileCategory" class="form-control" required>
+                        <option value="">اختر التصنيف</option>
+                        <option value="lessons">دروس</option>
+                        <option value="exercises">تمارين</option>
+                        <option value="exams">نماذج اختبارات</option>
+                        <option value="guides">دليل الدراسة</option>
+                    </select>
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">حدد المستخدمين المستفيدين</label>
-                    <div style="margin-top: 10px;">
-                        <label style="margin-left: 15px;"><input type="checkbox" checked> جميع الطلاب</label>
-                        <label style="margin-left: 15px;"><input type="checkbox"> أحمد محمد</label>
-                        <label style="margin-left: 15px;"><input type="checkbox"> سارة عبدالله</label>
-                        <label style="margin-left: 15px;"><input type="checkbox"> خالد فيصل</label>
-                        <label style="margin-left: 15px;"><input type="checkbox"> نورة سعيد</label>
+                    <label class="form-label" for="fileUpload">اختر الملف</label>
+                    <div style="border: 2px dashed #ddd; padding: 30px; text-align: center; border-radius: 10px; background: #f9f9f9;">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 3rem; color: var(--primary); margin-bottom: 10px;"></i>
+                        <p style="margin-bottom: 15px;">اسحب وأفلت الملف هنا أو</p>
+                        <input type="file" id="fileUpload" class="form-control" required style="border: none; background: transparent;">
                     </div>
                 </div>
                 
-                <button type="submit" class="card-btn" style="width: 100%; margin-top: 20px;">رفع الملف</button>
+                <div class="form-group">
+                    <label class="form-label">حدد الطلاب المستفيدين</label>
+                    <div style="max-height: 150px; overflow-y: auto; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+                        <div id="studentsCheckboxes">
+                            <!-- سيتم إضافة الطلاب هنا -->
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="card-btn" style="width: 100%; margin-top: 20px;">
+                    <i class="fas fa-upload"></i> رفع الملف
+                </button>
             </form>
         </div>
     </div>
     
     <!-- نموذج إنشاء اختبار -->
-    <div id="addTestModal" class="modal">
+    <div id="createTestModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title">إنشاء اختبار جديد</h2>
-                <span class="close-modal" onclick="closeModal('addTestModal')">&times;</span>
+                <span class="close-modal" onclick="closeModal('createTestModal')">&times;</span>
             </div>
-            <form id="addTestForm">
+            <form id="createTestForm">
                 <div class="form-group">
                     <label class="form-label" for="testTitle">عنوان الاختبار</label>
                     <input type="text" id="testTitle" class="form-control" placeholder="أدخل عنوان الاختبار" required>
@@ -1181,62 +1300,78 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label class="form-label" for="testDuration">مدة الاختبار (دقيقة)</label>
-                        <input type="number" id="testDuration" class="form-control" value="60" required>
+                        <input type="number" id="testDuration" class="form-control" value="60" min="1" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label" for="testType">نوع الاختبار</label>
-                        <select id="testType" class="form-control" required>
-                            <option value="quantitative">كمي</option>
-                            <option value="verbal">لفظي</option>
-                            <option value="general">عام</option>
-                        </select>
+                        <label class="form-label" for="testQuestions">عدد الأسئلة</label>
+                        <input type="number" id="testQuestions" class="form-control" value="10" min="1" required>
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label">طريقة إضافة السؤال</label>
+                    <label class="form-label">نوع الأسئلة</label>
                     <div style="margin-top: 10px;">
-                        <label style="margin-left: 15px;"><input type="radio" name="questionType" value="text" checked> كتابة السؤال</label>
-                        <label style="margin-left: 15px;"><input type="radio" name="questionType" value="image"> رفع صورة للسؤال</label>
+                        <label style="margin-left: 15px;">
+                            <input type="radio" name="questionMethod" value="text" checked> كتابة السؤال
+                        </label>
+                        <label style="margin-left: 15px;">
+                            <input type="radio" name="questionMethod" value="image"> رفع صورة للسؤال
+                        </label>
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label" for="questionText">نص السؤال</label>
-                    <textarea id="questionText" class="form-control" rows="3" placeholder="أدخل نص السؤال"></textarea>
+                    <label class="form-label" for="testDescription">وصف الاختبار</label>
+                    <textarea id="testDescription" class="form-control" rows="3" placeholder="وصف مختصر للاختبار"></textarea>
                 </div>
                 
-                <div class="form-group">
-                    <label class="form-label" for="questionImage">أو رفع صورة للسؤال</label>
-                    <input type="file" id="questionImage" class="form-control" accept="image/*">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">الاختيارات</label>
-                    <div style="margin-top: 10px;">
-                        <input type="text" class="form-control" placeholder="الاختيار الأول" style="margin-bottom: 10px;">
-                        <input type="text" class="form-control" placeholder="الاختيار الثاني" style="margin-bottom: 10px;">
-                        <input type="text" class="form-control" placeholder="الاختيار الثالث" style="margin-bottom: 10px;">
-                        <input type="text" class="form-control" placeholder="الاختيار الرابع" style="margin-bottom: 10px;">
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label" for="correctAnswer">الإجابة الصحيحة</label>
-                    <select id="correctAnswer" class="form-control" required>
-                        <option value="1">الاختيار الأول</option>
-                        <option value="2">الاختيار الثاني</option>
-                        <option value="3">الاختيار الثالث</option>
-                        <option value="4">الاختيار الرابع</option>
-                    </select>
-                </div>
-                
-                <button type="submit" class="card-btn" style="width: 100%; margin-top: 20px;">إضافة الاختبار</button>
+                <button type="submit" class="card-btn" style="width: 100%; margin-top: 20px;">
+                    <i class="fas fa-save"></i> إنشاء الاختبار
+                </button>
             </form>
         </div>
     </div>
 
     <script>
+        // ============ نظام إدارة البيانات ============
+        
+        // بيانات الطلاب المخزنة محلياً
+        let students = JSON.parse(localStorage.getItem('fyo_students')) || [
+            {
+                id: 1,
+                name: 'أحمد محمد',
+                email: 'ahmed@example.com',
+                username: 'ahmed123',
+                phone: '0512345678',
+                grade: 'third',
+                status: 'active',
+                streak: 15,
+                createdAt: '2023-10-15'
+            },
+            {
+                id: 2,
+                name: 'سارة عبدالله',
+                email: 'sara@example.com',
+                username: 'sara456',
+                phone: '0554321098',
+                grade: 'second',
+                status: 'active',
+                streak: 8,
+                createdAt: '2023-10-20'
+            },
+            {
+                id: 3,
+                name: 'خالد فيصل',
+                email: 'khaled@example.com',
+                username: 'khaled789',
+                phone: '0567890123',
+                grade: 'first',
+                status: 'pending',
+                streak: 3,
+                createdAt: '2023-10-25'
+            }
+        ];
+        
         // بيانات الدخول
         const CORRECT_USERNAME = "admin";
         const CORRECT_PASSWORD = "admin";
@@ -1250,9 +1385,17 @@
         const menuItems = document.querySelectorAll('.menu-item');
         const contentSections = document.querySelectorAll('.content-section');
         
-        // إخفاء الرسائل في البداية
-        errorMessage.style.display = 'none';
-        successMessage.style.display = 'none';
+        // ============ وظائف النظام ============
+        
+        // حفظ البيانات في التخزين المحلي
+        function saveStudents() {
+            localStorage.setItem('fyo_students', JSON.stringify(students));
+        }
+        
+        // توليد معرف فريد
+        function generateId() {
+            return Date.now();
+        }
         
         // تسجيل الدخول
         loginForm.addEventListener('submit', function(e) {
@@ -1261,23 +1404,25 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
-            // إخفاء جميع الرسائل أولاً
             errorMessage.style.display = 'none';
             successMessage.style.display = 'none';
             
-            // التحقق من بيانات الدخول
             if (username === CORRECT_USERNAME && password === CORRECT_PASSWORD) {
-                // تسجيل الدخول ناجح
-                successMessage.style.display = 'block';
+                successMessage.style.display = 'flex';
                 
-                // الانتقال إلى لوحة التحكم بعد تأخير بسيط
                 setTimeout(() => {
                     loginContainer.style.display = 'none';
                     dashboard.style.display = 'block';
-                }, 1500);
+                    loadDashboardData();
+                }, 1000);
             } else {
-                // تسجيل الدخول فاشل
-                errorMessage.style.display = 'block';
+                errorMessage.style.display = 'flex';
+                document.getElementById('username').style.animation = 'shake 0.5s';
+                document.getElementById('password').style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    document.getElementById('username').style.animation = '';
+                    document.getElementById('password').style.animation = '';
+                }, 500);
             }
         });
         
@@ -1286,12 +1431,8 @@
             if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
                 dashboard.style.display = 'none';
                 loginContainer.style.display = 'flex';
-                
-                // إعادة تعيين الحقول
                 document.getElementById('username').value = 'admin';
                 document.getElementById('password').value = 'admin';
-                
-                // إخفاء الرسائل
                 errorMessage.style.display = 'none';
                 successMessage.style.display = 'none';
             }
@@ -1299,119 +1440,334 @@
         
         // عرض قسم معين
         function showSection(sectionId) {
-            // إخفاء جميع الأقسام
             contentSections.forEach(section => {
-                section.style.display = 'none';
+                section.classList.remove('active');
             });
             
-            // إزالة النشاط من جميع عناصر القائمة
             menuItems.forEach(item => {
                 item.classList.remove('active');
             });
             
-            // عرض القسم المطلوب
-            document.getElementById(sectionId + 'Section').style.display = 'block';
+            document.getElementById(sectionId + 'Section').classList.add('active');
             
-            // إضافة النشاط لعنصر القائمة
             const activeItem = document.querySelector(`.menu-item[onclick="showSection('${sectionId}')"]`);
             if (activeItem) {
                 activeItem.classList.add('active');
             }
+            
+            // تحميل بيانات القسم
+            if (sectionId === 'students') {
+                loadStudentsList();
+            } else if (sectionId === 'streak') {
+                loadStreakReports();
+            }
         }
         
-        // وظائف النماذج المنبثقة
-        function showAddUserModal() {
-            document.getElementById('addUserModal').style.display = 'flex';
+        // تحميل بيانات لوحة التحكم
+        function loadDashboardData() {
+            // تحديث جدول الطلاب
+            updateStudentsTable();
+            
+            // تحديث أعلى ستريك
+            updateTopStreak();
         }
         
-        function showUploadModal() {
-            document.getElementById('uploadModal').style.display = 'flex';
-        }
-        
-        function showAddTestModal() {
-            document.getElementById('addTestModal').style.display = 'flex';
-        }
-        
-        function showStreakReport() {
-            alert('عرض تقرير الستريك للطلاب. هذه الميزة كاملة في النسخة النهائية من النظام.');
-        }
-        
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-        
-        // إغلاق النافذة عند النقر خارج المحتوى
-        window.onclick = function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target === modal) {
-                    modal.style.display = 'none';
-                }
+        // تحديث جدول الطلاب
+        function updateStudentsTable() {
+            const tableBody = document.getElementById('studentsTableBody');
+            tableBody.innerHTML = '';
+            
+            students.forEach(student => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${student.name}</td>
+                    <td>${student.email}</td>
+                    <td>${student.createdAt}</td>
+                    <td><span class="status-badge ${student.status === 'active' ? 'status-active' : 'status-pending'}">${student.status === 'active' ? 'نشط' : 'غير نشط'}</span></td>
+                    <td><strong>${student.streak} يوم</strong></td>
+                    <td>
+                        <button class="action-btn btn-view" onclick="viewStudent(${student.id})"><i class="fas fa-eye"></i> عرض</button>
+                        <button class="action-btn btn-edit" onclick="editStudent(${student.id})"><i class="fas fa-edit"></i> تعديل</button>
+                        <button class="action-btn btn-delete" onclick="deleteStudent(${student.id})"><i class="fas fa-trash"></i> حذف</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
             });
-        };
+        }
         
-        // معالجة إرسال النماذج
-        document.getElementById('addUserForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('تم إضافة المستخدم بنجاح!');
-            closeModal('addUserModal');
-        });
+        // تحديث أعلى ستريك
+        function updateTopStreak() {
+            if (students.length > 0) {
+                const topStudent = students.reduce((prev, current) => 
+                    (prev.streak > current.streak) ? prev : current
+                );
+                
+                document.getElementById('topStreakText').textContent = 
+                    `الطالب ${topStudent.name} حصل على أعلى ستريك دخول للمنصة`;
+                document.getElementById('topStreakDays').textContent = 
+                    `${topStudent.streak} يوم`;
+            }
+        }
         
-        document.getElementById('uploadForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('تم رفع الملف بنجاح!');
-            closeModal('uploadModal');
-        });
-        
-        document.getElementById('addTestForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('تم إنشاء الاختبار بنجاح!');
-            closeModal('addTestModal');
-        });
-        
-        // تغيير نوع السؤال في نموذج الاختبار
-        const questionTypeRadios = document.querySelectorAll('input[name="questionType"]');
-        const questionText = document.getElementById('questionText');
-        const questionImage = document.getElementById('questionImage');
-        
-        questionTypeRadios.forEach(radio => {
-            radio.addEventListener('change', function() {
-                if (this.value === 'text') {
-                    questionText.disabled = false;
-                    questionImage.disabled = true;
-                    questionImage.required = false;
-                    questionText.required = true;
-                } else {
-                    questionText.disabled = true;
-                    questionImage.disabled = false;
-                    questionText.required = false;
-                    questionImage.required = true;
-                }
+        // تحميل قائمة الطلاب
+        function loadStudentsList() {
+            const studentsList = document.getElementById('studentsList');
+            
+            if (students.length === 0) {
+                studentsList.innerHTML = `
+                    <div class="no-students">
+                        <i class="fas fa-users" style="font-size: 3rem; color: #ddd; margin-bottom: 15px;"></i>
+                        <h3 style="color: #888; margin-bottom: 10px;">لا يوجد طلاب مسجلين</h3>
+                        <p>قم بإضافة طلاب جدد لبدء استخدام المنصة</p>
+                        <button class="add-student-btn" onclick="showAddStudentModal()" style="margin-top: 15px;">
+                            <i class="fas fa-user-plus"></i> إضافة أول طالب
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            students.forEach(student => {
+                html += `
+                    <div class="student-item">
+                        <div class="student-info">
+                            <div class="student-name">${student.name}</div>
+                            <div class="student-email">${student.email} • ${student.username}</div>
+                            <div style="margin-top: 5px;">
+                                <span class="status-badge ${student.status === 'active' ? 'status-active' : 'status-pending'}" style="font-size: 0.8rem;">
+                                    ${student.status === 'active' ? 'نشط' : 'غير نشط'}
+                                </span>
+                                <span style="color: #666; font-size: 0.9rem; margin-right: 10px;">
+                                    <i class="fas fa-fire" style="color: var(--accent);"></i> ${student.streak} يوم
+                                </span>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="action-btn btn-edit" onclick="editStudent(${student.id})"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn btn-delete" onclick="deleteStudent(${student.id})"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+                `;
             });
+            
+            studentsList.innerHTML = html;
+        }
+        
+        // تحميل تقارير الستريك
+        function loadStreakReports() {
+            const streakReports = document.getElementById('streakReports');
+            
+            let html = '<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px;">';
+            
+            students.forEach(student => {
+                html += `
+                    <div style="background: white; padding: 15px; border-radius: 10px; border-left: 4px solid var(--accent);">
+                        <div style="font-weight: 600; margin-bottom: 5px;">${student.name}</div>
+                        <div style="display: flex; align-items: center; margin-top: 10px;">
+                            <div style="flex: 1;">
+                                <div style="font-size: 2rem; font-weight: 800; color: var(--accent);">${student.streak}</div>
+                                <div style="font-size: 0.9rem; color: #666;">يوم متتالي</div>
+                            </div>
+                            <i class="fas fa-fire" style="font-size: 2rem; color: #ff6b6b;"></i>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            streakReports.innerHTML = html;
+        }
+        
+        // ============ إدارة الطلاب ============
+        
+        // عرض نموذج إضافة طالب
+        function showAddStudentModal() {
+            // إعادة تعيين النموذج
+            document.getElementById('addStudentForm').reset();
+            document.getElementById('addStudentModal').style.display = 'flex';
+        }
+        
+        // توليد بيانات دخول تلقائية
+        function generateCredentials() {
+            const names = ['علي', 'محمد', 'سعيد', 'فهد', 'ناصر', 'تركي', 'بدر', 'خالد'];
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const randomNum = Math.floor(Math.random() * 1000);
+            
+            document.getElementById('studentName').value = `طالب ${randomName}`;
+            document.getElementById('studentEmail').value = `student${randomNum}@fyo.com`;
+            document.getElementById('studentUsername').value = `student${randomNum}`;
+            document.getElementById('studentPassword').value = '123456';
+            document.getElementById('studentPhone').value = '05' + Math.floor(Math.random() * 10000000).toString().padStart(8, '0');
+            document.getElementById('studentGrade').value = ['first', 'second', 'third'][Math.floor(Math.random() * 3)];
+        }
+        
+        // إضافة طالب جديد
+        document.getElementById('addStudentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newStudent = {
+                id: generateId(),
+                name: document.getElementById('studentName').value,
+                email: document.getElementById('studentEmail').value,
+                username: document.getElementById('studentUsername').value,
+                phone: document.getElementById('studentPhone').value,
+                grade: document.getElementById('studentGrade').value,
+                status: 'active',
+                streak: 1,
+                createdAt: new Date().toISOString().split('T')[0]
+            };
+            
+            students.push(newStudent);
+            saveStudents();
+            
+            alert(`تم إضافة الطالب ${newStudent.name} بنجاح!\n\nبيانات الدخول:\nاسم المستخدم: ${newStudent.username}\nكلمة المرور: ${document.getElementById('studentPassword').value}`);
+            
+            closeModal('addStudentModal');
+            updateStudentsTable();
+            loadStudentsList();
+            updateTopStreak();
         });
         
-        // تحسينات للأجهزة المحمولة
-        function checkMobile() {
-            if (window.innerWidth <= 768) {
-                // إخفاء القائمة الجانبية على الهواتف
-                const sidebar = document.querySelector('.sidebar');
-                if (sidebar) {
-                    sidebar.style.display = 'none';
+        // عرض بيانات طالب
+        function viewStudent(id) {
+            const student = students.find(s => s.id === id);
+            if (student) {
+                alert(`بيانات الطالب:\n\nالاسم: ${student.name}\nالبريد: ${student.email}\nاسم المستخدم: ${student.username}\nالهاتف: ${student.phone || 'غير محدد'}\nالصف: ${getGradeText(student.grade)}\nالحالة: ${student.status === 'active' ? 'نشط' : 'غير نشط'}\nالستريك: ${student.streak} يوم`);
+            }
+        }
+        
+        // تحرير طالب
+        function editStudent(id) {
+            const student = students.find(s => s.id === id);
+            if (student) {
+                const newName = prompt('أدخل الاسم الجديد:', student.name);
+                if (newName && newName.trim() !== '') {
+                    student.name = newName.trim();
+                    saveStudents();
+                    updateStudentsTable();
+                    loadStudentsList();
+                    alert('تم تحديث بيانات الطالب بنجاح');
                 }
             }
         }
         
-        // التحقق عند التحميل وعند تغيير حجم النافذة
-        window.addEventListener('load', checkMobile);
-        window.addEventListener('resize', checkMobile);
+        // حذف طالب
+        function deleteStudent(id) {
+            if (confirm('هل أنت متأكد من حذف هذا الطالب؟')) {
+                students = students.filter(s => s.id !== id);
+                saveStudents();
+                updateStudentsTable();
+                loadStudentsList();
+                alert('تم حذف الطالب بنجاح');
+            }
+        }
         
-        // تهيئة الحقول تلقائياً
+        // الحصول على نص الصف الدراسي
+        function getGradeText(grade) {
+            const grades = {
+                'first': 'الأول الثانوي',
+                'second': 'الثاني الثانوي',
+                'third': 'الثالث الثانوي',
+                'graduate': 'خريج'
+            };
+            return grades[grade] || 'غير محدد';
+        }
+        
+        // ============ إدارة الملفات ============
+        
+        // عرض نموذج رفع ملف
+        function showUploadFileModal() {
+            // تحميل قائمة الطلاب في خانة الاختيار
+            const studentsCheckboxes = document.getElementById('studentsCheckboxes');
+            studentsCheckboxes.innerHTML = '';
+            
+            students.forEach(student => {
+                studentsCheckboxes.innerHTML += `
+                    <label style="display: block; margin-bottom: 8px;">
+                        <input type="checkbox" value="${student.id}" checked>
+                        ${student.name} (${student.email})
+                    </label>
+                `;
+            });
+            
+            document.getElementById('uploadFileForm').reset();
+            document.getElementById('uploadFileModal').style.display = 'flex';
+        }
+        
+        // رفع ملف
+        document.getElementById('uploadFileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fileName = document.getElementById('fileName').value;
+            const fileCategory = document.getElementById('fileCategory').value;
+            
+            // الحصول على الطلاب المحددين
+            const selectedStudents = [];
+            document.querySelectorAll('#studentsCheckboxes input:checked').forEach(cb => {
+                selectedStudents.push(cb.value);
+            });
+            
+            alert(`تم رفع الملف "${fileName}" بنجاح!\n\nتم تحديد ${selectedStudents.length} طالب للاستفادة من هذا الملف.`);
+            
+            closeModal('uploadFileModal');
+        });
+        
+        // ============ إدارة الاختبارات ============
+        
+        // عرض نموذج إنشاء اختبار
+        function showCreateTestModal() {
+            document.getElementById('createTestForm').reset();
+            document.getElementById('createTestModal').style.display = 'flex';
+        }
+        
+        // إنشاء اختبار
+        document.getElementById('createTestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const testTitle = document.getElementById('testTitle').value;
+            const testDuration = document.getElementById('testDuration').value;
+            const testQuestions = document.getElementById('testQuestions').value;
+            const questionMethod = document.querySelector('input[name="questionMethod"]:checked').value;
+            
+            alert(`تم إنشاء الاختبار "${testTitle}" بنجاح!\n\nالمدة: ${testDuration} دقيقة\nعدد الأسئلة: ${testQuestions}\nنوع الأسئلة: ${questionMethod === 'text' ? 'نصية' : 'صور'}`);
+            
+            closeModal('createTestModal');
+        });
+        
+        // ============ وظائف مساعدة ============
+        
+        // إغلاق النافذة المنبثقة
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // إغلاق النافذة عند النقر خارجها
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        };
+        
+        // تهيئة الصفحة
         document.addEventListener('DOMContentLoaded', function() {
+            // تعبئة بيانات الدخول تلقائياً
             document.getElementById('username').value = 'admin';
             document.getElementById('password').value = 'admin';
             
-            // إضافة تأثير للهواتف
-            document.addEventListener('touchstart', function() {}, {passive: true});
+            // إضافة تأثير اهتزاز
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes shake {
+                    0%, 100% {transform: translateX(0);}
+                    10%, 30%, 50%, 70%, 90% {transform: translateX(-5px);}
+                    20%, 40%, 60%, 80% {transform: translateX(5px);}
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // حفظ البيانات الأولية
+            saveStudents();
         });
     </script>
 </body>
