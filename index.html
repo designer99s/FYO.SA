@@ -4,654 +4,1260 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="theme-color" content="#4361ee">
-    <title>منصة FYO التعليمية</title>
+    <title>منصة FYO التعليمية - تسجيل الدخول</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* الأساسيات */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         :root {
             --primary: #4361ee;
-            --primary-dark: #3a0ca3;
+            --secondary: #3a0ca3;
             --accent: #f72585;
             --light: #f8f9fa;
             --dark: #212529;
-            --gradient: linear-gradient(135deg, #4361ee, #3a0ca3);
+            --success: #4cc9f0;
+            --warning: #f8961e;
+            --gradient: linear-gradient(135deg, #4361ee, #3a0ca3, #7209b7);
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a0e2a, #1a1f4b);
+            background-color: #f0f2f5;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: var(--light);
             padding: 20px;
-            color: white;
         }
         
-        /* الحاوية الرئيسية */
-        .container {
+        /* حاوية تسجيل الدخول */
+        #loginContainer {
+            display: flex;
             width: 100%;
-            max-width: 1000px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            max-width: 1200px;
+            min-height: 700px;
+            border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        /* تصميم الصفحة كعمود واحد للهواتف */
-        @media (max-width: 768px) {
-            .container {
-                border-radius: 15px;
-                max-width: 500px;
-            }
+        /* لوحة التحكم الإدارية */
+        #dashboard {
+            display: none;
+            width: 100%;
+            min-height: 100vh;
+            background: #f5f7fb;
         }
         
-        /* شريط العنوان */
-        .header {
+        .welcome-section {
+            flex: 1;
             background: var(--gradient);
-            padding: 25px;
-            text-align: center;
+            padding: 50px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .welcome-section::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            top: -150px;
+            right: -100px;
+        }
+        
+        .welcome-section::after {
+            content: '';
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            bottom: -100px;
+            left: -50px;
         }
         
         .logo {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 10px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
         }
         
-        .logo i {
-            font-size: 2.5rem;
+        .logo-icon {
+            font-size: 3rem;
+            margin-left: 15px;
             color: var(--accent);
+            filter: drop-shadow(0 0 10px rgba(247, 37, 133, 0.5));
         }
         
-        .logo h1 {
-            font-size: 2rem;
+        .logo-text {
+            font-size: 2.2rem;
             font-weight: 800;
+            background: linear-gradient(to right, #fff, #f8f9fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
         
-        .tagline {
-            color: rgba(255, 255, 255, 0.9);
+        .welcome-title {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .welcome-desc {
             font-size: 1.1rem;
-        }
-        
-        @media (max-width: 768px) {
-            .header {
-                padding: 20px 15px;
-            }
-            
-            .logo h1 {
-                font-size: 1.8rem;
-            }
-            
-            .logo i {
-                font-size: 2rem;
-            }
-        }
-        
-        /* المحتوى */
-        .content {
-            padding: 40px;
-        }
-        
-        @media (max-width: 768px) {
-            .content {
-                padding: 25px 20px;
-            }
-        }
-        
-        /* رسالة الترحيب */
-        .welcome-box {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
-            border-right: 5px solid var(--accent);
-        }
-        
-        .welcome-box h2 {
-            color: var(--accent);
-            margin-bottom: 15px;
-            font-size: 1.8rem;
-        }
-        
-        .welcome-box p {
             line-height: 1.6;
-            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
         }
         
-        /* نموذج تسجيل الدخول */
-        .login-form {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        .features {
+            position: relative;
+            z-index: 2;
+            margin-top: 30px;
         }
         
-        @media (max-width: 768px) {
-            .login-form {
-                padding: 25px 20px;
-            }
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.05rem;
         }
         
-        .login-form h3 {
-            color: var(--primary-dark);
-            margin-bottom: 25px;
-            font-size: 1.6rem;
-            text-align: center;
+        .feature i {
+            margin-left: 15px;
+            color: var(--accent);
+            font-size: 1.3rem;
+        }
+        
+        .login-section {
+            flex: 1;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: var(--dark);
+        }
+        
+        .login-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+        
+        .login-subtitle {
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
         }
         
         .form-group {
             margin-bottom: 25px;
         }
         
-        label {
+        .form-label {
             display: block;
             margin-bottom: 8px;
-            color: #333;
             font-weight: 600;
+            color: #555;
         }
         
-        input {
+        .form-input {
             width: 100%;
-            padding: 15px;
+            padding: 18px 20px;
             border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border 0.3s;
-            background: #f9f9f9;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            background-color: #f9f9f9;
         }
         
-        input:focus {
+        .form-input:focus {
             border-color: var(--primary);
             outline: none;
-            background: white;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            background-color: #fff;
         }
         
         .login-btn {
             background: var(--gradient);
             color: white;
             border: none;
-            padding: 16px;
-            border-radius: 10px;
-            font-size: 1.1rem;
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 1.2rem;
             font-weight: 600;
             cursor: pointer;
-            width: 100%;
-            transition: transform 0.3s;
+            transition: all 0.3s;
             margin-top: 10px;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
         }
         
         .login-btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.5);
         }
         
-        /* معلومات الدخول */
-        .credentials {
-            background: rgba(67, 97, 238, 0.1);
+        .login-btn:active {
+            transform: translateY(0);
+        }
+        
+        .credentials-note {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: rgba(67, 97, 238, 0.1);
             border-radius: 10px;
-            padding: 20px;
-            margin-top: 25px;
             border-right: 4px solid var(--primary);
-        }
-        
-        .credentials h4 {
-            color: var(--primary);
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .credentials p {
-            color: #333;
-            line-height: 1.5;
-        }
-        
-        .credentials strong {
-            color: var(--primary-dark);
-        }
-        
-        /* الميزات */
-        .features {
-            margin-top: 40px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            .features {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .feature-card {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: center;
-            transition: transform 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.15);
-        }
-        
-        .feature-card i {
-            font-size: 2.5rem;
-            color: var(--accent);
-            margin-bottom: 15px;
-        }
-        
-        .feature-card h4 {
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-        }
-        
-        .feature-card p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.5;
             font-size: 0.95rem;
+            color: #555;
         }
         
-        /* الرسائل */
+        .credentials-note strong {
+            color: var(--primary);
+        }
+        
+        .copyright {
+            margin-top: 40px;
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        /* تحسينات للرسائل */
         .message {
             padding: 15px;
             border-radius: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: none;
-            align-items: center;
-            gap: 10px;
         }
         
-        .error {
-            background: rgba(220, 53, 69, 0.1);
+        .error-message {
+            background-color: rgba(220, 53, 69, 0.1);
             border-right: 4px solid #dc3545;
             color: #dc3545;
         }
         
-        .success {
-            background: rgba(25, 135, 84, 0.1);
+        .success-message {
+            background-color: rgba(25, 135, 84, 0.1);
             border-right: 4px solid #198754;
             color: #198754;
         }
         
-        /* الفوتر */
-        .footer {
-            text-align: center;
-            padding: 25px;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        /* تصميم لوحة التحكم */
-        .dashboard {
-            display: none;
-            background: white;
-            color: #333;
-            border-radius: 15px;
-            overflow: hidden;
-            min-height: 500px;
-        }
-        
-        .dashboard-header {
-            background: var(--gradient);
-            padding: 20px;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .user-info i {
-            font-size: 2rem;
-        }
-        
-        .logout-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .logout-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        .dashboard-content {
-            padding: 30px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        
-        @media (max-width: 768px) {
-            .dashboard-content {
-                grid-template-columns: 1fr;
-                padding: 20px;
+        /* تحسينات للأجهزة الصغيرة */
+        @media (max-width: 992px) {
+            #loginContainer {
+                flex-direction: column;
+                max-width: 600px;
+                min-height: auto;
+            }
+            
+            .welcome-section, .login-section {
+                padding: 40px 30px;
+            }
+            
+            .welcome-title {
+                font-size: 2.3rem;
+            }
+            
+            .logo-text {
+                font-size: 1.8rem;
             }
         }
         
-        .dashboard-card {
-            background: #f8f9fa;
-            border-radius: 15px;
+        @media (max-width: 576px) {
+            body {
+                padding: 10px;
+            }
+            
+            .welcome-section, .login-section {
+                padding: 30px 20px;
+            }
+            
+            .welcome-title {
+                font-size: 2rem;
+            }
+            
+            .login-title {
+                font-size: 1.8rem;
+            }
+            
+            .logo-icon {
+                font-size: 2.5rem;
+            }
+            
+            .logo-text {
+                font-size: 1.6rem;
+            }
+        }
+        
+        /* تصميم لوحة التحكم */
+        .navbar {
+            background: var(--gradient);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .nav-brand i {
+            margin-left: 15px;
+            color: var(--accent);
+        }
+        
+        .nav-user {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-user img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin-left: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .welcome-message {
+            background-color: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 30px;
+            color: white;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .welcome-message i {
+            margin-left: 15px;
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+        
+        /* القائمة الجانبية */
+        .sidebar {
+            width: 280px;
+            background-color: white;
+            border-left: 1px solid #eee;
+            min-height: calc(100vh - 120px);
+            padding: 25px 0;
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            right: 0;
+            top: 120px;
+        }
+        
+        .menu-item {
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            color: #555;
+            text-decoration: none;
+            transition: all 0.3s;
+            border-right: 4px solid transparent;
+            font-weight: 500;
+        }
+        
+        .menu-item:hover {
+            background-color: #f8f9fa;
+            color: var(--primary);
+            border-right-color: var(--primary);
+        }
+        
+        .menu-item.active {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+            border-right-color: var(--primary);
+        }
+        
+        .menu-item i {
+            margin-left: 15px;
+            font-size: 1.2rem;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .main-content {
+            margin-right: 280px;
+            padding: 30px;
+        }
+        
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 18px;
             padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
             border-top: 5px solid var(--primary);
         }
         
-        .dashboard-card h3 {
-            color: var(--primary-dark);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
         }
         
-        .dashboard-card p {
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .card-desc {
             color: #666;
-            line-height: 1.5;
+            line-height: 1.6;
             margin-bottom: 20px;
         }
         
         .card-btn {
+            display: inline-block;
+            padding: 10px 25px;
             background: var(--gradient);
             color: white;
-            border: none;
-            padding: 12px 25px;
             border-radius: 8px;
-            cursor: pointer;
+            text-decoration: none;
             font-weight: 600;
-            transition: transform 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
         }
         
         .card-btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
         }
         
-        /* قائمة الطلاب */
-        .students-list {
-            margin-top: 30px;
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 25px;
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--secondary);
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .table-container {
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
             overflow-x: auto;
-        }
-        
-        .students-list h3 {
-            color: var(--primary-dark);
-            margin-bottom: 20px;
         }
         
         table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 800px;
         }
         
-        th, td {
-            padding: 15px;
-            text-align: right;
-            border-bottom: 1px solid #eee;
+        thead {
+            background: var(--gradient);
+            color: white;
         }
         
         th {
-            background: var(--gradient);
-            color: white;
+            padding: 20px;
+            text-align: right;
             font-weight: 600;
         }
         
-        tr:hover {
-            background: #f0f0f0;
+        tbody tr {
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s;
         }
         
-        .streak {
-            background: var(--accent);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-weight: bold;
+        tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        td {
+            padding: 18px 20px;
+        }
+        
+        .status-badge {
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
             display: inline-block;
+        }
+        
+        .status-active {
+            background-color: rgba(76, 201, 240, 0.2);
+            color: #0a8ea0;
+        }
+        
+        .status-pending {
+            background-color: rgba(248, 150, 30, 0.2);
+            color: #c97c0e;
+        }
+        
+        .action-btn {
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            margin-left: 8px;
+            transition: all 0.2s;
+        }
+        
+        .btn-edit {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary);
+        }
+        
+        .btn-delete {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: #dc3545;
+        }
+        
+        .btn-view {
+            background-color: rgba(25, 135, 84, 0.1);
+            color: #198754;
+        }
+        
+        .action-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .logout-btn {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        /* تصميم نموذج الإضافة */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 600px;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .modal-title {
+            font-size: 1.8rem;
+            color: var(--secondary);
+        }
+        
+        .close-modal {
+            font-size: 2rem;
+            color: #888;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+        
+        .streak-container {
+            display: flex;
+            align-items: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            border-radius: 15px;
+            color: white;
+        }
+        
+        .streak-icon {
+            font-size: 3rem;
+            margin-left: 20px;
+            color: var(--accent);
+        }
+        
+        .streak-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .streak-days {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(247, 37, 133, 0.5);
+        }
+        
+        /* تحسينات للأجهزة الصغيرة */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 250px;
+            }
+            
+            .main-content {
+                margin-right: 250px;
+            }
+            
+            .cards-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .main-content {
+                margin-right: 0;
+                padding: 20px;
+            }
+            
+            .navbar {
+                flex-direction: column;
+                padding: 15px;
+                gap: 15px;
+            }
+            
+            .nav-brand {
+                font-size: 1.5rem;
+            }
+            
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 10px;
+            }
+            
+            .nav-brand {
+                font-size: 1.3rem;
+            }
+            
+            .main-content {
+                padding: 15px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .card-title {
+                font-size: 1.3rem;
+            }
+            
+            .action-btn {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+                margin-left: 5px;
+            }
+        }
+        
+        /* تحسينات للهواتف */
+        @media (max-width: 768px) {
+            .welcome-message {
+                margin: 15px;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .streak-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .streak-icon {
+                margin-left: 0;
+                margin-bottom: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <!-- شاشة تسجيل الدخول -->
-    <div class="container" id="loginScreen">
-        <div class="header">
+    <div class="container" id="loginContainer">
+        <!-- قسم الترحيب -->
+        <div class="welcome-section">
             <div class="logo">
-                <i class="fas fa-graduation-cap"></i>
-                <h1>منصة FYO التعليمية</h1>
-            </div>
-            <p class="tagline">منصة متكاملة لإدارة القدرات التعليمية</p>
-        </div>
-        
-        <div class="content">
-            <!-- رسالة ترحيب -->
-            <div class="welcome-box">
-                <h2><i class="fas fa-star"></i> مرحباً بك في المنصة التعليمية</h2>
-                <p>منصة متكاملة لإدارة المحتوى التعليمي، الاختبارات الإلكترونية، ومتابعة تقدم الطلاب. تم تصميم المنصة لتوفر تجربة تعليمية استثنائية.</p>
+                <i class="fas fa-graduation-cap logo-icon"></i>
+                <h1 class="logo-text">منصة FYO التعليمية</h1>
             </div>
             
+            <h2 class="welcome-title">مرحبًا بك في نظام إدارة القدرات التعليمي</h2>
+            
+            <p class="welcome-desc">
+                منصة متكاملة لإدارة المحتوى التعليمي، الاختبارات الإلكترونية، ومتابعة تقدم الطلاب. تم تصميم المنصة لتوفر تجربة تعليمية استثنائية ومتميزة.
+            </p>
+            
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>إدارة كاملة للمستخدمين والطلاب</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>رفع الملفات وتحديد المستفيدين منها</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>إنشاء اختبارات إلكترونية متقدمة</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>متابعة دخول الطلاب عبر نظام الستريك</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-check-circle"></i>
+                    <span>واجهة إدارية فاخرة وسهلة الاستخدام</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- قسم تسجيل الدخول -->
+        <div class="login-section">
+            <h2 class="login-title">تسجيل الدخول</h2>
+            <p class="login-subtitle">أدخل بيانات الدخول الخاصة بك للوصول إلى لوحة التحكم</p>
+            
             <!-- رسالة الخطأ -->
-            <div class="message error" id="errorMessage">
-                <i class="fas fa-exclamation-circle"></i>
-                <span>اسم المستخدم أو كلمة المرور غير صحيحة!</span>
+            <div id="errorMessage" class="message error-message">
+                <i class="fas fa-exclamation-circle"></i> اسم المستخدم أو كلمة المرور غير صحيحة
             </div>
             
             <!-- رسالة النجاح -->
-            <div class="message success" id="successMessage">
-                <i class="fas fa-check-circle"></i>
-                <span>تم تسجيل الدخول بنجاح!</span>
+            <div id="successMessage" class="message success-message">
+                <i class="fas fa-check-circle"></i> تم تسجيل الدخول بنجاح، جاري التوجيه إلى لوحة التحكم...
             </div>
             
-            <!-- نموذج تسجيل الدخول -->
-            <div class="login-form">
-                <h3>تسجيل الدخول للإدارة</h3>
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="username">اسم المستخدم:</label>
-                        <input type="text" id="username" placeholder="أدخل اسم المستخدم" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="password">كلمة المرور:</label>
-                        <input type="password" id="password" placeholder="أدخل كلمة المرور" required>
-                    </div>
-                    
-                    <button type="submit" class="login-btn">
-                        <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
-                    </button>
-                </form>
-                
-                <div class="credentials">
-                    <h4><i class="fas fa-info-circle"></i> بيانات الدخول الافتراضية</h4>
-                    <p>اسم المستخدم: <strong>admin</strong><br>كلمة المرور: <strong>admin</strong></p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label class="form-label" for="username">اسم المستخدم</label>
+                    <input type="text" id="username" class="form-input" placeholder="أدخل اسم المستخدم" required value="admin">
                 </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="password">كلمة المرور</label>
+                    <input type="password" id="password" class="form-input" placeholder="أدخل كلمة المرور" required value="admin">
+                </div>
+                
+                <button type="submit" class="login-btn">تسجيل الدخول <i class="fas fa-sign-in-alt"></i></button>
+            </form>
+            
+            <div class="credentials-note">
+                <strong>بيانات الدخول الافتراضية:</strong><br>
+                اسم المستخدم: <strong>admin</strong><br>
+                كلمة المرور: <strong>admin</strong>
             </div>
             
-            <!-- الميزات -->
-            <div class="features">
-                <div class="feature-card">
-                    <i class="fas fa-users"></i>
-                    <h4>إدارة المستخدمين</h4>
-                    <p>إنشاء حسابات جديدة للطلاب وإدارتها بسهولة</p>
-                </div>
-                
-                <div class="feature-card">
-                    <i class="fas fa-file-upload"></i>
-                    <h4>رفع الملفات</h4>
-                    <p>رفع ملفات تعليمية وتحديد الطلاب المستفيدين</p>
-                </div>
-                
-                <div class="feature-card">
-                    <i class="fas fa-file-alt"></i>
-                    <h4>الاختبارات</h4>
-                    <p>إنشاء اختبارات إلكترونية متقدمة</p>
-                </div>
-                
-                <div class="feature-card">
-                    <i class="fas fa-fire"></i>
-                    <h4>نظام الستريك</h4>
-                    <p>متابعة دخول الطلاب وتحصيلهم على ستريك</p>
-                </div>
+            <div class="copyright">
+                &copy; 2023 منصة FYO التعليمية. جميع الحقوق محفوظة.
             </div>
-        </div>
-        
-        <div class="footer">
-            <p>© 2023 منصة FYO التعليمية. جميع الحقوق محفوظة.</p>
         </div>
     </div>
     
-    <!-- لوحة التحكم (مخفية في البداية) -->
-    <div class="dashboard" id="dashboard">
-        <div class="dashboard-header">
-            <div class="user-info">
-                <i class="fas fa-user-cog"></i>
-                <div>
-                    <h2>مرحباً، المسؤول</h2>
-                    <p>لوحة التحكم الإدارية</p>
+    <!-- لوحة التحكم الإدارية -->
+    <div id="dashboard">
+        <!-- شريط التنقل العلوي -->
+        <div class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-graduation-cap"></i>
+                <span>منصة FYO التعليمية</span>
+            </div>
+            
+            <div class="nav-user">
+                <span>مرحبًا، المسؤول</span>
+                <img src="https://ui-avatars.com/api/?name=Admin&background=4361ee&color=fff&size=128" alt="Admin">
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                </button>
+            </div>
+        </div>
+        
+        <!-- رسالة ترحيب -->
+        <div class="welcome-message">
+            <i class="fas fa-star"></i>
+            <div>
+                <strong>مرحبًا بك في لوحة التحكم الإدارية!</strong> يمكنك من هنا إدارة جميع جوانب المنصة التعليمية بما في ذلك المستخدمين والملفات والاختبارات.
+            </div>
+        </div>
+        
+        <!-- القائمة الجانبية -->
+        <div class="sidebar">
+            <a href="#" class="menu-item active" onclick="showSection('home')">
+                <i class="fas fa-home"></i>
+                <span>الرئيسية</span>
+            </a>
+            <a href="#" class="menu-item" onclick="showSection('users')">
+                <i class="fas fa-users"></i>
+                <span>إدارة المستخدمين</span>
+            </a>
+            <a href="#" class="menu-item" onclick="showSection('files')">
+                <i class="fas fa-file-upload"></i>
+                <span>رفع الملفات</span>
+            </a>
+            <a href="#" class="menu-item" onclick="showSection('tests')">
+                <i class="fas fa-file-alt"></i>
+                <span>الاختبارات الإلكترونية</span>
+            </a>
+            <a href="#" class="menu-item" onclick="showSection('reports')">
+                <i class="fas fa-chart-line"></i>
+                <span>تقارير الطلاب</span>
+            </a>
+            <a href="#" class="menu-item" onclick="showSection('settings')">
+                <i class="fas fa-cog"></i>
+                <span>الإعدادات</span>
+            </a>
+        </div>
+        
+        <!-- المحتوى الرئيسي -->
+        <div class="main-content">
+            <div id="homeSection">
+                <h2 class="section-title">لوحة التحكم الإدارية</h2>
+                
+                <!-- بطاقات الإحصاءات -->
+                <div class="cards-container">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="card-title">إدارة المستخدمين</h3>
+                        <p class="card-desc">إنشاء حسابات جديدة للطلاب والمعلمين، وتعديل بياناتهم، وإدارة صلاحياتهم.</p>
+                        <button class="card-btn" onclick="showAddUserModal()">إضافة مستخدم جديد</button>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-file-upload"></i>
+                        </div>
+                        <h3 class="card-title">رفع الملفات</h3>
+                        <p class="card-desc">رفع ملفات تعليمية وتحديد الطلاب المستفيدين منها مع إمكانية التعديل والحذف.</p>
+                        <button class="card-btn" onclick="showUploadModal()">رفع ملف جديد</button>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3 class="card-title">الاختبارات الإلكترونية</h3>
+                        <p class="card-desc">إنشاء اختبارات إلكترونية مع خيارات متعددة للأسئلة وتحديد الإجابات الصحيحة.</p>
+                        <button class="card-btn" onclick="showAddTestModal()">إنشاء اختبار جديد</button>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <h3 class="card-title">نظام الستريك</h3>
+                        <p class="card-desc">متابعة دخول الطلاب وتحصيلهم على ستريك لكل يوم يدخلون فيه إلى المنصة.</p>
+                        <button class="card-btn" onclick="showStreakReport()">عرض تقرير الستريك</button>
+                    </div>
+                </div>
+                
+                <!-- جدول الطلاب -->
+                <h2 class="section-title">الطلاب المسجلين</h2>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>اسم الطالب</th>
+                                <th>البريد الإلكتروني</th>
+                                <th>تاريخ التسجيل</th>
+                                <th>حالة الحساب</th>
+                                <th>ستريك الدخول</th>
+                                <th>الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>أحمد محمد</td>
+                                <td>ahmed@example.com</td>
+                                <td>2023-10-15</td>
+                                <td><span class="status-badge status-active">نشط</span></td>
+                                <td><strong>15 يوم</strong></td>
+                                <td>
+                                    <button class="action-btn btn-view"><i class="fas fa-eye"></i> عرض</button>
+                                    <button class="action-btn btn-edit"><i class="fas fa-edit"></i> تعديل</button>
+                                    <button class="action-btn btn-delete"><i class="fas fa-trash"></i> حذف</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>سارة عبدالله</td>
+                                <td>sara@example.com</td>
+                                <td>2023-10-20</td>
+                                <td><span class="status-badge status-active">نشط</span></td>
+                                <td><strong>8 أيام</strong></td>
+                                <td>
+                                    <button class="action-btn btn-view"><i class="fas fa-eye"></i> عرض</button>
+                                    <button class="action-btn btn-edit"><i class="fas fa-edit"></i> تعديل</button>
+                                    <button class="action-btn btn-delete"><i class="fas fa-trash"></i> حذف</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>خالد فيصل</td>
+                                <td>khaled@example.com</td>
+                                <td>2023-10-25</td>
+                                <td><span class="status-badge status-pending">غير نشط</span></td>
+                                <td><strong>3 أيام</strong></td>
+                                <td>
+                                    <button class="action-btn btn-view"><i class="fas fa-eye"></i> عرض</button>
+                                    <button class="action-btn btn-edit"><i class="fas fa-edit"></i> تعديل</button>
+                                    <button class="action-btn btn-delete"><i class="fas fa-trash"></i> حذف</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>نورة سعيد</td>
+                                <td>noura@example.com</td>
+                                <td>2023-11-01</td>
+                                <td><span class="status-badge status-active">نشط</span></td>
+                                <td><strong>21 يوم</strong></td>
+                                <td>
+                                    <button class="action-btn btn-view"><i class="fas fa-eye"></i> عرض</button>
+                                    <button class="action-btn btn-edit"><i class="fas fa-edit"></i> تعديل</button>
+                                    <button class="action-btn btn-delete"><i class="fas fa-trash"></i> حذف</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- عرض الستريك -->
+                <div class="streak-container">
+                    <div class="streak-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="streak-info">
+                        <h3>أعلى ستريك للطلاب هذا الشهر</h3>
+                        <p>الطالب نورة سعيد حصلت على أعلى ستريك دخول للمنصة</p>
+                        <div class="streak-days">21 يوم</div>
+                    </div>
                 </div>
             </div>
-            <button class="logout-btn" onclick="logout()">
-                <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
-            </button>
-        </div>
-        
-        <div class="dashboard-content">
-            <div class="dashboard-card">
-                <h3><i class="fas fa-user-plus"></i> إضافة مستخدم جديد</h3>
-                <p>قم بإنشاء حسابات جديدة للطلاب والمعلمين</p>
-                <button class="card-btn" onclick="addUser()">
-                    <i class="fas fa-plus"></i> إضافة مستخدم
-                </button>
+            
+            <!-- أقسام أخرى مخفية -->
+            <div id="usersSection" class="content-section" style="display: none;">
+                <h2 class="section-title">إدارة المستخدمين</h2>
+                <div class="card">
+                    <h3 class="card-title">قائمة المستخدمين</h3>
+                    <p>يمكنك هنا إضافة مستخدمين جدد، تعديل بياناتهم، أو حذفهم من النظام.</p>
+                    <button class="card-btn" onclick="showAddUserModal()"><i class="fas fa-user-plus"></i> إضافة مستخدم جديد</button>
+                </div>
             </div>
             
-            <div class="dashboard-card">
-                <h3><i class="fas fa-cloud-upload-alt"></i> رفع ملفات</h3>
-                <p>رفع ملفات تعليمية وتحديد المستفيدين منها</p>
-                <button class="card-btn" onclick="uploadFile()">
-                    <i class="fas fa-upload"></i> رفع ملف
-                </button>
+            <div id="filesSection" class="content-section" style="display: none;">
+                <h2 class="section-title">إدارة الملفات</h2>
+                <div class="card">
+                    <h3 class="card-title">الملفات المرفوعة</h3>
+                    <p>رفع ملفات تعليمية وتحديد الطلاب المستفيدين منها مع إمكانية التعديل والحذف.</p>
+                    <button class="card-btn" onclick="showUploadModal()"><i class="fas fa-upload"></i> رفع ملف جديد</button>
+                </div>
             </div>
             
-            <div class="dashboard-card">
-                <h3><i class="fas fa-file-alt"></i> إنشاء اختبار</h3>
-                <p>إنشاء اختبارات إلكترونية مع خيارات متعددة</p>
-                <button class="card-btn" onclick="createTest()">
-                    <i class="fas fa-plus-circle"></i> إنشاء اختبار
-                </button>
-            </div>
-            
-            <div class="dashboard-card">
-                <h3><i class="fas fa-fire"></i> تقرير الستريك</h3>
-                <p>عرض تقرير دخول الطلاب ونظام المتابعة</p>
-                <button class="card-btn" onclick="showStreak()">
-                    <i class="fas fa-chart-line"></i> عرض التقرير
-                </button>
+            <div id="testsSection" class="content-section" style="display: none;">
+                <h2 class="section-title">الاختبارات الإلكترونية</h2>
+                <div class="card">
+                    <h3 class="card-title">إدارة الاختبارات</h3>
+                    <p>إنشاء اختبارات إلكترونية مع خيارات متعددة للأسئلة وتحديد الإجابات الصحيحة.</p>
+                    <button class="card-btn" onclick="showAddTestModal()"><i class="fas fa-plus-circle"></i> إنشاء اختبار جديد</button>
+                </div>
             </div>
         </div>
-        
-        <div class="students-list">
-            <h3><i class="fas fa-users"></i> قائمة الطلاب</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>اسم الطالب</th>
-                        <th>البريد الإلكتروني</th>
-                        <th>تاريخ التسجيل</th>
-                        <th>ستريك الدخول</th>
-                        <th>الإجراءات</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>أحمد محمد</td>
-                        <td>ahmed@example.com</td>
-                        <td>2023-10-15</td>
-                        <td><span class="streak">15 يوم</span></td>
-                        <td>
-                            <button class="card-btn" style="padding: 8px 15px; font-size: 0.9rem;">
-                                <i class="fas fa-edit"></i> تعديل
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>سارة عبدالله</td>
-                        <td>sara@example.com</td>
-                        <td>2023-10-20</td>
-                        <td><span class="streak">8 أيام</span></td>
-                        <td>
-                            <button class="card-btn" style="padding: 8px 15px; font-size: 0.9rem;">
-                                <i class="fas fa-edit"></i> تعديل
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>خالد فيصل</td>
-                        <td>khaled@example.com</td>
-                        <td>2023-10-25</td>
-                        <td><span class="streak">3 أيام</span></td>
-                        <td>
-                            <button class="card-btn" style="padding: 8px 15px; font-size: 0.9rem;">
-                                <i class="fas fa-edit"></i> تعديل
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    </div>
+    
+    <!-- نموذج إضافة مستخدم -->
+    <div id="addUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">إضافة مستخدم جديد</h2>
+                <span class="close-modal" onclick="closeModal('addUserModal')">&times;</span>
+            </div>
+            <form id="addUserForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="userName">اسم المستخدم</label>
+                        <input type="text" id="userName" class="form-control" placeholder="أدخل اسم المستخدم" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="userEmail">البريد الإلكتروني</label>
+                        <input type="email" id="userEmail" class="form-control" placeholder="أدخل البريد الإلكتروني" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="userPassword">كلمة المرور</label>
+                        <input type="password" id="userPassword" class="form-control" placeholder="أدخل كلمة المرور" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="userType">نوع المستخدم</label>
+                        <select id="userType" class="form-control" required>
+                            <option value="student">طالب</option>
+                            <option value="teacher">معلم</option>
+                            <option value="admin">مسؤول</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button type="submit" class="card-btn" style="width: 100%; margin-top: 20px;">إضافة المستخدم</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- نموذج رفع ملف -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">رفع ملف جديد</h2>
+                <span class="close-modal" onclick="closeModal('uploadModal')">&times;</span>
+            </div>
+            <form id="uploadForm">
+                <div class="form-group">
+                    <label class="form-label" for="fileName">اسم الملف</label>
+                    <input type="text" id="fileName" class="form-control" placeholder="أدخل اسم الملف" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="fileDescription">وصف الملف</label>
+                    <textarea id="fileDescription" class="form-control" rows="3" placeholder="أدخل وصف للملف"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="fileUpload">رفع الملف</label>
+                    <input type="file" id="fileUpload" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">حدد المستخدمين المستفيدين</label>
+                    <div style="margin-top: 10px;">
+                        <label style="margin-left: 15px;"><input type="checkbox" checked> جميع الطلاب</label>
+                        <label style="margin-left: 15px;"><input type="checkbox"> أحمد محمد</label>
+                        <label style="margin-left: 15px;"><input type="checkbox"> سارة عبدالله</label>
+                        <label style="margin-left: 15px;"><input type="checkbox"> خالد فيصل</label>
+                        <label style="margin-left: 15px;"><input type="checkbox"> نورة سعيد</label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="card-btn" style="width: 100%; margin-top: 20px;">رفع الملف</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- نموذج إنشاء اختبار -->
+    <div id="addTestModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">إنشاء اختبار جديد</h2>
+                <span class="close-modal" onclick="closeModal('addTestModal')">&times;</span>
+            </div>
+            <form id="addTestForm">
+                <div class="form-group">
+                    <label class="form-label" for="testTitle">عنوان الاختبار</label>
+                    <input type="text" id="testTitle" class="form-control" placeholder="أدخل عنوان الاختبار" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="testDuration">مدة الاختبار (دقيقة)</label>
+                        <input type="number" id="testDuration" class="form-control" value="60" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="testType">نوع الاختبار</label>
+                        <select id="testType" class="form-control" required>
+                            <option value="quantitative">كمي</option>
+                            <option value="verbal">لفظي</option>
+                            <option value="general">عام</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">طريقة إضافة السؤال</label>
+                    <div style="margin-top: 10px;">
+                        <label style="margin-left: 15px;"><input type="radio" name="questionType" value="text" checked> كتابة السؤال</label>
+                        <label style="margin-left: 15px;"><input type="radio" name="questionType" value="image"> رفع صورة للسؤال</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="questionText">نص السؤال</label>
+                    <textarea id="questionText" class="form-control" rows="3" placeholder="أدخل نص السؤال"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="questionImage">أو رفع صورة للسؤال</label>
+                    <input type="file" id="questionImage" class="form-control" accept="image/*">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">الاختيارات</label>
+                    <div style="margin-top: 10px;">
+                        <input type="text" class="form-control" placeholder="الاختيار الأول" style="margin-bottom: 10px;">
+                        <input type="text" class="form-control" placeholder="الاختيار الثاني" style="margin-bottom: 10px;">
+                        <input type="text" class="form-control" placeholder="الاختيار الثالث" style="margin-bottom: 10px;">
+                        <input type="text" class="form-control" placeholder="الاختيار الرابع" style="margin-bottom: 10px;">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="correctAnswer">الإجابة الصحيحة</label>
+                    <select id="correctAnswer" class="form-control" required>
+                        <option value="1">الاختيار الأول</option>
+                        <option value="2">الاختيار الثاني</option>
+                        <option value="3">الاختيار الثالث</option>
+                        <option value="4">الاختيار الرابع</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="card-btn" style="width: 100%; margin-top: 20px;">إضافة الاختبار</button>
+            </form>
         </div>
     </div>
 
     <script>
-        // بيانات الدخول الصحيحة
+        // بيانات الدخول
         const CORRECT_USERNAME = "admin";
         const CORRECT_PASSWORD = "admin";
         
-        // الحصول على العناصر
-        const loginScreen = document.getElementById('loginScreen');
+        // عناصر DOM
+        const loginContainer = document.getElementById('loginContainer');
         const dashboard = document.getElementById('dashboard');
         const loginForm = document.getElementById('loginForm');
         const errorMessage = document.getElementById('errorMessage');
         const successMessage = document.getElementById('successMessage');
+        const menuItems = document.querySelectorAll('.menu-item');
+        const contentSections = document.querySelectorAll('.content-section');
         
         // إخفاء الرسائل في البداية
         errorMessage.style.display = 'none';
         successMessage.style.display = 'none';
         
-        // تعبئة الحقول تلقائياً لتسهيل الاختبار
-        document.getElementById('username').value = CORRECT_USERNAME;
-        document.getElementById('password').value = CORRECT_PASSWORD;
-        
-        // معالجة تسجيل الدخول
-        loginForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // منع إرسال النموذج
+        // تسجيل الدخول
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // الحصول على القيم المدخلة
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             
@@ -662,99 +1268,151 @@
             // التحقق من بيانات الدخول
             if (username === CORRECT_USERNAME && password === CORRECT_PASSWORD) {
                 // تسجيل الدخول ناجح
-                successMessage.style.display = 'flex';
+                successMessage.style.display = 'block';
                 
-                // الانتقال إلى لوحة التحكم بعد ثانيتين
-                setTimeout(function() {
-                    loginScreen.style.display = 'none';
+                // الانتقال إلى لوحة التحكم بعد تأخير بسيط
+                setTimeout(() => {
+                    loginContainer.style.display = 'none';
                     dashboard.style.display = 'block';
-                }, 1000);
-                
+                }, 1500);
             } else {
                 // تسجيل الدخول فاشل
-                errorMessage.style.display = 'flex';
-                
-                // تأثير هزة للحقول
-                const inputs = document.querySelectorAll('input');
-                inputs.forEach(input => {
-                    input.style.animation = 'shake 0.5s';
-                    setTimeout(() => {
-                        input.style.animation = '';
-                    }, 500);
-                });
-                
-                // إضافة تأثير الهزة
-                const style = document.createElement('style');
-                style.textContent = `
-                    @keyframes shake {
-                        0%, 100% {transform: translateX(0);}
-                        10%, 30%, 50%, 70%, 90% {transform: translateX(-5px);}
-                        20%, 40%, 60%, 80% {transform: translateX(5px);}
-                    }
-                `;
-                document.head.appendChild(style);
+                errorMessage.style.display = 'block';
             }
         });
         
-        // وظيفة تسجيل الخروج
+        // تسجيل الخروج
         function logout() {
-            dashboard.style.display = 'none';
-            loginScreen.style.display = 'block';
-            
-            // إظهار رسالة وداع
-            alert('تم تسجيل الخروج بنجاح!');
-        }
-        
-        // وظائف لوحة التحكم
-        function addUser() {
-            alert('سيتم فتح نموذج إضافة مستخدم جديد. هذه الميزة كاملة في النسخة النهائية.');
-        }
-        
-        function uploadFile() {
-            alert('سيتم فتح نافذة رفع الملفات. هذه الميزة كاملة في النسخة النهائية.');
-        }
-        
-        function createTest() {
-            alert('سيتم فتح نموذج إنشاء اختبار جديد. هذه الميزة كاملة في النسخة النهائية.');
-        }
-        
-        function showStreak() {
-            alert('سيتم عرض تقرير الستريك للطلاب. هذه الميزة كاملة في النسخة النهائية.');
-        }
-        
-        // تحسينات للأجهزة المحمولة
-        document.addEventListener('DOMContentLoaded', function() {
-            // منع التكبير على النقر في iOS
-            document.addEventListener('touchstart', function(event) {
-                if (event.touches.length > 1) {
-                    event.preventDefault();
-                }
-            }, { passive: false });
-            
-            // تحسين تجربة اللمس للأزرار
-            const buttons = document.querySelectorAll('button');
-            buttons.forEach(button => {
-                button.addEventListener('touchstart', function() {
-                    this.style.transform = 'scale(0.95)';
-                });
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                dashboard.style.display = 'none';
+                loginContainer.style.display = 'flex';
                 
-                button.addEventListener('touchend', function() {
-                    this.style.transform = 'scale(1)';
-                });
+                // إعادة تعيين الحقول
+                document.getElementById('username').value = 'admin';
+                document.getElementById('password').value = 'admin';
+                
+                // إخفاء الرسائل
+                errorMessage.style.display = 'none';
+                successMessage.style.display = 'none';
+            }
+        }
+        
+        // عرض قسم معين
+        function showSection(sectionId) {
+            // إخفاء جميع الأقسام
+            contentSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // إزالة النشاط من جميع عناصر القائمة
+            menuItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // عرض القسم المطلوب
+            document.getElementById(sectionId + 'Section').style.display = 'block';
+            
+            // إضافة النشاط لعنصر القائمة
+            const activeItem = document.querySelector(`.menu-item[onclick="showSection('${sectionId}')"]`);
+            if (activeItem) {
+                activeItem.classList.add('active');
+            }
+        }
+        
+        // وظائف النماذج المنبثقة
+        function showAddUserModal() {
+            document.getElementById('addUserModal').style.display = 'flex';
+        }
+        
+        function showUploadModal() {
+            document.getElementById('uploadModal').style.display = 'flex';
+        }
+        
+        function showAddTestModal() {
+            document.getElementById('addTestModal').style.display = 'flex';
+        }
+        
+        function showStreakReport() {
+            alert('عرض تقرير الستريك للطلاب. هذه الميزة كاملة في النسخة النهائية من النظام.');
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // إغلاق النافذة عند النقر خارج المحتوى
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        };
+        
+        // معالجة إرسال النماذج
+        document.getElementById('addUserForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('تم إضافة المستخدم بنجاح!');
+            closeModal('addUserModal');
+        });
+        
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('تم رفع الملف بنجاح!');
+            closeModal('uploadModal');
+        });
+        
+        document.getElementById('addTestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('تم إنشاء الاختبار بنجاح!');
+            closeModal('addTestModal');
+        });
+        
+        // تغيير نوع السؤال في نموذج الاختبار
+        const questionTypeRadios = document.querySelectorAll('input[name="questionType"]');
+        const questionText = document.getElementById('questionText');
+        const questionImage = document.getElementById('questionImage');
+        
+        questionTypeRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.value === 'text') {
+                    questionText.disabled = false;
+                    questionImage.disabled = true;
+                    questionImage.required = false;
+                    questionText.required = true;
+                } else {
+                    questionText.disabled = true;
+                    questionImage.disabled = false;
+                    questionText.required = false;
+                    questionImage.required = true;
+                }
             });
         });
         
-        // اختصار لوحة المفاتيح لتسجيل الدخول السريع (اضغط على Enter)
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter' && loginScreen.style.display !== 'none') {
-                // محاكاة النقر على زر تسجيل الدخول
-                document.querySelector('.login-btn').click();
+        // تحسينات للأجهزة المحمولة
+        function checkMobile() {
+            if (window.innerWidth <= 768) {
+                // إخفاء القائمة الجانبية على الهواتف
+                const sidebar = document.querySelector('.sidebar');
+                if (sidebar) {
+                    sidebar.style.display = 'none';
+                }
             }
-        });
+        }
         
-        // إظهار رسالة ترحيب عند التحميل
-        console.log('مرحباً بك في منصة FYO التعليمية!');
-        console.log('بيانات الدخول: admin / admin');
+        // التحقق عند التحميل وعند تغيير حجم النافذة
+        window.addEventListener('load', checkMobile);
+        window.addEventListener('resize', checkMobile);
+        
+        // تهيئة الحقول تلقائياً
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('username').value = 'admin';
+            document.getElementById('password').value = 'admin';
+            
+            // إضافة تأثير للهواتف
+            document.addEventListener('touchstart', function() {}, {passive: true});
+        });
     </script>
 </body>
 </html>
