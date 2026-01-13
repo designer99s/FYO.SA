@@ -2,295 +2,288 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منصة FYO التعليمية - احتراف القدرات</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;800&display=swap" rel="stylesheet">
+    <title>FYO Platform | منصة التميز التعليمية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&family=Tajawal:wght@400;500;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --gold: #D4AF37;
-            --dark-bg: #0A0A0B;
-            --glass: rgba(255, 255, 255, 0.05);
-            --accent: #1E90FF;
+            --bg-color: #050505;
+            --card-bg: #111111;
+            --primary-gold: #e2b74a;
+            --secondary-gold: #9b7a2d;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --accent-blue: #007bff;
+            --fire-color: #ff5e00;
         }
 
-        body {
-            margin: 0;
+        body, html {
+            margin: 0; padding: 0; height: 100%;
             font-family: 'Tajawal', sans-serif;
-            background: radial-gradient(circle at top right, #1a1a2e, #0A0A0B);
-            color: white;
-            min-height: 100vh;
-            overflow-x: hidden;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow: hidden;
         }
 
-        /* --- واجهة تسجيل الدخول --- */
-        #login-page {
+        /* --- واجهة الدخول الفاخرة --- */
+        #login-screen {
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+            background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+            position: fixed; width: 100%; z-index: 9999;
         }
 
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px;
-            border-radius: 25px;
-            width: 100%;
-            max-width: 400px;
+        .login-box {
+            background: var(--card-bg);
+            padding: 50px;
+            border-radius: 30px;
+            border: 1px solid rgba(226, 183, 74, 0.2);
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            width: 380px;
         }
 
-        h1.logo { font-weight: 800; font-size: 2.5rem; color: var(--gold); margin-bottom: 10px; }
+        .login-box h1 {
+            font-size: 3rem; margin: 0; color: var(--primary-gold); font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .input-field {
+            width: 100%; padding: 15px; margin: 10px 0;
+            background: #1a1a1a; border: 1px solid #333;
+            border-radius: 12px; color: white; font-size: 1rem;
+            outline: none; transition: 0.3s;
+        }
+
+        .input-field:focus { border-color: var(--primary-gold); }
+
+        .login-btn {
+            width: 100%; padding: 15px; margin-top: 20px;
+            background: linear-gradient(135deg, var(--primary-gold), var(--secondary-gold));
+            border: none; border-radius: 12px; font-weight: bold;
+            cursor: pointer; font-size: 1.1rem; color: #000;
+        }
+
+        /* --- الهيكل الرئيسي بعد الدخول --- */
+        #dashboard {
+            display: none; height: 100vh; grid-template-columns: 280px 1fr;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--card-bg);
+            border-left: 1px solid rgba(255,255,255,0.05);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .nav-item {
+            padding: 15px; margin: 5px 0; border-radius: 10px;
+            cursor: pointer; color: var(--text-dim); transition: 0.3s;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(226, 183, 74, 0.1); color: var(--primary-gold);
+        }
+
+        /* Content Area */
+        .content { padding: 40px; overflow-y: auto; background: #080808; }
+
+        .header-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .streak-container {
+            background: rgba(255, 94, 0, 0.1);
+            padding: 10px 25px; border-radius: 50px;
+            border: 1px solid var(--fire-color);
+            display: flex; align-items: center; gap: 10px;
+        }
+
+        .streak-num { color: var(--fire-color); font-weight: 800; font-size: 1.2rem; }
+
+        /* البطاقات */
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 25px; }
         
-        .input-box {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 12px;
-            border: 1px solid #333;
-            background: rgba(0,0,0,0.3);
-            color: white;
-            box-sizing: border-box;
-        }
-
-        .btn-gold {
-            background: linear-gradient(45deg, var(--gold), #FFD700);
-            color: black;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 12px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            font-size: 1.1rem;
+        .card {
+            background: var(--card-bg); border-radius: 20px;
+            padding: 20px; border: 1px solid rgba(255,255,255,0.05);
             transition: 0.3s;
         }
 
-        /* --- لوحة التحكم --- */
-        #main-app { display: none; padding: 20px; }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background: var(--glass);
-            border-radius: 20px;
-            margin-bottom: 30px;
+        .card:hover { transform: translateY(-10px); border-color: var(--primary-gold); }
+
+        .file-icon { font-size: 2rem; color: var(--primary-gold); margin-bottom: 15px; }
+
+        /* لوحة التحكم (Admin) */
+        .admin-section {
+            background: #161616; padding: 30px; border-radius: 25px;
+            margin-bottom: 30px; border: 1px dashed var(--primary-gold);
         }
 
-        .streak-fire {
-            font-size: 1.2rem;
-            background: rgba(255, 69, 0, 0.15);
-            padding: 8px 20px;
-            border-radius: 50px;
-            color: #FF4500;
-            border: 1px solid #FF4500;
-            animation: pulse 2s infinite;
+        .user-pill {
+            display: inline-block; background: #333; padding: 5px 15px;
+            border-radius: 20px; margin: 5px; font-size: 0.9rem;
         }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
-        }
-
-        .section-card {
-            background: var(--glass);
-            padding: 25px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .user-tag {
-            display: inline-block;
-            background: var(--accent);
-            padding: 5px 12px;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            margin-bottom: 10px;
-        }
-
-        /* إدارة الملفات والاختبارات */
-        .admin-only { border-right: 4px solid var(--gold); }
-        
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th, td { padding: 12px; text-align: right; border-bottom: 1px solid #333; }
-
-        .hidden { display: none; }
-
-        .welcome-msg { font-size: 1.8rem; margin-bottom: 20px; color: var(--gold); }
     </style>
 </head>
 <body>
 
-    <div id="login-page">
-        <div class="glass-card">
-            <h1 class="logo">FYO</h1>
-            <p>منصة التعليم الاحترافية</p>
-            <input type="text" id="username" class="input-box" placeholder="اسم المستخدم">
-            <input type="password" id="password" class="input-box" placeholder="كلمة المرور">
-            <button class="btn-gold" onclick="login()">دخول للمنصة</button>
-            <p style="font-size: 0.8rem; color: #777; margin-top: 15px;">المسؤول الافتراضي: admin / admin</p>
+    <div id="login-screen">
+        <div class="login-box">
+            <h1>FYO</h1>
+            <p style="color: var(--text-dim); margin-bottom: 30px;">EDUCATIONAL PLATFORM</p>
+            <input type="text" id="userIn" class="input-field" placeholder="اسم المستخدم">
+            <input type="password" id="passIn" class="input-field" placeholder="كلمة المرور">
+            <button class="login-btn" onclick="handleLogin()">دخول النظام</button>
         </div>
     </div>
 
-    <div id="main-app">
-        <nav>
-            <div>
-                <span class="welcome-msg" id="welcome-user"></span>
-                <div class="streak-fire">🔥 الستريك الحالي: <span id="streak-count">1</span> يوم</div>
-            </div>
-            <button class="btn-gold" style="width: auto;" onclick="logout()">خروج</button>
-        </nav>
+    <div id="dashboard">
+        <div class="sidebar">
+            <h2 style="color: var(--primary-gold);">FYO Panel</h2>
+            <div class="nav-item active">🏠 الرئيسية</div>
+            <div class="nav-item">📚 ملفاتي</div>
+            <div class="nav-item">📝 الاختبارات</div>
+            <div id="admin-nav" class="nav-item" style="display: none; color: #ff4d4d;">⚙️ إدارة النظام</div>
+            <div class="nav-item" onclick="location.reload()" style="margin-top: auto;">🚪 خروج</div>
+        </div>
 
-        <div class="grid-container">
-            <div class="section-card">
-                <h3>📚 حقيبة الملفات المخصصة لك</h3>
-                <div id="student-files">
-                    <p>لا توجد ملفات متاحة لك حالياً.</p>
+        <div class="content">
+            <div class="header-bar">
+                <h2 id="welcomeText">أهلاً بك، طالب FYO المتميز 🚀</h2>
+                <div class="streak-container">
+                    <span>STREAK</span>
+                    <span class="streak-num" id="streakVal">🔥 1</span>
                 </div>
-                
-                <hr style="opacity: 0.1; margin: 30px 0;">
-                
-                <h3>✍️ الاختبارات الإلكترونية</h3>
-                <div id="student-exams">
+            </div>
+
+            <div id="admin-area" style="display: none;">
+                <div class="admin-section">
+                    <h3>🛠 أدوات الإدارة (المسؤول)</h3>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <h4>+ إضافة طالب جديد</h4>
+                            <input type="text" id="stName" class="input-field" placeholder="اسم الطالب">
+                            <button class="login-btn" style="padding: 10px;" onclick="addUser()">اعتماد الطالب</button>
+                        </div>
+                        <div>
+                            <h4>📤 رفع محتوى مخصص</h4>
+                            <input type="text" id="docName" class="input-field" placeholder="اسم الملف">
+                            <p style="font-size: 0.8rem; color: var(--primary-gold);">حدد من يرى هذا الملف:</p>
+                            <div id="userChecklist" style="max-height: 100px; overflow-y: auto; background: #000; padding: 10px;">
+                                </div>
+                            <button class="login-btn" style="padding: 10px;" onclick="uploadFile()">نشر للمحددين فقط</button>
+                        </div>
                     </div>
+                </div>
             </div>
 
-            <div id="admin-panel" class="section-card admin-only hidden">
-                <h2 style="color: var(--gold);">🛠 لوحة التحكم (المسؤول)</h2>
-                
-                <h4>➕ إضافة طالب جديد</h4>
-                <input type="text" id="new-student-name" class="input-box" placeholder="اسم الطالب الجديد">
-                <button class="btn-gold" onclick="addNewUser()">إنشاء الحساب</button>
+            <h3 id="contentTitle">ملفاتك المتاحة</h3>
+            <div class="grid-layout" id="filesGrid">
+                </div>
 
-                <hr style="opacity: 0.1;">
-
-                <h4>📤 رفع ملف وتحديد الطلاب</h4>
-                <input type="text" id="file-name" class="input-box" placeholder="اسم الملف">
-                <select id="target-students" class="input-box" multiple title="اختر الطلاب (اضغط Ctrl للتحديد المتعدد)">
-                    </select>
-                <button class="btn-gold" onclick="uploadFile()">رفع وتخصيص</button>
-
-                <hr style="opacity: 0.1;">
-                
-                <h4>📝 إنشاء اختبار بصورة</h4>
-                <input type="text" id="exam-title" class="input-box" placeholder="عنوان السؤال">
-                <input type="text" id="img-url" class="input-box" placeholder="رابط صورة السؤال">
-                <button class="btn-gold" onclick="uploadExam()">نشر الاختبار للكل</button>
-            </div>
+            <h3 style="margin-top: 40px;">الاختبارات النشطة</h3>
+            <div class="grid-layout" id="examsGrid">
+                </div>
         </div>
     </div>
 
     <script>
-        // داتا تجريبية لتشغيل النظام
-        let users = JSON.parse(localStorage.getItem('fyo_users')) || [
-            {username: 'admin', password: 'admin', role: 'admin', streak: 12}
-        ];
-        
-        let files = JSON.parse(localStorage.getItem('fyo_files')) || [];
-        let exams = JSON.parse(localStorage.getItem('fyo_exams')) || [];
-        let currentUser = null;
+        // قاعدة بيانات النظام (تخزين محلي)
+        let db = JSON.parse(localStorage.getItem('fyo_db')) || {
+            users: [{name: 'admin', pass: 'admin', role: 'admin', streak: 15}],
+            files: [],
+            exams: []
+        };
 
-        function login() {
-            const userIn = document.getElementById('username').value;
-            const passIn = document.getElementById('password').value;
+        let activeUser = null;
 
-            const user = users.find(u => u.username === userIn && u.password === passIn);
+        function handleLogin() {
+            const u = document.getElementById('userIn').value;
+            const p = document.getElementById('passIn').value;
 
-            if (user) {
-                currentUser = user;
-                document.getElementById('login-page').style.display = 'none';
-                document.getElementById('main-app').style.display = 'block';
-                document.getElementById('welcome-user').innerText = `أهلاً، ${user.username}`;
-                document.getElementById('streak-count').innerText = user.streak || 1;
-
-                if (user.role === 'admin') {
-                    document.getElementById('admin-panel').classList.remove('hidden');
-                    refreshAdminUI();
-                }
-                loadStudentContent();
+            const user = db.users.find(x => x.name === u && x.pass === p);
+            if(user) {
+                activeUser = user;
+                showDashboard();
             } else {
-                alert("خطأ في بيانات الدخول!");
+                alert("بيانات الدخول غير صحيحة");
             }
         }
 
-        function refreshAdminUI() {
-            const select = document.getElementById('target-students');
-            select.innerHTML = '';
-            users.filter(u => u.role !== 'admin').forEach(u => {
-                let opt = document.createElement('option');
-                opt.value = u.username;
-                opt.innerText = u.username;
-                select.appendChild(opt);
-            });
+        function showDashboard() {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'grid';
+            document.getElementById('welcomeText').innerText = `مرحباً بك، ${activeUser.name} ✨`;
+            document.getElementById('streakVal').innerText = `🔥 ${activeUser.streak || 1}`;
+
+            if(activeUser.role === 'admin') {
+                document.getElementById('admin-nav').style.display = 'block';
+                document.getElementById('admin-area').style.display = 'block';
+                renderUserChecklist();
+            }
+            renderContent();
         }
 
-        function addNewUser() {
-            const name = document.getElementById('new-student-name').value;
+        function addUser() {
+            const name = document.getElementById('stName').value;
             if(!name) return;
-            users.push({username: name, password: '123', role: 'student', streak: 1});
-            localStorage.setItem('fyo_users', JSON.stringify(users));
-            alert(`تم إنشاء حساب لـ ${name} بكلمة مرور افتراضية 123`);
-            refreshAdminUI();
+            db.users.push({name: name, pass: '123', role: 'student', streak: 1});
+            save();
+            renderUserChecklist();
+            alert("تمت إضافة الطالب. كلمة المرور الافتراضية: 123");
         }
 
-        function uploadFile() {
-            const fileName = document.getElementById('file-name').value;
-            const selectedStudents = Array.from(document.getElementById('target-students').selectedOptions).map(o => o.value);
-            
-            files.push({name: fileName, allowed: selectedStudents});
-            localStorage.setItem('fyo_files', JSON.stringify(files));
-            alert("تم رفع الملف وتخصيصه للطلاب المحددين");
-            loadStudentContent();
-        }
-
-        function uploadExam() {
-            const title = document.getElementById('exam-title').value;
-            const img = document.getElementById('img-url').value;
-            exams.push({title, img});
-            localStorage.setItem('fyo_exams', JSON.stringify(exams));
-            alert("تم نشر الاختبار");
-            loadStudentContent();
-        }
-
-        function loadStudentContent() {
-            // الملفات المخصصة
-            const fileContainer = document.getElementById('student-files');
-            const myFiles = files.filter(f => f.allowed.includes(currentUser.username));
-            
-            if(myFiles.length > 0) {
-                fileContainer.innerHTML = myFiles.map(f => `
-                    <div style="background:rgba(255,255,255,0.1); padding:10px; margin-bottom:10px; border-radius:10px;">
-                        📄 ${f.name} <a href="#" style="color:var(--gold); float:left;">تحميل</a>
-                    </div>
-                `).join('');
-            }
-
-            // الاختبارات بالصور
-            const examContainer = document.getElementById('student-exams');
-            examContainer.innerHTML = exams.map(e => `
-                <div class="section-card" style="margin-top:10px; border:1px solid var(--accent)">
-                    <h4>${e.title}</h4>
-                    <img src="${e.img}" style="width:100%; max-width:300px; border-radius:10px; margin:10px 0;" alt="سؤال قدرات">
-                    <br>
-                    <button class="btn-gold" style="padding:5px 15px;">بدء الحل</button>
-                </div>
+        function renderUserChecklist() {
+            const container = document.getElementById('userChecklist');
+            container.innerHTML = db.users.filter(u => u.role !== 'admin').map(u => `
+                <div><input type="checkbox" value="${u.name}"> ${u.name}</div>
             `).join('');
         }
 
-        function logout() {
-            location.reload();
+        function uploadFile() {
+            const title = document.getElementById('docName').value;
+            const checkboxes = document.querySelectorAll('#userChecklist input:checked');
+            const allowedUsers = Array.from(checkboxes).map(cb => cb.value);
+
+            if(allowedUsers.length === 0) { alert("اختر طالباً واحداً على الأقل!"); return; }
+
+            db.files.push({title, allowed: allowedUsers});
+            save();
+            alert("تم رفع الملف بنجاح!");
+            renderContent();
+        }
+
+        function renderContent() {
+            const grid = document.getElementById('filesGrid');
+            const myFiles = db.files.filter(f => f.allowed.includes(activeUser.name) || activeUser.role === 'admin');
+            
+            grid.innerHTML = myFiles.map(f => `
+                <div class="card">
+                    <div class="file-icon">📄</div>
+                    <h4>${f.title}</h4>
+                    <p style="color:var(--text-dim); font-size:0.8rem;">تمت مشاركته معك خصيصاً</p>
+                    <button class="login-btn" style="padding:8px; font-size:0.8rem;">فتح الملف</button>
+                </div>
+            `).join('');
+
+            // محاكاة اختبارات
+            document.getElementById('examsGrid').innerHTML = `
+                <div class="card">
+                    <div class="file-icon" style="color:var(--accent-blue)">📝</div>
+                    <h4>اختبار القدرات التجريبي (1)</h4>
+                    <img src="https://via.placeholder.com/300x150/111/e2b74a?text=Question+Image" style="width:100%; border-radius:10px;">
+                    <button class="login-btn" style="padding:8px; margin-top:10px;">بدء الآن</button>
+                </div>
+            `;
+        }
+
+        function save() {
+            localStorage.setItem('fyo_db', JSON.stringify(db));
         }
     </script>
 </body>
