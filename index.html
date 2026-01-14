@@ -2,2684 +2,1697 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="theme-color" content="#4361ee">
-    <title>منصة FYO التعليمية - نظام إدارة القدرات</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة FYO التعليمية - القدرات</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap">
     <style>
-        /* ============ CSS Reset & Base ============ */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', 'Tahoma', Geneva, Verdana, sans-serif;
+            font-family: 'Cairo', sans-serif;
         }
-        
+
         :root {
-            --primary: #4361ee;
-            --primary-dark: #3a0ca3;
-            --primary-light: #4895ef;
-            --secondary: #7209b7;
-            --accent: #f72585;
-            --accent-light: #ff4da6;
+            --primary: #6a11cb;
+            --secondary: #2575fc;
+            --accent: #ff5e62;
+            --dark: #1a1a2e;
             --light: #f8f9fa;
-            --dark: #212529;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
             --gray: #6c757d;
-            --gray-light: #e9ecef;
-            --success: #4cc9f0;
-            --warning: #f8961e;
-            --danger: #f94144;
-            --gradient: linear-gradient(135deg, #4361ee 0%, #3a0ca3 50%, #7209b7 100%);
-            --gradient-light: linear-gradient(135deg, #4895ef 0%, #4361ee 100%);
-            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.15);
-            --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.2);
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 20px;
-            --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --glass: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s ease;
         }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
+
         body {
-            background-color: #f0f2f5;
+            background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%);
+            color: var(--light);
             min-height: 100vh;
-            color: var(--dark);
             overflow-x: hidden;
-            line-height: 1.6;
         }
-        
-        /* ============ حاوية تسجيل الدخول ============ */
-        .login-page {
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* تصميم صفحة تسجيل الدخول */
+        .login-container {
             display: flex;
+            justify-content: center;
+            align-items: center;
             min-height: 100vh;
-            background: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center fixed;
-            background-size: cover;
-            position: relative;
             padding: 20px;
         }
-        
-        .login-page::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background: linear-gradient(135deg, rgba(67, 97, 238, 0.85) 0%, rgba(58, 12, 163, 0.85) 100%);
-            backdrop-filter: blur(5px);
-        }
-        
-        #loginContainer {
-            display: flex;
+
+        .login-box {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            border: 1px solid var(--glass-border);
+            padding: 40px;
             width: 100%;
-            max-width: 1200px;
-            margin: auto;
-            min-height: 700px;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-lg);
-            z-index: 1;
-            position: relative;
-            animation: fadeInUp 0.8s ease;
-        }
-        
-        /* ============ قسم الترحيب ============ */
-        .welcome-section {
-            flex: 1.2;
-            background: var(--gradient);
-            padding: 50px 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            max-width: 450px;
+            box-shadow: var(--shadow);
+            animation: fadeIn 0.8s ease;
             position: relative;
             overflow: hidden;
         }
-        
-        .welcome-section::before {
+
+        .login-box::before {
             content: '';
             position: absolute;
-            width: 400px;
-            height: 400px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            top: -200px;
-            right: -150px;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+            z-index: -1;
         }
-        
-        .welcome-section::after {
-            content: '';
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.03);
-            bottom: -150px;
-            left: -100px;
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        .logo-container {
-            display: flex;
-            align-items: center;
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 2;
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
-        
-        .logo-icon {
-            font-size: 3.2rem;
-            margin-left: 20px;
-            color: var(--accent);
-            filter: drop-shadow(0 0 15px rgba(247, 37, 133, 0.6));
-            animation: pulse 2s infinite;
-        }
-        
-        .logo-text {
-            font-size: 2.4rem;
-            font-weight: 900;
-            background: linear-gradient(to right, #fff, #f8f9fa);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            letter-spacing: -0.5px;
-        }
-        
-        .welcome-title {
-            font-size: 3rem;
-            margin-bottom: 25px;
-            line-height: 1.2;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .welcome-desc {
-            font-size: 1.15rem;
-            line-height: 1.7;
-            margin-bottom: 35px;
-            opacity: 0.95;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .features-list {
-            position: relative;
-            z-index: 2;
-            margin-top: 30px;
-        }
-        
-        .feature-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 22px;
-            font-size: 1.1rem;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .feature-item:last-child {
-            border-bottom: none;
-        }
-        
-        .feature-item i {
-            margin-left: 18px;
-            color: var(--accent);
-            font-size: 1.4rem;
-            width: 30px;
+
+        .logo {
             text-align: center;
+            margin-bottom: 30px;
         }
-        
-        /* ============ قسم تسجيل الدخول ============ */
-        .login-section {
-            flex: 1;
-            background-color: rgba(255, 255, 255, 0.98);
-            padding: 60px 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        
-        .login-header {
-            margin-bottom: 40px;
-        }
-        
-        .login-title {
-            font-size: 2.6rem;
-            margin-bottom: 12px;
-            color: var(--primary-dark);
-            font-weight: 800;
-            background: var(--gradient);
+
+        .logo h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(to right, #ff8a00, #da1b60);
             -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             background-clip: text;
-            color: transparent;
+            margin-bottom: 10px;
+            font-weight: 800;
         }
-        
-        .login-subtitle {
-            color: var(--gray);
+
+        .logo p {
+            color: rgba(255,255,255,0.7);
             font-size: 1.1rem;
         }
-        
-        /* الرسائل */
-        .alert-message {
-            padding: 18px 20px;
-            border-radius: var(--radius-md);
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            animation: slideInRight 0.5s ease;
-            transform-origin: right;
-        }
-        
-        .alert-error {
-            background-color: rgba(249, 65, 68, 0.1);
-            border-right: 4px solid var(--danger);
-            color: #b02a37;
-        }
-        
-        .alert-success {
-            background-color: rgba(76, 201, 240, 0.15);
-            border-right: 4px solid var(--success);
-            color: #0a8ea0;
-        }
-        
-        .alert-message i {
-            font-size: 1.5rem;
-        }
-        
-        /* نموذج الدخول */
-        .login-form .form-group {
-            margin-bottom: 28px;
-        }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 600;
-            color: var(--dark);
-            font-size: 1.05rem;
-        }
-        
-        .input-with-icon {
+
+        .form-group {
+            margin-bottom: 25px;
             position: relative;
         }
-        
-        .form-input {
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .form-control {
             width: 100%;
-            padding: 20px 20px 20px 60px;
-            border: 2px solid var(--gray-light);
-            border-radius: var(--radius-md);
-            font-size: 1.1rem;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
             transition: var(--transition);
-            background-color: #f9f9f9;
-            color: var(--dark);
         }
-        
-        .form-input:focus {
-            border-color: var(--primary);
+
+        .form-control:focus {
             outline: none;
-            box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.15);
-            background-color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(106, 17, 203, 0.2);
+            background: rgba(255, 255, 255, 0.12);
         }
-        
-        .input-icon {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--gray);
-            font-size: 1.3rem;
-        }
-        
-        .btn-login {
-            background: var(--gradient);
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
             color: white;
             border: none;
-            padding: 20px;
-            border-radius: var(--radius-md);
-            font-size: 1.25rem;
-            font-weight: 700;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
-            margin-top: 15px;
-            width: 100%;
-            box-shadow: var(--shadow-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            letter-spacing: 0.5px;
-        }
-        
-        .btn-login:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.4);
-        }
-        
-        .btn-login:active {
-            transform: translateY(-1px);
-        }
-        
-        .btn-login:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-        
-        /* بطاقة بيانات الدخول */
-        .credentials-card {
-            margin-top: 35px;
-            padding: 20px;
-            background-color: rgba(67, 97, 238, 0.08);
-            border-radius: var(--radius-md);
-            border-right: 4px solid var(--primary);
-            font-size: 1rem;
-            color: #555;
-            animation: fadeIn 1s ease 0.5s both;
-        }
-        
-        .credentials-card strong {
-            color: var(--primary);
-            font-weight: 700;
-        }
-        
-        .footer-copyright {
-            margin-top: 45px;
             text-align: center;
-            color: #888;
-            font-size: 0.95rem;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
+            width: 100%;
+            margin-top: 10px;
         }
-        
-        /* ============ لوحة التحكم ============ */
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(106, 17, 203, 0.4);
+        }
+
+        .btn-admin {
+            background: linear-gradient(to right, #ff5e62, #ff9966);
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 25px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+        }
+
+        /* تصميم لوحة التحكم */
         .dashboard {
             display: none;
             min-height: 100vh;
-            background: #f5f7fb;
         }
-        
-        /* شريط التنقل العلوي */
+
         .navbar {
-            background: var(--gradient);
-            color: white;
-            padding: 0 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            background: rgba(26, 26, 46, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
-            height: 80px;
         }
-        
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            font-size: 1.8rem;
-            font-weight: 800;
-        }
-        
-        .nav-brand i {
-            margin-left: 15px;
-            color: var(--accent);
-            font-size: 2rem;
-        }
-        
-        .nav-user {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        .user-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.5);
-            object-fit: cover;
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .user-info {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .user-name {
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-        
-        .user-role {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-        
-        .btn-logout {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            padding: 12px 28px;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .btn-logout:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-        
-        /* رسالة الترحيب */
-        .welcome-card {
-            background-color: rgba(255, 255, 255, 0.15);
-            padding: 25px;
-            border-radius: var(--radius-md);
-            margin: 25px 30px;
-            color: white;
-            font-size: 1.15rem;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            animation: slideInDown 0.6s ease;
-            backdrop-filter: blur(10px);
-        }
-        
-        .welcome-card i {
-            font-size: 2rem;
-            color: var(--accent);
-            flex-shrink: 0;
-        }
-        
-        /* القائمة الجانبية */
-        .sidebar {
-            width: 280px;
-            background-color: white;
-            border-left: 1px solid #eee;
-            min-height: calc(100vh - 80px);
-            padding: 25px 0;
-            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.05);
-            position: fixed;
-            right: 0;
-            top: 80px;
-            overflow-y: auto;
-            z-index: 900;
-        }
-        
-        .menu-item {
-            padding: 18px 30px;
-            display: flex;
-            align-items: center;
-            color: var(--dark);
-            text-decoration: none;
-            transition: var(--transition);
-            border-right: 4px solid transparent;
-            font-weight: 600;
-            cursor: pointer;
-            margin-bottom: 5px;
-        }
-        
-        .menu-item:hover {
-            background-color: #f8f9fa;
-            color: var(--primary);
-            border-right-color: var(--primary);
-            padding-right: 35px;
-        }
-        
-        .menu-item.active {
-            background-color: rgba(67, 97, 238, 0.1);
-            color: var(--primary);
-            border-right-color: var(--primary);
-            font-weight: 700;
-        }
-        
-        .menu-item i {
-            margin-left: 15px;
-            font-size: 1.3rem;
-            width: 24px;
-            text-align: center;
-        }
-        
-        /* المحتوى الرئيسي */
-        .main-content {
-            margin-right: 280px;
-            padding: 30px;
-            min-height: calc(100vh - 80px);
-        }
-        
-        .section-header {
+
+        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
             gap: 15px;
         }
-        
-        .section-title {
-            font-size: 2rem;
-            color: var(--primary-dark);
-            font-weight: 800;
-            position: relative;
-            padding-bottom: 15px;
+
+        .nav-logo h2 {
+            font-size: 1.8rem;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 80px;
-            height: 4px;
-            background: var(--gradient);
-            border-radius: 2px;
-        }
-        
-        /* البطاقات */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-        
-        .card {
-            background: white;
-            border-radius: var(--radius-lg);
-            padding: 30px;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-            border-top: 5px solid var(--primary);
-            height: 100%;
+
+        .user-info {
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            gap: 15px;
         }
-        
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .card-icon {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 25px;
-        }
-        
-        .card-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-        
-        .card-description {
-            color: var(--gray);
-            line-height: 1.7;
-            margin-bottom: 25px;
-            flex-grow: 1;
-        }
-        
-        .btn-card {
-            display: inline-flex;
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            padding: 14px 28px;
-            background: var(--gradient);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.1);
             color: white;
-            border-radius: var(--radius-md);
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
             border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
             cursor: pointer;
-            align-self: flex-start;
-            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
         }
-        
-        .btn-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.3);
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
         }
-        
-        /* الجداول */
+
+        /* تصميم محتوى لوحة التحكم */
+        .dashboard-content {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+            padding: 30px 0;
+        }
+
+        .sidebar {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            height: fit-content;
+            border: 1px solid var(--glass-border);
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: rgba(255,255,255,0.8);
+        }
+
+        .menu-item:hover, .menu-item.active {
+            background: rgba(106, 17, 203, 0.2);
+            color: white;
+        }
+
+        .menu-item i {
+            font-size: 1.2rem;
+            width: 25px;
+            text-align: center;
+        }
+
+        .main-content {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .welcome-banner {
+            background: linear-gradient(to right, rgba(106, 17, 203, 0.3), rgba(37, 117, 252, 0.3));
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .welcome-banner h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* تصميم بطاقات الإحصائيات */
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* تصميم الجداول */
         .table-container {
-            background: white;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
             overflow-x: auto;
-            margin-bottom: 40px;
-            animation: fadeIn 0.8s ease;
+            margin-top: 20px;
         }
-        
-        .data-table {
+
+        table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 1000px;
+            border-radius: 10px;
+            overflow: hidden;
         }
-        
-        .data-table thead {
-            background: var(--gradient);
-            color: white;
+
+        thead {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
         }
-        
-        .data-table th {
-            padding: 22px 20px;
+
+        th, td {
+            padding: 15px;
             text-align: right;
-            font-weight: 700;
-            font-size: 1.05rem;
         }
-        
-        .data-table tbody tr {
-            border-bottom: 1px solid #eee;
-            transition: background-color 0.2s;
+
+        tbody tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
         }
-        
-        .data-table tbody tr:hover {
-            background-color: #f9f9f9;
+
+        tbody tr:hover {
+            background: rgba(255, 255, 255, 0.05);
         }
-        
-        .data-table td {
-            padding: 20px;
-            font-size: 1.05rem;
-        }
-        
-        /* الحالات */
-        .status-badge {
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            display: inline-block;
-            text-align: center;
-            min-width: 100px;
-        }
-        
-        .status-active {
-            background-color: rgba(76, 201, 240, 0.2);
-            color: #0a8ea0;
-            border: 1px solid rgba(76, 201, 240, 0.3);
-        }
-        
-        .status-pending {
-            background-color: rgba(248, 150, 30, 0.2);
-            color: #c97c0e;
-            border: 1px solid rgba(248, 150, 30, 0.3);
-        }
-        
-        /* الأزرار */
-        .btn-action {
-            padding: 10px 18px;
-            border-radius: var(--radius-sm);
+
+        .action-btn {
+            padding: 8px 15px;
+            border-radius: 8px;
             border: none;
             cursor: pointer;
-            font-weight: 600;
-            margin-left: 8px;
+            margin: 0 5px;
             transition: var(--transition);
-            font-size: 0.95rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+            font-size: 0.9rem;
         }
-        
-        .btn-action:hover {
+
+        .edit-btn {
+            background: rgba(45, 204, 112, 0.2);
+            color: #2dcc70;
+        }
+
+        .delete-btn {
+            background: rgba(231, 76, 60, 0.2);
+            color: #e74c3c;
+        }
+
+        .edit-btn:hover, .delete-btn:hover {
             transform: translateY(-2px);
-            box-shadow: var(--shadow-sm);
         }
-        
-        .btn-view {
-            background-color: rgba(25, 135, 84, 0.1);
-            color: #198754;
-            border: 1px solid rgba(25, 135, 84, 0.2);
+
+        /* تصميم نماذج الإضافة */
+        .form-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
         }
-        
-        .btn-edit {
-            background-color: rgba(67, 97, 238, 0.1);
-            color: var(--primary);
-            border: 1px solid rgba(67, 97, 238, 0.2);
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
         }
-        
-        .btn-delete {
-            background-color: rgba(249, 65, 68, 0.1);
-            color: var(--danger);
-            border: 1px solid rgba(249, 65, 68, 0.2);
+
+        .file-upload {
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
         }
-        
-        /* قسم الستريك */
+
+        .file-upload:hover {
+            border-color: var(--primary);
+            background: rgba(106, 17, 203, 0.05);
+        }
+
+        .question-options {
+            margin-top: 20px;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .correct-option {
+            background: rgba(0, 184, 148, 0.1);
+            border: 1px solid rgba(0, 184, 148, 0.3);
+        }
+
+        /* تصميم الستريك */
         .streak-container {
             display: flex;
             align-items: center;
-            margin-top: 40px;
-            padding: 30px;
-            background: var(--gradient);
-            border-radius: var(--radius-lg);
-            color: white;
-            box-shadow: var(--shadow-md);
-            animation: fadeIn 1s ease;
-        }
-        
-        .streak-icon {
-            font-size: 4rem;
-            margin-left: 25px;
-            color: var(--accent);
-            filter: drop-shadow(0 0 10px rgba(247, 37, 133, 0.5));
-        }
-        
-        .streak-info h3 {
-            font-size: 1.9rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        
-        .streak-days {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: var(--accent);
-            text-shadow: 0 0 15px rgba(247, 37, 133, 0.6);
-            line-height: 1;
-        }
-        
-        /* ============ النماذج المنبثقة ============ */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.75);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            backdrop-filter: blur(5px);
-            animation: fadeIn 0.3s ease;
-        }
-        
-        .modal-content {
-            background: white;
-            width: 100%;
-            max-width: 650px;
-            border-radius: var(--radius-lg);
-            padding: 35px;
-            box-shadow: var(--shadow-lg);
-            max-height: 90vh;
-            overflow-y: auto;
-            animation: slideInUp 0.4s ease;
-            position: relative;
-        }
-        
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .modal-title {
-            font-size: 1.9rem;
-            color: var(--primary-dark);
-            font-weight: 800;
-        }
-        
-        .btn-close {
-            font-size: 2rem;
-            color: var(--gray);
-            cursor: pointer;
-            transition: var(--transition);
-            line-height: 1;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
-        
-        .btn-close:hover {
-            color: var(--dark);
-            background-color: var(--gray-light);
-        }
-        
-        .form-row {
-            display: flex;
-            flex-wrap: wrap;
             gap: 20px;
-            margin-bottom: 25px;
-        }
-        
-        .form-group {
-            flex: 1;
-            min-width: 250px;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 16px 20px;
-            border: 2px solid #ddd;
-            border-radius: var(--radius-md);
-            font-size: 1.05rem;
-            transition: var(--transition);
-            background-color: #f9f9f9;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary);
-            outline: none;
-            box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.15);
-            background-color: #fff;
-        }
-        
-        .form-actions {
-            display: flex;
-            gap: 15px;
             margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
         }
-        
-        .btn-primary {
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 16px 32px;
-            border-radius: var(--radius-md);
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            flex: 1;
+
+        .streak-days {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #ff8a00, #da1b60);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.3);
+
+        .streak-info h3 {
+            margin-bottom: 5px;
         }
-        
-        .btn-secondary {
-            background: #f8f9fa;
-            color: var(--dark);
-            border: 2px solid #ddd;
-            padding: 16px 32px;
-            border-radius: var(--radius-md);
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            flex: 1;
-        }
-        
-        .btn-secondary:hover {
-            background: #e9ecef;
-            border-color: var(--gray);
-        }
-        
-        /* زر إضافة طالب */
-        .btn-add {
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: var(--transition);
-            box-shadow: var(--shadow-sm);
-        }
-        
-        .btn-add:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.3);
-        }
-        
-        /* منطقة رفع الملفات */
-        .upload-area {
-            border: 3px dashed #ddd;
-            padding: 40px;
-            text-align: center;
-            border-radius: var(--radius-md);
-            background: #f9f9f9;
-            margin-bottom: 25px;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-        
-        .upload-area:hover {
-            border-color: var(--primary);
-            background: rgba(67, 97, 238, 0.03);
-        }
-        
-        .upload-area i {
-            font-size: 3.5rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        /* ============ أقسام المحتوى ============ */
-        .content-section {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        .content-section.active {
-            display: block;
-        }
-        
-        /* ============ الرسوم المتحركة ============ */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes slideInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        /* ============ التجاوب للأجهزة ============ */
-        @media (max-width: 1200px) {
-            #loginContainer {
-                max-width: 95%;
-            }
-        }
-        
+
+        /* تصميم متجاوب */
         @media (max-width: 992px) {
-            #loginContainer {
-                flex-direction: column;
-                max-width: 700px;
-                min-height: auto;
-            }
-            
-            .welcome-section, .login-section {
-                padding: 40px 35px;
-            }
-            
-            .welcome-title {
-                font-size: 2.5rem;
-            }
-            
-            .sidebar {
-                width: 250px;
-            }
-            
-            .main-content {
-                margin-right: 250px;
-            }
-            
-            .cards-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 0 20px;
-                height: 70px;
-            }
-            
-            .nav-brand {
-                font-size: 1.5rem;
-            }
-            
-            .nav-brand i {
-                font-size: 1.7rem;
-            }
-            
-            .sidebar {
-                display: none;
-                width: 100%;
-                position: fixed;
-                top: 70px;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                z-index: 999;
-                background: white;
-            }
-            
-            .sidebar.active {
-                display: block;
-            }
-            
-            .main-content {
-                margin-right: 0;
-                padding: 20px;
-            }
-            
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .cards-grid {
+            .dashboard-content {
                 grid-template-columns: 1fr;
             }
             
-            .welcome-card {
-                margin: 15px;
-                padding: 20px;
-            }
-            
-            .streak-container {
-                flex-direction: column;
-                text-align: center;
-                padding: 25px;
-            }
-            
-            .streak-icon {
-                margin-left: 0;
-                margin-bottom: 20px;
-            }
-            
-            .modal-content {
-                padding: 25px 20px;
+            .sidebar {
+                order: 2;
             }
             
             .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .login-box {
+                padding: 30px 20px;
+            }
+            
+            .nav-container {
                 flex-direction: column;
                 gap: 15px;
             }
             
-            .form-group {
-                min-width: 100%;
+            .stats-cards {
+                grid-template-columns: 1fr;
             }
-        }
-        
-        @media (max-width: 576px) {
-            .login-page {
-                padding: 10px;
-            }
-            
-            .welcome-section, .login-section {
-                padding: 30px 25px;
-            }
-            
-            .welcome-title {
-                font-size: 2rem;
-            }
-            
-            .logo-text {
-                font-size: 1.8rem;
-            }
-            
-            .login-title {
-                font-size: 2rem;
-            }
-            
-            .card {
-                padding: 25px;
-            }
-            
-            .btn-action {
-                padding: 8px 12px;
-                font-size: 0.85rem;
-                margin-bottom: 5px;
-            }
-            
-            .data-table td, .data-table th {
-                padding: 15px 12px;
-            }
-        }
-        
-        /* تحسينات للهواتف الصغيرة */
-        @media (max-width: 480px) {
-            .navbar {
-                flex-direction: column;
-                height: auto;
-                padding: 15px;
-                gap: 15px;
-            }
-            
-            .nav-user {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-            
-            .btn-logout {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .main-content {
-                padding: 15px;
-            }
-            
-            .section-title {
-                font-size: 1.7rem;
-            }
-            
-            .modal-content {
-                padding: 20px 15px;
-            }
-        }
-        
-        /* شريط التمرير */
-        ::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 10px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-dark);
-        }
-        
-        /* تحسينات إضافية */
-        .empty-state {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--gray);
-        }
-        
-        .empty-state i {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            color: #ddd;
-        }
-        
-        .empty-state h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-        
-        /* رأس الصفحة الثابت */
-        .sticky-header {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background: white;
-            padding: 20px 0;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
 <body>
     <!-- صفحة تسجيل الدخول -->
-    <div class="login-page">
-        <div id="loginContainer" class="animate__animated animate__fadeInUp">
-            <!-- قسم الترحيب -->
-            <div class="welcome-section">
-                <div class="logo-container">
-                    <i class="fas fa-graduation-cap logo-icon"></i>
-                    <h1 class="logo-text">منصة FYO التعليمية</h1>
-                </div>
-                
-                <h2 class="welcome-title">مرحبًا بك في نظام إدارة القدرات التعليمي المتكامل</h2>
-                
-                <p class="welcome-desc">
-                    منصة متطورة لإدارة المحتوى التعليمي، الاختبارات الإلكترونية، ومتابعة تقدم الطلاب. تم تصميم المنصة لتوفر تجربة تعليمية استثنائية ومتميزة مع واجهة إدارية فائقة السهولة.
-                </p>
-                
-                <div class="features-list">
-                    <div class="feature-item">
-                        <i class="fas fa-user-shield"></i>
-                        <span>إدارة كاملة للمستخدمين والطلاب</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <span>رفع الملفات وتحديد المستفيدين منها</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-file-signature"></i>
-                        <span>إنشاء اختبارات إلكترونية متقدمة</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-fire"></i>
-                        <span>متابعة دخول الطلاب عبر نظام الستريك</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-chart-line"></i>
-                        <span>تقارير إحصائية وتحليلية متكاملة</span>
-                    </div>
-                </div>
+    <div class="login-container" id="loginPage">
+        <div class="login-box">
+            <div class="logo">
+                <h1>FYO</h1>
+                <p>منصة التعليم الذكي للقدرات</p>
             </div>
             
-            <!-- قسم تسجيل الدخول -->
-            <div class="login-section">
-                <div class="login-header">
-                    <h2 class="login-title">تسجيل الدخول</h2>
-                    <p class="login-subtitle">أدخل بيانات الدخول الخاصة بك للوصول إلى لوحة التحكم</p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">اسم المستخدم</label>
+                    <input type="text" id="username" class="form-control" placeholder="أدخل اسم المستخدم" required>
                 </div>
                 
-                <!-- رسائل التنبيه -->
-                <div id="errorMessage" class="alert-message alert-error" style="display: none;">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    <div>اسم المستخدم أو كلمة المرور غير صحيحة</div>
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" class="form-control" placeholder="أدخل كلمة المرور" required>
                 </div>
                 
-                <div id="successMessage" class="alert-message alert-success" style="display: none;">
-                    <i class="fas fa-check-circle"></i>
-                    <div>تم تسجيل الدخول بنجاح، جاري التوجيه إلى لوحة التحكم...</div>
-                </div>
-                
-                <form id="loginForm" class="login-form">
-                    <div class="form-group">
-                        <label class="form-label" for="username">اسم المستخدم</label>
-                        <div class="input-with-icon">
-                            <input type="text" id="username" class="form-input" placeholder="أدخل اسم المستخدم" required value="admin">
-                            <i class="fas fa-user input-icon"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" for="password">كلمة المرور</label>
-                        <div class="input-with-icon">
-                            <input type="password" id="password" class="form-input" placeholder="أدخل كلمة المرور" required value="admin">
-                            <i class="fas fa-lock input-icon"></i>
-                        </div>
-                    </div>
-                    
-                    <button type="submit" class="btn-login" id="loginButton">
-                        <i class="fas fa-sign-in-alt"></i>
-                        <span>تسجيل الدخول</span>
-                    </button>
-                </form>
-                
-                <div class="credentials-card">
-                    <strong>بيانات الدخول الافتراضية:</strong><br>
-                    <div style="margin-top: 10px; line-height: 1.8;">
-                        <span>اسم المستخدم: <strong>admin</strong></span><br>
-                        <span>كلمة المرور: <strong>admin</strong></span>
-                    </div>
-                </div>
-                
-                <div class="footer-copyright">
-                    &copy; 2023 منصة FYO التعليمية. جميع الحقوق محفوظة.
-                </div>
+                <button type="submit" class="btn">تسجيل الدخول</button>
+                <button type="button" class="btn btn-admin" id="adminLogin">تسجيل الدخول كمسؤول</button>
+            </form>
+            
+            <div class="login-footer">
+                <p>منصة FYO التعليمية © 2023 - جميع الحقوق محفوظة</p>
             </div>
         </div>
     </div>
-    
-    <!-- لوحة التحكم الإدارية -->
-    <div id="dashboard" class="dashboard">
-        <!-- شريط التنقل العلوي -->
-        <div class="navbar">
-            <div class="nav-brand">
-                <i class="fas fa-graduation-cap"></i>
-                <span>منصة FYO التعليمية</span>
-            </div>
-            
-            <div class="nav-user">
+
+    <!-- لوحة التحكم -->
+    <div class="dashboard" id="dashboard">
+        <!-- شريط التنقل -->
+        <nav class="navbar">
+            <div class="container nav-container">
+                <div class="nav-logo">
+                    <i class="fas fa-graduation-cap" style="font-size: 2rem; color: #6a11cb;"></i>
+                    <h2>منصة FYO التعليمية</h2>
+                </div>
+                
                 <div class="user-info">
-                    <div class="user-name">المسؤول العام</div>
-                    <div class="user-role">مدير النظام</div>
+                    <div class="user-avatar" id="userAvatar">AD</div>
+                    <div>
+                        <div id="userName">المسؤول</div>
+                        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.7);" id="userRole">مدير النظام</div>
+                    </div>
+                    <button class="logout-btn" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </button>
                 </div>
-                <img src="https://ui-avatars.com/api/?name=Admin&background=4361ee&color=fff&size=128&bold=true" alt="Admin" class="user-avatar">
-                <button class="btn-logout" onclick="logout()">
-                    <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
-                </button>
             </div>
-        </div>
+        </nav>
         
-        <!-- رسالة ترحيب -->
-        <div class="welcome-card">
-            <i class="fas fa-star"></i>
-            <div>
-                <strong>مرحبًا بك في لوحة التحكم الإدارية!</strong> يمكنك من هنا إدارة جميع جوانب المنصة التعليمية بما في ذلك المستخدمين والملفات والاختبارات والتقارير الإحصائية.
-            </div>
-        </div>
-        
-        <!-- القائمة الجانبية -->
-        <div class="sidebar" id="sidebar">
-            <a class="menu-item active" onclick="showSection('home')">
-                <i class="fas fa-home"></i>
-                <span>الرئيسية</span>
-            </a>
-            <a class="menu-item" onclick="showSection('students')">
-                <i class="fas fa-users"></i>
-                <span>إدارة الطلاب</span>
-            </a>
-            <a class="menu-item" onclick="showSection('files')">
-                <i class="fas fa-file-upload"></i>
-                <span>رفع الملفات</span>
-            </a>
-            <a class="menu-item" onclick="showSection('tests')">
-                <i class="fas fa-file-alt"></i>
-                <span>الاختبارات الإلكترونية</span>
-            </a>
-            <a class="menu-item" onclick="showSection('streak')">
-                <i class="fas fa-fire"></i>
-                <span>نظام الستريك</span>
-            </a>
-            <a class="menu-item" onclick="showSection('settings')">
-                <i class="fas fa-cog"></i>
-                <span>الإعدادات</span>
-            </a>
-        </div>
-        
-        <!-- المحتوى الرئيسي -->
-        <div class="main-content">
-            <!-- قسم الرئيسية -->
-            <div id="homeSection" class="content-section active">
-                <div class="section-header">
-                    <h2 class="section-title">لوحة التحكم الإدارية</h2>
+        <!-- محتوى لوحة التحكم -->
+        <div class="container dashboard-content">
+            <!-- القائمة الجانبية -->
+            <div class="sidebar">
+                <div class="menu-item active" data-section="dashboard-home">
+                    <i class="fas fa-home"></i>
+                    <span>الرئيسية</span>
                 </div>
                 
-                <!-- بطاقات الإحصاءات -->
-                <div class="cards-grid">
-                    <div class="card">
-                        <div class="card-icon">
+                <div class="menu-item" data-section="users">
+                    <i class="fas fa-users"></i>
+                    <span>إدارة المستخدمين</span>
+                </div>
+                
+                <div class="menu-item" data-section="files">
+                    <i class="fas fa-file-upload"></i>
+                    <span>الملفات التعليمية</span>
+                </div>
+                
+                <div class="menu-item" data-section="exams">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>الاختبارات الإلكترونية</span>
+                </div>
+                
+                <div class="menu-item" data-section="add-exam">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>إضافة اختبار جديد</span>
+                </div>
+                
+                <div class="menu-item" data-section="streaks">
+                    <i class="fas fa-fire"></i>
+                    <span>ستريك الدخول</span>
+                </div>
+                
+                <div class="menu-item" data-section="subscriptions">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>إدارة الاشتراكات</span>
+                </div>
+            </div>
+            
+            <!-- المحتوى الرئيسي -->
+            <div class="main-content">
+                <!-- قسم الترحيب -->
+                <div class="welcome-banner" id="welcomeMessage">
+                    <h2>مرحباً بك، <span id="greetingName">المسؤول</span> 👋</h2>
+                    <p>نتمنى لك يومًا دراسيًا مثمرًا على منصة FYO التعليمية</p>
+                </div>
+                
+                <!-- الإحصائيات -->
+                <div class="content-section active" id="dashboard-home">
+                    <h3 style="margin-bottom: 20px;"><i class="fas fa-chart-line"></i> نظرة عامة</h3>
+                    
+                    <div class="stats-cards">
+                        <div class="stat-card">
                             <i class="fas fa-users"></i>
+                            <h4>إجمالي المستخدمين</h4>
+                            <h2 id="totalUsers">0</h2>
                         </div>
-                        <h3 class="card-title">إدارة الطلاب</h3>
-                        <p class="card-description">إنشاء حسابات جديدة للطلاب، تعديل بياناتهم، وإدارة حساباتهم بشكل كامل مع إمكانية التفعيل والتعطيل.</p>
-                        <button class="btn-card" onclick="showSection('students')">
-                            <i class="fas fa-users"></i> إدارة الطلاب
-                        </button>
-                    </div>
-                    
-                    <div class="card">
-                        <div class="card-icon">
-                            <i class="fas fa-file-upload"></i>
-                        </div>
-                        <h3 class="card-title">رفع الملفات</h3>
-                        <p class="card-description">رفع ملفات تعليمية وتحديد الطلاب المستفيدين منها مع إمكانية التعديل والحذف والتنظيم حسب التصنيفات.</p>
-                        <button class="btn-card" onclick="showSection('files')">
-                            <i class="fas fa-upload"></i> رفع ملفات
-                        </button>
-                    </div>
-                    
-                    <div class="card">
-                        <div class="card-icon">
+                        
+                        <div class="stat-card">
                             <i class="fas fa-file-alt"></i>
+                            <h4>الملفات المرفوعة</h4>
+                            <h2 id="totalFiles">0</h2>
                         </div>
-                        <h3 class="card-title">الاختبارات الإلكترونية</h3>
-                        <p class="card-description">إنشاء اختبارات إلكترونية مع خيارات متعددة للأسئلة وتحديد الإجابات الصحيحة وتقارير النتائج.</p>
-                        <button class="btn-card" onclick="showSection('tests')">
-                            <i class="fas fa-plus-circle"></i> إنشاء اختبار
-                        </button>
+                        
+                        <div class="stat-card">
+                            <i class="fas fa-clipboard-check"></i>
+                            <h4>الاختبارات النشطة</h4>
+                            <h2 id="totalExams">0</h2>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <i class="fas fa-user-clock"></i>
+                            <h4>اشتراكات قريبة الانتهاء</h4>
+                            <h2 id="expiringSubs">0</h2>
+                        </div>
                     </div>
+                </div>
+                
+                <!-- قسم إدارة المستخدمين -->
+                <div class="content-section" id="users">
+                    <h3 style="margin-bottom: 20px;"><i class="fas fa-user-cog"></i> إدارة المستخدمين</h3>
                     
-                    <div class="card">
-                        <div class="card-icon">
-                            <i class="fas fa-fire"></i>
-                        </div>
-                        <h3 class="card-title">نظام الستريك</h3>
-                        <p class="card-description">متابعة دخول الطلاب وتحصيلهم على ستريك لكل يوم يدخلون فيه إلى المنصة مع إحصائيات وتقارير مفصلة.</p>
-                        <button class="btn-card" onclick="showSection('streak')">
-                            <i class="fas fa-chart-line"></i> عرض التقارير
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- جدول الطلاب الأخير -->
-                <div class="section-header">
-                    <h2 class="section-title">أحدث الطلاب المسجلين</h2>
-                    <button class="btn-add" onclick="showSection('students')">
-                        <i class="fas fa-user-plus"></i> إضافة طالب جديد
+                    <button class="btn" style="width: auto; margin-bottom: 20px;" id="addUserBtn">
+                        <i class="fas fa-user-plus"></i> إضافة مستخدم جديد
                     </button>
-                </div>
-                
-                <div class="table-container">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th>اسم الطالب</th>
-                                <th>البريد الإلكتروني</th>
-                                <th>تاريخ التسجيل</th>
-                                <th>حالة الحساب</th>
-                                <th>ستريك الدخول</th>
-                                <th>الإجراءات</th>
-                            </tr>
-                        </thead>
-                        <tbody id="studentsTableBody">
-                            <!-- سيتم ملء البيانات جافاسكريبت -->
-                        </tbody>
-                    </table>
-                </div>
-                
-                <!-- عرض الستريك -->
-                <div class="streak-container">
-                    <div class="streak-icon">
-                        <i class="fas fa-fire"></i>
-                    </div>
-                    <div class="streak-info">
-                        <h3>أعلى ستريك للطلاب هذا الشهر</h3>
-                        <p id="topStreakText">جاري تحميل البيانات...</p>
-                        <div class="streak-days" id="topStreakDays">0 يوم</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- قسم إدارة الطلاب -->
-            <div id="studentsSection" class="content-section">
-                <div class="section-header">
-                    <h2 class="section-title">إدارة الطلاب</h2>
-                    <button class="btn-add" onclick="showAddStudentModal()">
-                        <i class="fas fa-user-plus"></i> إضافة طالب جديد
-                    </button>
-                </div>
-                
-                <div id="studentsList">
-                    <!-- سيتم ملء قائمة الطلاب جافاسكريبت -->
-                </div>
-            </div>
-            
-            <!-- قسم رفع الملفات -->
-            <div id="filesSection" class="content-section">
-                <div class="section-header">
-                    <h2 class="section-title">إدارة الملفات</h2>
-                    <button class="btn-add" onclick="showUploadFileModal()">
-                        <i class="fas fa-cloud-upload-alt"></i> رفع ملف جديد
-                    </button>
-                </div>
-                
-                <div class="card">
-                    <h3 class="card-title">رفع ملفات تعليمية</h3>
-                    <p class="card-description">يمكنك رفع ملفات تعليمية وتحديد الطلاب المستفيدين منها. يدعم النظام جميع أنواع الملفات الشائعة (PDF, Word, PowerPoint, Excel, Images).</p>
-                    <div class="upload-area" onclick="document.getElementById('fileUploadInput').click()">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <h4>اسحب وأفلت الملف هنا أو انقر للتصفح</h4>
-                        <p style="color: var(--gray); margin-top: 10px;">الحد الأقصى لحجم الملف: 50 ميجابايت</p>
-                        <input type="file" id="fileUploadInput" style="display: none;">
-                    </div>
-                </div>
-                
-                <div class="card" style="margin-top: 25px;">
-                    <h3 class="card-title">الملفات المرفوعة</h3>
-                    <div id="uploadedFilesList">
-                        <!-- سيتم عرض الملفات هنا -->
-                    </div>
-                </div>
-            </div>
-            
-            <!-- قسم الاختبارات -->
-            <div id="testsSection" class="content-section">
-                <div class="section-header">
-                    <h2 class="section-title">الاختبارات الإلكترونية</h2>
-                    <button class="btn-add" onclick="showCreateTestModal()">
-                        <i class="fas fa-plus-circle"></i> إنشاء اختبار جديد
-                    </button>
-                </div>
-                
-                <div class="cards-grid">
-                    <div class="card">
-                        <div class="card-icon">
-                            <i class="fas fa-question-circle"></i>
-                        </div>
-                        <h3 class="card-title">اختبارات متعددة الخيارات</h3>
-                        <p class="card-description">إنشاء اختبارات بأسئلة متعددة الخيارات مع تحديد الإجابة الصحيحة تلقائيًا.</p>
-                        <button class="btn-card" onclick="showCreateTestModal()">
-                            <i class="fas fa-plus"></i> إنشاء اختبار
-                        </button>
-                    </div>
                     
-                    <div class="card">
-                        <div class="card-icon">
-                            <i class="fas fa-pen-square"></i>
-                        </div>
-                        <h3 class="card-title">اختبارات مقالية</h3>
-                        <p class="card-description">إنشاء اختبارات بأسئلة مقالية تحتاج إلى تصحيح يدوي من قبل المعلم.</p>
-                        <button class="btn-card" onclick="showCreateTestModal()">
-                            <i class="fas fa-plus"></i> إنشاء اختبار
-                        </button>
+                    <div class="table-container">
+                        <table id="usersTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>اسم المستخدم</th>
+                                    <th>البريد الإلكتروني</th>
+                                    <th>تاريخ الانضمام</th>
+                                    <th>مدة الاشتراك</th>
+                                    <th>الحالة</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <!-- سيتم ملء البيانات عن طريق JavaScript -->
+                            </tbody>
+                        </table>
                     </div>
-                    
-                    <div class="card">
-                        <div class="card-icon">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                        <h3 class="card-title">تقارير النتائج</h3>
-                        <p class="card-description">عرض نتائج الطلاب وتحليلها مع إحصائيات مفصلة عن أداء الطلاب.</p>
-                        <button class="btn-card" onclick="alert('قريبًا...')">
-                            <i class="fas fa-chart-pie"></i> عرض التقارير
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- قسم الستريك -->
-            <div id="streakSection" class="content-section">
-                <div class="section-header">
-                    <h2 class="section-title">نظام متابعة الستريك</h2>
                 </div>
                 
-                <div class="card">
-                    <h3 class="card-title">تقارير دخول الطلاب</h3>
-                    <p class="card-description">عرض تقارير دخول الطلاب ومتابعة الستريك الخاص بهم مع إحصائيات شهرية وأسبوعية.</p>
-                    <div id="streakReports">
-                        <!-- سيتم عرض التقارير هنا -->
+                <!-- قسم الملفات التعليمية -->
+                <div class="content-section" id="files">
+                    <h3 style="margin-bottom: 20px;"><i class="fas fa-folder-open"></i> الملفات التعليمية</h3>
+                    
+                    <button class="btn" style="width: auto; margin-bottom: 20px;" id="addFileBtn">
+                        <i class="fas fa-upload"></i> رفع ملف جديد
+                    </button>
+                    
+                    <div class="table-container">
+                        <table id="filesTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>اسم الملف</th>
+                                    <th>الحجم</th>
+                                    <th>تاريخ الرفع</th>
+                                    <th>المستخدمون المحددون</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="filesTableBody">
+                                <!-- سيتم ملء البيانات عن طريق JavaScript -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </div>
-            
-            <!-- قسم الإعدادات -->
-            <div id="settingsSection" class="content-section">
-                <div class="section-header">
-                    <h2 class="section-title">إعدادات النظام</h2>
+                
+                <!-- قسم الاختبارات الإلكترونية -->
+                <div class="content-section" id="exams">
+                    <h3 style="margin-bottom: 20px;"><i class="fas fa-tasks"></i> الاختبارات الإلكترونية</h3>
+                    
+                    <div class="table-container">
+                        <table id="examsTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>اسم الاختبار</th>
+                                    <th>عدد الأسئلة</th>
+                                    <th>المدة (دقيقة)</th>
+                                    <th>المستخدمون المحددون</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="examsTableBody">
+                                <!-- سيتم ملء البيانات عن طريق JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 
-                <div class="card">
-                    <h3 class="card-title">الإعدادات العامة</h3>
-                    <p class="card-description">تخصيص إعدادات النظام والإشعارات والمظهر العام للمنصة.</p>
+                <!-- قسم إضافة اختبار جديد -->
+                <div class="content-section" id="add-exam">
+                    <h3 style="margin-bottom: 20px;"><i class="fas fa-plus-circle"></i> إضافة اختبار جديد</h3>
                     
-                    <div style="margin-top: 30px;">
+                    <div class="form-container">
                         <div class="form-group">
-                            <label class="form-label">اسم المنصة</label>
-                            <input type="text" class="form-control" value="منصة FYO التعليمية">
+                            <label for="examName">اسم الاختبار</label>
+                            <input type="text" id="examName" class="form-control" placeholder="أدخل اسم الاختبار">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="examDuration">مدة الاختبار (دقيقة)</label>
+                                <input type="number" id="examDuration" class="form-control" value="60">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="examUsers">حدد المستخدمين</label>
+                                <select id="examUsers" class="form-control" multiple style="height: 120px;">
+                                    <option value="all">جميع المستخدمين</option>
+                                    <!-- سيتم ملء الخيارات عن طريق JavaScript -->
+                                </select>
+                                <small style="color: rgba(255,255,255,0.6);">اضغط مع الاستمرار على Ctrl لتحديد أكثر من مستخدم</small>
+                            </div>
                         </div>
                         
                         <div class="form-group">
-                            <label class="form-label">البريد الإلكتروني للإشعارات</label>
-                            <input type="email" class="form-control" value="admin@fyo.edu">
+                            <label>نوع السؤال</label>
+                            <div style="display: flex; gap: 20px; margin-top: 10px;">
+                                <label style="display: flex; align-items: center; gap: 10px;">
+                                    <input type="radio" name="questionType" value="text" checked> كتابة النص
+                                </label>
+                                <label style="display: flex; align-items: center; gap: 10px;">
+                                    <input type="radio" name="questionType" value="image"> رفع صورة
+                                </label>
+                            </div>
                         </div>
                         
-                        <div class="form-group">
-                            <label class="form-label">الحد الأقصى لحجم الملفات (ميجابايت)</label>
-                            <input type="number" class="form-control" value="50" min="1" max="100">
+                        <div class="form-group" id="textQuestion">
+                            <label for="questionText">نص السؤال</label>
+                            <textarea id="questionText" class="form-control" rows="3" placeholder="اكتب نص السؤال هنا"></textarea>
                         </div>
                         
-                        <div class="form-actions">
-                            <button class="btn-primary">
-                                <i class="fas fa-save"></i> حفظ التغييرات
-                            </button>
-                            <button class="btn-secondary" onclick="alert('تم الاستعادة للإعدادات الافتراضية')">
-                                استعادة الافتراضي
+                        <div class="form-group" id="imageQuestion" style="display: none;">
+                            <label>رفع صورة السؤال</label>
+                            <div class="file-upload" id="questionImageUpload">
+                                <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                                <p>اسحب وأفلت صورة السؤال هنا أو انقر للاختيار</p>
+                                <input type="file" id="questionImage" accept="image/*" style="display: none;">
+                            </div>
+                        </div>
+                        
+                        <div class="question-options">
+                            <h4 style="margin-bottom: 15px;">خيارات الإجابة</h4>
+                            
+                            <div id="optionsContainer">
+                                <!-- سيتم إضافة الخيارات ديناميكياً -->
+                            </div>
+                            
+                            <button type="button" class="btn" style="width: auto; margin-top: 15px;" id="addOptionBtn">
+                                <i class="fas fa-plus"></i> إضافة خيار
                             </button>
                         </div>
+                        
+                        <button class="btn" style="margin-top: 30px;" id="saveExamBtn">
+                            <i class="fas fa-save"></i> حفظ الاختبار
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- قسم ستريك الدخول -->
+                <div class="content-section" id="streaks">
+                    <h3 style="margin-bottom: 20px;"><i class="fas fa-fire"></i> ستريك الدخول للمستخدمين</h3>
+                    
+                    <div class="table-container">
+                        <table id="streaksTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>اسم المستخدم</th>
+                                    <th>ستريك الدخول</th>
+                                    <th>آخر دخول</th>
+                                    <th>إجمالي أيام الدخول</th>
+                                </tr>
+                            </thead>
+                            <tbody id="streaksTableBody">
+                                <!-- سيتم ملء البيانات عن طريق JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- قسم إدارة الاشتراكات -->
+                <div class="content-section" id="subscriptions">
+                    <h3 style="margin-bottom: 20px;"><i class="fas fa-calendar-check"></i> إدارة اشتراكات المستخدمين</h3>
+                    
+                    <div class="table-container">
+                        <table id="subscriptionsTable">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>اسم المستخدم</th>
+                                    <th>تاريخ البداية</th>
+                                    <th>تاريخ الانتهاء</th>
+                                    <th>الأيام المتبقية</th>
+                                    <th>الحالة</th>
+                                    <th>تجديد الاشتراك</th>
+                                </tr>
+                            </thead>
+                            <tbody id="subscriptionsTableBody">
+                                <!-- سيتم ملء البيانات عن طريق JavaScript -->
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
-    <!-- النماذج المنبثقة -->
-    
-    <!-- نموذج إضافة طالب جديد -->
-    <div id="addStudentModal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">إضافة طالب جديد</h2>
-                <span class="btn-close" onclick="closeModal('addStudentModal')">&times;</span>
+
+    <!-- نموذج إضافة مستخدم جديد -->
+    <div id="addUserModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center;">
+        <div style="background: var(--dark); border-radius: 20px; padding: 30px; width: 90%; max-width: 500px; border: 1px solid rgba(255,255,255,0.1);">
+            <h3 style="margin-bottom: 20px;"><i class="fas fa-user-plus"></i> إضافة مستخدم جديد</h3>
+            
+            <div class="form-group">
+                <label for="newUsername">اسم المستخدم</label>
+                <input type="text" id="newUsername" class="form-control" placeholder="أدخل اسم المستخدم">
             </div>
-            <form id="addStudentForm">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">اسم الطالب الكامل</label>
-                        <input type="text" id="studentName" class="form-control" placeholder="أدخل اسم الطالب" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">البريد الإلكتروني</label>
-                        <input type="email" id="studentEmail" class="form-control" placeholder="example@email.com" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">اسم المستخدم</label>
-                        <input type="text" id="studentUsername" class="form-control" placeholder="اسم المستخدم للطالب" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">كلمة المرور</label>
-                        <input type="password" id="studentPassword" class="form-control" placeholder="أدخل كلمة المرور" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">رقم الهاتف</label>
-                        <input type="tel" id="studentPhone" class="form-control" placeholder="05xxxxxxxx">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">الصف الدراسي</label>
-                        <select id="studentGrade" class="form-control" required>
-                            <option value="">اختر الصف الدراسي</option>
-                            <option value="first">الأول الثانوي</option>
-                            <option value="second">الثاني الثانوي</option>
-                            <option value="third">الثالث الثانوي</option>
-                            <option value="graduate">خريج</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="form-actions">
-                    <button type="submit" class="btn-primary">
-                        <i class="fas fa-save"></i> حفظ الطالب
-                    </button>
-                    <button type="button" class="btn-secondary" onclick="generateCredentials()">
-                        <i class="fas fa-key"></i> توليد بيانات تلقائي
-                    </button>
-                </div>
-            </form>
+            
+            <div class="form-group">
+                <label for="newUserEmail">البريد الإلكتروني</label>
+                <input type="email" id="newUserEmail" class="form-control" placeholder="أدخل البريد الإلكتروني">
+            </div>
+            
+            <div class="form-group">
+                <label for="newUserPassword">كلمة المرور</label>
+                <input type="password" id="newUserPassword" class="form-control" placeholder="أدخل كلمة المرور">
+            </div>
+            
+            <div class="form-group">
+                <label for="subscriptionDays">مدة الاشتراك (أيام)</label>
+                <input type="number" id="subscriptionDays" class="form-control" value="30" min="1">
+            </div>
+            
+            <div style="display: flex; gap: 15px; margin-top: 25px;">
+                <button class="btn" style="flex: 1;" id="saveUserBtn">حفظ المستخدم</button>
+                <button class="btn" style="flex: 1; background: rgba(255,255,255,0.1);" id="cancelUserBtn">إلغاء</button>
+            </div>
         </div>
     </div>
-    
-    <!-- نموذج رفع ملف -->
-    <div id="uploadFileModal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">رفع ملف تعليمي</h2>
-                <span class="btn-close" onclick="closeModal('uploadFileModal')">&times;</span>
+
+    <!-- نموذج إضافة ملف جديد -->
+    <div id="addFileModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center;">
+        <div style="background: var(--dark); border-radius: 20px; padding: 30px; width: 90%; max-width: 500px; border: 1px solid rgba(255,255,255,0.1);">
+            <h3 style="margin-bottom: 20px;"><i class="fas fa-file-upload"></i> رفع ملف جديد</h3>
+            
+            <div class="form-group">
+                <label for="fileName">اسم الملف</label>
+                <input type="text" id="fileName" class="form-control" placeholder="أدخل اسم الملف">
             </div>
-            <form id="uploadFileForm">
-                <div class="form-group">
-                    <label class="form-label">اسم الملف</label>
-                    <input type="text" id="fileName" class="form-control" placeholder="أدخل اسم الملف" required>
+            
+            <div class="form-group">
+                <label>رفع الملف</label>
+                <div class="file-upload" id="fileUploadArea">
+                    <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                    <p>اسحب وأفلت الملف هنا أو انقر للاختيار</p>
+                    <input type="file" id="fileInput" style="display: none;">
                 </div>
-                
-                <div class="form-group">
-                    <label class="form-label">وصف الملف</label>
-                    <textarea id="fileDescription" class="form-control" rows="3" placeholder="وصف مختصر للملف"></textarea>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">تصنيف الملف</label>
-                        <select id="fileCategory" class="form-control" required>
-                            <option value="">اختر التصنيف</option>
-                            <option value="lessons">دروس</option>
-                            <option value="exercises">تمارين</option>
-                            <option value="exams">نماذج اختبارات</option>
-                            <option value="guides">دليل الدراسة</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">نوع الملف</label>
-                        <select id="fileType" class="form-control" required>
-                            <option value="">اختر نوع الملف</option>
-                            <option value="pdf">PDF</option>
-                            <option value="word">Word</option>
-                            <option value="powerpoint">PowerPoint</option>
-                            <option value="excel">Excel</option>
-                            <option value="image">صورة</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">حدد الطلاب المستفيدين</label>
-                    <div style="max-height: 200px; overflow-y: auto; padding: 15px; border: 1px solid #ddd; border-radius: var(--radius-md); background: #f9f9f9;">
-                        <div id="studentsCheckboxes">
-                            <!-- سيتم إضافة الطلاب هنا -->
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="form-actions">
-                    <button type="submit" class="btn-primary">
-                        <i class="fas fa-upload"></i> رفع الملف
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-    
-    <!-- نموذج إنشاء اختبار -->
-    <div id="createTestModal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">إنشاء اختبار جديد</h2>
-                <span class="btn-close" onclick="closeModal('createTestModal')">&times;</span>
+                <div id="selectedFileName" style="margin-top: 10px; color: rgba(255,255,255,0.7);"></div>
             </div>
-            <form id="createTestForm">
-                <div class="form-group">
-                    <label class="form-label">عنوان الاختبار</label>
-                    <input type="text" id="testTitle" class="form-control" placeholder="أدخل عنوان الاختبار" required>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">مدة الاختبار (دقيقة)</label>
-                        <input type="number" id="testDuration" class="form-control" value="60" min="1" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">عدد الأسئلة</label>
-                        <input type="number" id="testQuestions" class="form-control" value="10" min="1" max="100" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label class="form-label">تاريخ البدء</label>
-                        <input type="date" id="testStartDate" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">تاريخ الانتهاء</label>
-                        <input type="date" id="testEndDate" class="form-control" required>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">نوع الأسئلة</label>
-                    <div style="margin-top: 10px;">
-                        <label style="margin-left: 20px;">
-                            <input type="radio" name="questionMethod" value="multipleChoice" checked> متعددة الخيارات
-                        </label>
-                        <label style="margin-left: 20px;">
-                            <input type="radio" name="questionMethod" value="essay"> مقالية
-                        </label>
-                        <label style="margin-left: 20px;">
-                            <input type="radio" name="questionMethod" value="mixed"> مختلطة
-                        </label>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">وصف الاختبار</label>
-                    <textarea id="testDescription" class="form-control" rows="3" placeholder="وصف مختصر للاختبار"></textarea>
-                </div>
-                
-                <div class="form-actions">
-                    <button type="submit" class="btn-primary">
-                        <i class="fas fa-save"></i> إنشاء الاختبار
-                    </button>
-                </div>
-            </form>
+            
+            <div class="form-group">
+                <label for="fileUsers">حدد المستخدمين</label>
+                <select id="fileUsers" class="form-control" multiple style="height: 120px;">
+                    <option value="all">جميع المستخدمين</option>
+                    <!-- سيتم ملء الخيارات عن طريق JavaScript -->
+                </select>
+                <small style="color: rgba(255,255,255,0.6);">اضغط مع الاستمرار على Ctrl لتحديد أكثر من مستخدم</small>
+            </div>
+            
+            <div style="display: flex; gap: 15px; margin-top: 25px;">
+                <button class="btn" style="flex: 1;" id="saveFileBtn">رفع الملف</button>
+                <button class="btn" style="flex: 1; background: rgba(255,255,255,0.1);" id="cancelFileBtn">إلغاء</button>
+            </div>
         </div>
     </div>
 
     <script>
-        // ============ نظام إدارة البيانات ============
-        
-        // بيانات الطلاب المخزنة محلياً
-        let students = JSON.parse(localStorage.getItem('fyo_students')) || [
-            {
-                id: 1,
-                name: 'أحمد محمد',
-                email: 'ahmed@example.com',
-                username: 'ahmed123',
-                phone: '0512345678',
-                grade: 'third',
-                status: 'active',
-                streak: 15,
-                createdAt: '2023-10-15',
-                lastLogin: '2023-11-05'
-            },
-            {
-                id: 2,
-                name: 'سارة عبدالله',
-                email: 'sara@example.com',
-                username: 'sara456',
-                phone: '0554321098',
-                grade: 'second',
-                status: 'active',
-                streak: 8,
-                createdAt: '2023-10-20',
-                lastLogin: '2023-11-05'
-            },
-            {
-                id: 3,
-                name: 'خالد فيصل',
-                email: 'khaled@example.com',
-                username: 'khaled789',
-                phone: '0567890123',
-                grade: 'first',
-                status: 'pending',
-                streak: 3,
-                createdAt: '2023-10-25',
-                lastLogin: '2023-11-03'
-            },
-            {
-                id: 4,
-                name: 'نورة سعيد',
-                email: 'noura@example.com',
-                username: 'noura2023',
-                phone: '0543210987',
-                grade: 'third',
-                status: 'active',
-                streak: 22,
-                createdAt: '2023-10-10',
-                lastLogin: '2023-11-05'
-            },
-            {
-                id: 5,
-                name: 'فيصل عبدالرحمن',
-                email: 'faisal@example.com',
-                username: 'faisal_f',
-                phone: '0587654321',
-                grade: 'second',
-                status: 'active',
-                streak: 12,
-                createdAt: '2023-10-18',
-                lastLogin: '2023-11-04'
-            }
-        ];
-        
-        // بيانات الدخول
-        const CORRECT_USERNAME = "admin";
-        const CORRECT_PASSWORD = "admin";
-        
-        // عناصر DOM
-        const loginContainer = document.getElementById('loginContainer');
-        const dashboard = document.getElementById('dashboard');
-        const loginForm = document.getElementById('loginForm');
-        const loginButton = document.getElementById('loginButton');
-        const errorMessage = document.getElementById('errorMessage');
-        const successMessage = document.getElementById('successMessage');
-        const menuItems = document.querySelectorAll('.menu-item');
-        const contentSections = document.querySelectorAll('.content-section');
-        
-        // ============ وظائف النظام الأساسية ============
-        
-        // حفظ البيانات في التخزين المحلي
-        function saveStudents() {
-            try {
-                localStorage.setItem('fyo_students', JSON.stringify(students));
-                return true;
-            } catch (error) {
-                console.error('خطأ في حفظ البيانات:', error);
-                alert('حدث خطأ في حفظ البيانات. يرجى المحاولة مرة أخرى.');
-                return false;
-            }
-        }
-        
-        // توليد معرف فريد
-        function generateId() {
-            return Date.now() + Math.floor(Math.random() * 1000);
-        }
-        
-        // تسجيل الدخول
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
+        // بيانات التطبيق
+        let appData = {
+            currentUser: null,
+            users: [
+                {id: 1, username: "admin", password: "admin", email: "admin@fyo.com", role: "admin", joinDate: "2023-01-01", subscriptionDays: 9999, subscriptionStart: "2023-01-01", lastLogin: "", streak: 0, totalLogins: 0},
+                {id: 2, username: "طالب1", password: "123456", email: "student1@fyo.com", role: "student", joinDate: "2023-10-01", subscriptionDays: 30, subscriptionStart: "2023-10-01", lastLogin: "", streak: 5, totalLogins: 12},
+                {id: 3, username: "طالب2", password: "123456", email: "student2@fyo.com", role: "student", joinDate: "2023-10-15", subscriptionDays: 15, subscriptionStart: "2023-10-15", lastLogin: "", streak: 3, totalLogins: 8},
+                {id: 4, username: "طالب3", password: "123456", email: "student3@fyo.com", role: "student", joinDate: "2023-10-20", subscriptionDays: 7, subscriptionStart: "2023-10-20", lastLogin: "", streak: 1, totalLogins: 3}
+            ],
+            files: [
+                {id: 1, name: "ملف القدرات الجزء الأول.pdf", size: "2.4 MB", uploadDate: "2023-10-10", selectedUsers: ["all"]},
+                {id: 2, name: "أسئلة قدرات رياضيات.docx", size: "1.8 MB", uploadDate: "2023-10-12", selectedUsers: [2, 3]},
+                {id: 3, name: "نموذج اختبار كمي.pdf", size: "3.2 MB", uploadDate: "2023-10-18", selectedUsers: [2]}
+            ],
+            exams: [
+                {id: 1, name: "اختبار القدرات التجريبي 1", questions: 20, duration: 60, selectedUsers: ["all"], questionsData: []},
+                {id: 2, name: "اختبار رياضيات متقدم", questions: 15, duration: 45, selectedUsers: [2, 3], questionsData: []},
+                {id: 3, name: "اختبار لفظي سريع", questions: 10, duration: 30, selectedUsers: [2], questionsData: []}
+            ],
+            nextUserId: 5,
+            nextFileId: 4,
+            nextExamId: 4
+        };
+
+        // تهيئة التطبيق عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            // تعيين حدث تسجيل الدخول
+            document.getElementById('loginForm').addEventListener('submit', handleLogin);
+            document.getElementById('adminLogin').addEventListener('click', adminLogin);
+            document.getElementById('logoutBtn').addEventListener('click', logout);
             
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
-            
-            errorMessage.style.display = 'none';
-            successMessage.style.display = 'none';
-            
-            // التحقق من المدخلات
-            if (!username || !password) {
-                showError('يرجى ملء جميع الحقول المطلوبة');
-                return;
-            }
-            
-            // تعطيل زر الدخول أثناء المعالجة
-            loginButton.disabled = true;
-            loginButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحقق...';
-            
-            // محاكاة اتصال بالخادم
-            setTimeout(() => {
-                if (username === CORRECT_USERNAME && password === CORRECT_PASSWORD) {
-                    showSuccess();
+            // تعيين أحداث القائمة الجانبية
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    // إزالة النشط من جميع العناصر
+                    document.querySelectorAll('.menu-item').forEach(el => el.classList.remove('active'));
+                    // إضافة النشط للعنصر المحدد
+                    this.classList.add('active');
                     
-                    setTimeout(() => {
-                        loginContainer.style.display = 'none';
-                        dashboard.style.display = 'block';
-                        loadDashboardData();
-                        
-                        // إعادة تعيين النموذج
-                        loginButton.disabled = false;
-                        loginButton.innerHTML = '<i class="fas fa-sign-in-alt"></i><span>تسجيل الدخول</span>';
-                    }, 1500);
-                } else {
-                    showError('اسم المستخدم أو كلمة المرور غير صحيحة');
-                    shakeForm();
+                    // إخفاء جميع الأقسام
+                    document.querySelectorAll('.content-section').forEach(section => {
+                        section.classList.remove('active');
+                    });
                     
-                    // إعادة تمكين زر الدخول
-                    loginButton.disabled = false;
-                    loginButton.innerHTML = '<i class="fas fa-sign-in-alt"></i><span>تسجيل الدخول</span>';
-                }
-            }, 1000);
+                    // إظهار القسم المحدد
+                    const sectionId = this.getAttribute('data-section');
+                    document.getElementById(sectionId).classList.add('active');
+                });
+            });
+            
+            // تعيين أحداث الأزرار
+            document.getElementById('addUserBtn').addEventListener('click', showAddUserModal);
+            document.getElementById('saveUserBtn').addEventListener('click', saveNewUser);
+            document.getElementById('cancelUserBtn').addEventListener('click', hideAddUserModal);
+            
+            document.getElementById('addFileBtn').addEventListener('click', showAddFileModal);
+            document.getElementById('saveFileBtn').addEventListener('click', saveNewFile);
+            document.getElementById('cancelFileBtn').addEventListener('click', hideAddFileModal);
+            document.getElementById('fileUploadArea').addEventListener('click', () => document.getElementById('fileInput').click());
+            document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+            
+            // أحداث إضافة الاختبارات
+            document.querySelectorAll('input[name="questionType"]').forEach(radio => {
+                radio.addEventListener('change', toggleQuestionType);
+            });
+            
+            document.getElementById('addOptionBtn').addEventListener('click', addQuestionOption);
+            document.getElementById('saveExamBtn').addEventListener('click', saveNewExam);
+            document.getElementById('questionImageUpload').addEventListener('click', () => document.getElementById('questionImage').click());
+            
+            // تهيئة خيارات الأسئلة
+            initializeQuestionOptions();
+            
+            // تحديث الإحصائيات
+            updateStats();
+            
+            // تحديث الجداول
+            updateUsersTable();
+            updateFilesTable();
+            updateExamsTable();
+            updateStreaksTable();
+            updateSubscriptionsTable();
+            
+            // تحديث خيارات المستخدمين في النماذج
+            updateUserSelectOptions();
         });
         
-        // عرض رسالة الخطأ
-        function showError(message) {
-            errorMessage.querySelector('div').textContent = message;
-            errorMessage.style.display = 'flex';
+        // تسجيل الدخول
+        function handleLogin(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            const user = appData.users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                loginUser(user);
+            } else {
+                alert('اسم المستخدم أو كلمة المرور غير صحيحة');
+            }
         }
         
-        // عرض رسالة النجاح
-        function showSuccess() {
-            successMessage.style.display = 'flex';
+        // تسجيل الدخول كمسؤول
+        function adminLogin() {
+            const adminUser = appData.users.find(u => u.username === "admin" && u.password === "admin");
+            if (adminUser) {
+                document.getElementById('username').value = "admin";
+                document.getElementById('password').value = "admin";
+                loginUser(adminUser);
+            }
         }
         
-        // اهتزاز النموذج عند الخطأ
-        function shakeForm() {
-            const formInputs = document.querySelectorAll('.form-input');
-            formInputs.forEach(input => {
-                input.style.animation = 'shake 0.5s';
-                setTimeout(() => {
-                    input.style.animation = '';
-                }, 500);
-            });
+        // عملية تسجيل الدخول
+        function loginUser(user) {
+            appData.currentUser = user;
+            
+            // تحديث آخر دخول وستريك
+            const today = new Date().toISOString().split('T')[0];
+            const lastLoginDate = user.lastLogin;
+            
+            if (lastLoginDate) {
+                const lastLogin = new Date(lastLoginDate);
+                const todayDate = new Date(today);
+                const diffTime = Math.abs(todayDate - lastLogin);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                if (diffDays === 1) {
+                    // دخول متتالي
+                    user.streak++;
+                } else if (diffDays > 1) {
+                    // كسر الستريك
+                    user.streak = 1;
+                }
+            } else {
+                // أول دخول
+                user.streak = 1;
+            }
+            
+            user.lastLogin = today;
+            user.totalLogins++;
+            
+            // تحديث واجهة المستخدم
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+            document.getElementById('userName').textContent = user.username;
+            document.getElementById('userRole').textContent = user.role === 'admin' ? 'مدير النظام' : 'طالب';
+            document.getElementById('greetingName').textContent = user.username;
+            
+            // تحديث الإحصائيات والجداول
+            updateStats();
+            updateUsersTable();
+            updateStreaksTable();
+            updateSubscriptionsTable();
+            
+            // إظهار رسالة ترحيب
+            const welcomeMessages = [
+                "مرحباً بك مجدداً في منصة FYO التعليمية!",
+                "سعيدون بعودتك! جاهزون لجلسة دراسة مثمرة؟",
+                "أهلاً وسهلاً! لقد فتحنا لك الأبواب للتعلم."
+            ];
+            
+            const randomMessage = welcomeMessages[Math.floor(Math.random() * welcomeMessages.length)];
+            document.getElementById('welcomeMessage').querySelector('p').textContent = randomMessage;
         }
         
         // تسجيل الخروج
         function logout() {
-            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
-                dashboard.style.display = 'none';
-                loginContainer.style.display = 'flex';
-                document.getElementById('username').value = 'admin';
-                document.getElementById('password').value = 'admin';
-                errorMessage.style.display = 'none';
-                successMessage.style.display = 'none';
-                
-                // إعادة تعيين القائمة
-                showSection('home');
-            }
+            appData.currentUser = null;
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
         }
         
-        // عرض قسم معين
-        function showSection(sectionId) {
-            contentSections.forEach(section => {
-                section.classList.remove('active');
+        // تحديث الإحصائيات
+        function updateStats() {
+            document.getElementById('totalUsers').textContent = appData.users.filter(u => u.role === 'student').length;
+            document.getElementById('totalFiles').textContent = appData.files.length;
+            document.getElementById('totalExams').textContent = appData.exams.length;
+            
+            // حساب الاشتراكات القريبة من الانتهاء (أقل من 3 أيام)
+            const today = new Date();
+            let expiringCount = 0;
+            
+            appData.users.forEach(user => {
+                if (user.role === 'student' && user.subscriptionStart) {
+                    const startDate = new Date(user.subscriptionStart);
+                    const endDate = new Date(startDate);
+                    endDate.setDate(endDate.getDate() + user.subscriptionDays);
+                    
+                    const diffTime = endDate - today;
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                    
+                    if (diffDays > 0 && diffDays <= 3) {
+                        expiringCount++;
+                    }
+                }
             });
             
-            menuItems.forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            document.getElementById(sectionId + 'Section').classList.add('active');
-            
-            const activeItem = document.querySelector(`.menu-item[onclick="showSection('${sectionId}')"]`);
-            if (activeItem) {
-                activeItem.classList.add('active');
-            }
-            
-            // تحميل بيانات القسم
-            if (sectionId === 'students') {
-                loadStudentsList();
-            } else if (sectionId === 'streak') {
-                loadStreakReports();
-            } else if (sectionId === 'files') {
-                loadUploadedFiles();
-            }
-            
-            // إغلاق القائمة الجانبية على الأجهزة الصغيرة
-            if (window.innerWidth <= 768) {
-                document.getElementById('sidebar').classList.remove('active');
-            }
+            document.getElementById('expiringSubs').textContent = expiringCount;
         }
         
-        // تحميل بيانات لوحة التحكم
-        function loadDashboardData() {
-            updateStudentsTable();
-            updateTopStreak();
-        }
-        
-        // تحديث جدول الطلاب
-        function updateStudentsTable() {
-            const tableBody = document.getElementById('studentsTableBody');
+        // تحديث جدول المستخدمين
+        function updateUsersTable() {
+            const tbody = document.getElementById('usersTableBody');
+            tbody.innerHTML = '';
             
-            if (students.length === 0) {
-                tableBody.innerHTML = `
-                    <tr>
-                        <td colspan="6" style="text-align: center; padding: 40px; color: var(--gray);">
-                            <i class="fas fa-users" style="font-size: 3rem; margin-bottom: 15px; display: block; color: #ddd;"></i>
-                            <h3 style="margin-bottom: 10px;">لا يوجد طلاب مسجلين</h3>
-                            <p>قم بإضافة طلاب جدد لبدء استخدام المنصة</p>
+            appData.users.forEach(user => {
+                if (user.role === 'student') {
+                    const startDate = new Date(user.subscriptionStart);
+                    const endDate = new Date(startDate);
+                    endDate.setDate(endDate.getDate() + user.subscriptionDays);
+                    
+                    const today = new Date();
+                    const diffTime = endDate - today;
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                    
+                    let status = '';
+                    let statusClass = '';
+                    
+                    if (diffDays <= 0) {
+                        status = 'منتهي';
+                        statusClass = 'delete-btn';
+                    } else if (diffDays <= 3) {
+                        status = `ينتهي خلال ${diffDays} أيام`;
+                        statusClass = 'edit-btn';
+                    } else {
+                        status = 'نشط';
+                        statusClass = '';
+                    }
+                    
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${user.id}</td>
+                        <td>${user.username}</td>
+                        <td>${user.email}</td>
+                        <td>${user.joinDate}</td>
+                        <td>${user.subscriptionDays} يوم</td>
+                        <td><span class="${statusClass}">${status}</span></td>
+                        <td>
+                            <button class="action-btn edit-btn" onclick="renewSubscription(${user.id})">
+                                <i class="fas fa-redo"></i> تجديد
+                            </button>
+                            <button class="action-btn delete-btn" onclick="deleteUser(${user.id})">
+                                <i class="fas fa-trash"></i> حذف
+                            </button>
                         </td>
-                    </tr>
-                `;
-                return;
-            }
+                    `;
+                    tbody.appendChild(row);
+                }
+            });
+        }
+        
+        // تحديث جدول الملفات
+        function updateFilesTable() {
+            const tbody = document.getElementById('filesTableBody');
+            tbody.innerHTML = '';
             
-            tableBody.innerHTML = '';
-            
-            // عرض أحدث 5 طلاب
-            const recentStudents = [...students]
-                .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                .slice(0, 5);
-            
-            recentStudents.forEach(student => {
+            appData.files.forEach(file => {
+                let usersText = '';
+                if (file.selectedUsers.includes('all')) {
+                    usersText = 'جميع المستخدمين';
+                } else {
+                    const userNames = file.selectedUsers.map(userId => {
+                        const user = appData.users.find(u => u.id === userId);
+                        return user ? user.username : '';
+                    }).filter(name => name !== '');
+                    usersText = userNames.join('، ');
+                }
+                
                 const row = document.createElement('tr');
                 row.innerHTML = `
+                    <td>${file.id}</td>
+                    <td>${file.name}</td>
+                    <td>${file.size}</td>
+                    <td>${file.uploadDate}</td>
+                    <td>${usersText}</td>
                     <td>
-                        <div style="display: flex; align-items: center;">
-                            <div style="width: 40px; height: 40px; border-radius: 50%; background: ${getRandomColor()}; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; margin-left: 10px;">
-                                ${student.name.charAt(0)}
-                            </div>
-                            ${student.name}
-                        </div>
-                    </td>
-                    <td>${student.email}</td>
-                    <td>${formatDate(student.createdAt)}</td>
-                    <td><span class="status-badge ${student.status === 'active' ? 'status-active' : 'status-pending'}">${student.status === 'active' ? 'نشط' : 'غير نشط'}</span></td>
-                    <td><strong style="color: var(--accent);">${student.streak} يوم</strong></td>
-                    <td>
-                        <button class="btn-action btn-view" onclick="viewStudent(${student.id})"><i class="fas fa-eye"></i> عرض</button>
-                        <button class="btn-action btn-edit" onclick="editStudent(${student.id})"><i class="fas fa-edit"></i> تعديل</button>
-                        <button class="btn-action btn-delete" onclick="deleteStudent(${student.id})"><i class="fas fa-trash"></i> حذف</button>
-                    </td>
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-        
-        // تحديث أعلى ستريك
-        function updateTopStreak() {
-            if (students.length > 0) {
-                const topStudent = students.reduce((prev, current) => 
-                    (prev.streak > current.streak) ? prev : current
-                );
-                
-                document.getElementById('topStreakText').textContent = 
-                    `الطالب ${topStudent.name} حصل على أعلى ستريك دخول للمنصة`;
-                document.getElementById('topStreakDays').textContent = 
-                    `${topStudent.streak} يوم`;
-            } else {
-                document.getElementById('topStreakText').textContent = 
-                    'لا توجد بيانات للعرض';
-                document.getElementById('topStreakDays').textContent = 
-                    '0 يوم';
-            }
-        }
-        
-        // تحميل قائمة الطلاب
-        function loadStudentsList() {
-            const studentsList = document.getElementById('studentsList');
-            
-            if (students.length === 0) {
-                studentsList.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-users"></i>
-                        <h3>لا يوجد طلاب مسجلين</h3>
-                        <p>قم بإضافة طلاب جدد لبدء استخدام المنصة</p>
-                        <button class="btn-add" onclick="showAddStudentModal()" style="margin-top: 20px;">
-                            <i class="fas fa-user-plus"></i> إضافة أول طالب
+                        <button class="action-btn edit-btn" onclick="editFile(${file.id})">
+                            <i class="fas fa-edit"></i> تعديل
                         </button>
-                    </div>
+                        <button class="action-btn delete-btn" onclick="deleteFile(${file.id})">
+                            <i class="fas fa-trash"></i> حذف
+                        </button>
+                    </td>
                 `;
-                return;
-            }
-            
-            let html = '<div class="cards-grid">';
-            
-            students.forEach(student => {
-                html += `
-                    <div class="card">
-                        <div style="display: flex; align-items: center; margin-bottom: 20px;">
-                            <div style="width: 60px; height: 60px; border-radius: 50%; background: ${getRandomColor()}; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem; margin-left: 15px;">
-                                ${student.name.charAt(0)}
-                            </div>
-                            <div>
-                                <h4 style="margin: 0; font-size: 1.3rem;">${student.name}</h4>
-                                <p style="margin: 5px 0 0 0; color: var(--gray); font-size: 0.9rem;">${student.email}</p>
-                            </div>
-                        </div>
-                        
-                        <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;">
-                            <span class="status-badge ${student.status === 'active' ? 'status-active' : 'status-pending'}" style="font-size: 0.9rem;">
-                                ${student.status === 'active' ? 'نشط' : 'غير نشط'}
-                            </span>
-                            <span style="background-color: rgba(247, 37, 133, 0.1); color: var(--accent); padding: 8px 15px; border-radius: 50px; font-size: 0.9rem; font-weight: 600;">
-                                <i class="fas fa-fire"></i> ${student.streak} يوم
-                            </span>
-                        </div>
-                        
-                        <div style="display: flex; gap: 10px;">
-                            <button class="btn-action btn-view" onclick="viewStudent(${student.id})" style="flex: 1;"><i class="fas fa-eye"></i> عرض</button>
-                            <button class="btn-action btn-edit" onclick="editStudent(${student.id})" style="flex: 1;"><i class="fas fa-edit"></i> تعديل</button>
-                            <button class="btn-action btn-delete" onclick="deleteStudent(${student.id})" style="flex: 1;"><i class="fas fa-trash"></i> حذف</button>
-                        </div>
-                    </div>
-                `;
+                tbody.appendChild(row);
             });
-            
-            html += '</div>';
-            studentsList.innerHTML = html;
         }
         
-        // تحميل تقارير الستريك
-        function loadStreakReports() {
-            const streakReports = document.getElementById('streakReports');
+        // تحديث جدول الاختبارات
+        function updateExamsTable() {
+            const tbody = document.getElementById('examsTableBody');
+            tbody.innerHTML = '';
             
-            if (students.length === 0) {
-                streakReports.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-fire"></i>
-                        <h3>لا توجد بيانات للعرض</h3>
-                        <p>لا توجد بيانات ستريك متاحة. أضف طلابًا لرؤية التقارير.</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            let html = `
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 20px;">
-                    <div style="background: linear-gradient(135deg, #4361ee, #3a0ca3); color: white; padding: 25px; border-radius: var(--radius-md); grid-column: 1 / -1;">
-                        <h3 style="margin-bottom: 15px; font-size: 1.3rem;">إحصائيات الستريك</h3>
-                        <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
-                            <div>
-                                <div style="font-size: 2.5rem; font-weight: 800;">${students.length}</div>
-                                <div>إجمالي الطلاب</div>
-                            </div>
-                            <div>
-                                <div style="font-size: 2.5rem; font-weight: 800;">${students.filter(s => s.status === 'active').length}</div>
-                                <div>طلاب نشطين</div>
-                            </div>
-                            <div>
-                                <div style="font-size: 2.5rem; font-weight: 800;">${calculateAverageStreak()}</div>
-                                <div>متوسط الستريك</div>
-                            </div>
-                        </div>
-                    </div>
-            `;
-            
-            // ترتيب الطلاب حسب الستريك
-            const sortedStudents = [...students].sort((a, b) => b.streak - a.streak);
-            
-            sortedStudents.forEach(student => {
-                const streakPercent = Math.min(100, (student.streak / 30) * 100);
+            appData.exams.forEach(exam => {
+                let usersText = '';
+                if (exam.selectedUsers.includes('all')) {
+                    usersText = 'جميع المستخدمين';
+                } else {
+                    const userNames = exam.selectedUsers.map(userId => {
+                        const user = appData.users.find(u => u.id === userId);
+                        return user ? user.username : '';
+                    }).filter(name => name !== '');
+                    usersText = userNames.join('، ');
+                }
                 
-                html += `
-                    <div style="background: white; padding: 20px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                            <div>
-                                <div style="font-weight: 700; font-size: 1.1rem;">${student.name}</div>
-                                <div style="color: var(--gray); font-size: 0.9rem;">${student.email}</div>
-                            </div>
-                            <div style="background-color: rgba(247, 37, 133, 0.1); color: var(--accent); padding: 8px 15px; border-radius: 50px; font-weight: 700;">
-                                ${student.streak}
-                            </div>
-                        </div>
-                        
-                        <div style="margin-bottom: 10px;">
-                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                                <span style="font-size: 0.9rem; color: var(--gray)">تقدم الستريك</span>
-                                <span style="font-size: 0.9rem; font-weight: 600;">${streakPercent.toFixed(0)}%</span>
-                            </div>
-                            <div style="height: 8px; background-color: #eee; border-radius: 4px; overflow: hidden;">
-                                <div style="height: 100%; width: ${streakPercent}%; background: var(--gradient); border-radius: 4px;"></div>
-                            </div>
-                        </div>
-                        
-                        <div style="font-size: 0.85rem; color: var(--gray);">
-                            آخر دخول: ${student.lastLogin ? formatDate(student.lastLogin) : 'غير متوفر'}
-                        </div>
-                    </div>
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${exam.id}</td>
+                    <td>${exam.name}</td>
+                    <td>${exam.questions}</td>
+                    <td>${exam.duration}</td>
+                    <td>${usersText}</td>
+                    <td>
+                        <button class="action-btn edit-btn" onclick="editExam(${exam.id})">
+                            <i class="fas fa-edit"></i> تعديل
+                        </button>
+                        <button class="action-btn delete-btn" onclick="deleteExam(${exam.id})">
+                            <i class="fas fa-trash"></i> حذف
+                        </button>
+                    </td>
                 `;
+                tbody.appendChild(row);
             });
-            
-            html += '</div>';
-            streakReports.innerHTML = html;
         }
         
-        // تحميل الملفات المرفوعة
-        function loadUploadedFiles() {
-            const uploadedFilesList = document.getElementById('uploadedFilesList');
+        // تحديث جدول الستريك
+        function updateStreaksTable() {
+            const tbody = document.getElementById('streaksTableBody');
+            tbody.innerHTML = '';
             
-            // في النسخة الحقيقية، سيتم جلب البيانات من قاعدة البيانات
-            uploadedFilesList.innerHTML = `
-                <div class="empty-state">
-                    <i class="fas fa-file-alt"></i>
-                    <h3>لا توجد ملفات مرفوعة</h3>
-                    <p>لم تقم برفع أي ملفات بعد. ابدأ برفع أول ملف تعليمي.</p>
-                </div>
-            `;
-        }
-        
-        // ============ إدارة الطلاب ============
-        
-        // عرض نموذج إضافة طالب
-        function showAddStudentModal() {
-            // إعادة تعيين النموذج
-            document.getElementById('addStudentForm').reset();
-            document.getElementById('addStudentModal').style.display = 'flex';
-        }
-        
-        // توليد بيانات دخول تلقائية
-        function generateCredentials() {
-            const firstNames = ['علي', 'محمد', 'سعيد', 'فهد', 'ناصر', 'تركي', 'بدر', 'خالد', 'سلمان', 'عمر'];
-            const lastNames = ['السهلي', 'القرني', 'الزهراني', 'العتيبي', 'الحربي', 'الغامدي', 'الشهراني', 'المطيري', 'القحطاني', 'العمري'];
-            
-            const randomFirstName = firstNames[Math.floor(Math.random() * firstNames.length)];
-            const randomLastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-            const randomNum = Math.floor(Math.random() * 1000);
-            
-            document.getElementById('studentName').value = `${randomFirstName} ${randomLastName}`;
-            document.getElementById('studentEmail').value = `student${randomNum}@fyo.edu`;
-            document.getElementById('studentUsername').value = `student_${randomNum}`;
-            document.getElementById('studentPassword').value = 'Student@123';
-            document.getElementById('studentPhone').value = '05' + Math.floor(Math.random() * 10000000).toString().padStart(8, '0');
-            document.getElementById('studentGrade').value = ['first', 'second', 'third'][Math.floor(Math.random() * 3)];
-        }
-        
-        // إضافة طالب جديد
-        document.getElementById('addStudentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const name = document.getElementById('studentName').value.trim();
-            const email = document.getElementById('studentEmail').value.trim();
-            const username = document.getElementById('studentUsername').value.trim();
-            const password = document.getElementById('studentPassword').value;
-            const phone = document.getElementById('studentPhone').value.trim();
-            const grade = document.getElementById('studentGrade').value;
-            
-            // التحقق من صحة المدخلات
-            if (!name || !email || !username || !password || !grade) {
-                alert('يرجى ملء جميع الحقول المطلوبة');
-                return;
-            }
-            
-            // التحقق من صحة البريد الإلكتروني
-            if (!validateEmail(email)) {
-                alert('يرجى إدخال بريد إلكتروني صحيح');
-                return;
-            }
-            
-            // التحقق من عدم تكرار اسم المستخدم أو البريد الإلكتروني
-            if (students.some(s => s.username === username)) {
-                alert('اسم المستخدم هذا مستخدم بالفعل. يرجى اختيار اسم مستخدم آخر.');
-                return;
-            }
-            
-            if (students.some(s => s.email === email)) {
-                alert('البريد الإلكتروني هذا مستخدم بالفعل. يرجى استخدام بريد إلكتروني آخر.');
-                return;
-            }
-            
-            const newStudent = {
-                id: generateId(),
-                name: name,
-                email: email,
-                username: username,
-                phone: phone || 'غير محدد',
-                grade: grade,
-                status: 'active',
-                streak: 1,
-                createdAt: new Date().toISOString().split('T')[0],
-                lastLogin: new Date().toISOString().split('T')[0]
-            };
-            
-            students.push(newStudent);
-            const saved = saveStudents();
-            
-            if (saved) {
-                alert(`تم إضافة الطالب ${newStudent.name} بنجاح!\n\nبيانات الدخول:\nاسم المستخدم: ${newStudent.username}\nكلمة المرور: ${password}`);
-                
-                closeModal('addStudentModal');
-                updateStudentsTable();
-                loadStudentsList();
-                updateTopStreak();
-            }
-        });
-        
-        // عرض بيانات طالب
-        function viewStudent(id) {
-            const student = students.find(s => s.id === id);
-            if (student) {
-                const gradeText = getGradeText(student.grade);
-                
-                const modalHTML = `
-                    <div class="modal-overlay" id="viewStudentModal" style="display: flex;">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2 class="modal-title">معلومات الطالب</h2>
-                                <span class="btn-close" onclick="closeModal('viewStudentModal')">&times;</span>
+            appData.users.forEach(user => {
+                if (user.role === 'student') {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${user.id}</td>
+                        <td>${user.username}</td>
+                        <td>
+                            <div class="streak-container" style="padding: 5px 10px; margin: 0;">
+                                <div class="streak-days" style="font-size: 1.5rem;">${user.streak}</div>
+                                <div><i class="fas fa-fire" style="color: #ff8a00;"></i></div>
                             </div>
-                            
-                            <div style="display: flex; align-items: center; margin-bottom: 30px;">
-                                <div style="width: 80px; height: 80px; border-radius: 50%; background: ${getRandomColor()}; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 2rem; margin-left: 20px;">
-                                    ${student.name.charAt(0)}
-                                </div>
-                                <div>
-                                    <h3 style="margin: 0; font-size: 1.8rem;">${student.name}</h3>
-                                    <p style="margin: 5px 0 0 0; color: var(--gray);">${student.email}</p>
-                                </div>
-                            </div>
-                            
-                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin-bottom: 30px;">
-                                <div style="background: #f8f9fa; padding: 20px; border-radius: var(--radius-md);">
-                                    <div style="font-size: 0.9rem; color: var(--gray); margin-bottom: 8px;">اسم المستخدم</div>
-                                    <div style="font-weight: 700; font-size: 1.2rem;">${student.username}</div>
-                                </div>
-                                
-                                <div style="background: #f8f9fa; padding: 20px; border-radius: var(--radius-md);">
-                                    <div style="font-size: 0.9rem; color: var(--gray); margin-bottom: 8px;">رقم الهاتف</div>
-                                    <div style="font-weight: 700; font-size: 1.2rem;">${student.phone}</div>
-                                </div>
-                                
-                                <div style="background: #f8f9fa; padding: 20px; border-radius: var(--radius-md);">
-                                    <div style="font-size: 0.9rem; color: var(--gray); margin-bottom: 8px;">الصف الدراسي</div>
-                                    <div style="font-weight: 700; font-size: 1.2rem;">${gradeText}</div>
-                                </div>
-                                
-                                <div style="background: #f8f9fa; padding: 20px; border-radius: var(--radius-md);">
-                                    <div style="font-size: 0.9rem; color: var(--gray); margin-bottom: 8px;">ستريك الدخول</div>
-                                    <div style="font-weight: 700; font-size: 1.2rem; color: var(--accent);">${student.streak} يوم</div>
-                                </div>
-                            </div>
-                            
-                            <div class="form-actions">
-                                <button class="btn-secondary" onclick="closeModal('viewStudentModal')">
-                                    إغلاق
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                // إضافة النافذة المنبثقة إلى الجسم
-                document.body.insertAdjacentHTML('beforeend', modalHTML);
-            }
-        }
-        
-        // تحرير طالب
-        function editStudent(id) {
-            const student = students.find(s => s.id === id);
-            if (student) {
-                const newName = prompt('أدخل الاسم الجديد:', student.name);
-                if (newName && newName.trim() !== '') {
-                    student.name = newName.trim();
-                    const saved = saveStudents();
-                    
-                    if (saved) {
-                        updateStudentsTable();
-                        loadStudentsList();
-                        alert('تم تحديث بيانات الطالب بنجاح');
-                    }
-                }
-            }
-        }
-        
-        // حذف طالب
-        function deleteStudent(id) {
-            const student = students.find(s => s.id === id);
-            if (student) {
-                if (confirm(`هل أنت متأكد من حذف الطالب "${student.name}"؟\n\nلا يمكن التراجع عن هذا الإجراء.`)) {
-                    students = students.filter(s => s.id !== id);
-                    const saved = saveStudents();
-                    
-                    if (saved) {
-                        updateStudentsTable();
-                        loadStudentsList();
-                        updateTopStreak();
-                        alert('تم حذف الطالب بنجاح');
-                    }
-                }
-            }
-        }
-        
-        // ============ إدارة الملفات ============
-        
-        // عرض نموذج رفع ملف
-        function showUploadFileModal() {
-            // تحميل قائمة الطلاب في خانة الاختيار
-            const studentsCheckboxes = document.getElementById('studentsCheckboxes');
-            studentsCheckboxes.innerHTML = '';
-            
-            if (students.length === 0) {
-                studentsCheckboxes.innerHTML = '<p style="color: var(--gray); text-align: center; padding: 20px;">لا يوجد طلاب مسجلين</p>';
-            } else {
-                students.forEach(student => {
-                    studentsCheckboxes.innerHTML += `
-                        <label style="display: flex; align-items: center; padding: 10px; border-bottom: 1px solid #eee; cursor: pointer;">
-                            <input type="checkbox" value="${student.id}" checked style="margin-left: 10px;">
-                            <div>
-                                <div style="font-weight: 600;">${student.name}</div>
-                                <div style="font-size: 0.85rem; color: var(--gray);">${student.email}</div>
-                            </div>
-                        </label>
+                        </td>
+                        <td>${user.lastLogin || 'لم يسجل دخول بعد'}</td>
+                        <td>${user.totalLogins} يوم</td>
                     `;
-                });
-            }
-            
-            document.getElementById('uploadFileForm').reset();
-            document.getElementById('uploadFileModal').style.display = 'flex';
-        }
-        
-        // رفع ملف
-        document.getElementById('uploadFileForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const fileName = document.getElementById('fileName').value.trim();
-            const fileCategory = document.getElementById('fileCategory').value;
-            
-            if (!fileName || !fileCategory) {
-                alert('يرجى ملء جميع الحقول المطلوبة');
-                return;
-            }
-            
-            // الحصول على الطلاب المحددين
-            const selectedStudents = [];
-            document.querySelectorAll('#studentsCheckboxes input:checked').forEach(cb => {
-                selectedStudents.push(parseInt(cb.value));
-            });
-            
-            if (selectedStudents.length === 0) {
-                alert('يرجى تحديد طالب واحد على الأقل للاستفادة من هذا الملف');
-                return;
-            }
-            
-            // في النسخة الحقيقية، سيتم رفع الملف إلى الخادم هنا
-            alert(`تم رفع الملف "${fileName}" بنجاح!\n\nتم تحديد ${selectedStudents.length} طالب للاستفادة من هذا الملف.`);
-            
-            closeModal('uploadFileModal');
-        });
-        
-        // ============ إدارة الاختبارات ============
-        
-        // عرض نموذج إنشاء اختبار
-        function showCreateTestModal() {
-            // تعيين التواريخ الافتراضية
-            const today = new Date();
-            const nextWeek = new Date(today);
-            nextWeek.setDate(today.getDate() + 7);
-            
-            document.getElementById('createTestForm').reset();
-            document.getElementById('testStartDate').value = today.toISOString().split('T')[0];
-            document.getElementById('testEndDate').value = nextWeek.toISOString().split('T')[0];
-            
-            document.getElementById('createTestModal').style.display = 'flex';
-        }
-        
-        // إنشاء اختبار
-        document.getElementById('createTestForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const testTitle = document.getElementById('testTitle').value.trim();
-            const testDuration = document.getElementById('testDuration').value;
-            const testQuestions = document.getElementById('testQuestions').value;
-            const testStartDate = document.getElementById('testStartDate').value;
-            const testEndDate = document.getElementById('testEndDate').value;
-            const questionMethod = document.querySelector('input[name="questionMethod"]:checked').value;
-            
-            if (!testTitle || !testDuration || !testQuestions || !testStartDate || !testEndDate) {
-                alert('يرجى ملء جميع الحقول المطلوبة');
-                return;
-            }
-            
-            // التحقق من أن تاريخ الانتهاء بعد تاريخ البدء
-            if (new Date(testEndDate) <= new Date(testStartDate)) {
-                alert('يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء');
-                return;
-            }
-            
-            // في النسخة الحقيقية، سيتم حفظ الاختبار في قاعدة البيانات
-            alert(`تم إنشاء الاختبار "${testTitle}" بنجاح!\n\nالمدة: ${testDuration} دقيقة\nعدد الأسئلة: ${testQuestions}\nنوع الأسئلة: ${getQuestionMethodText(questionMethod)}\nالفترة: ${formatDate(testStartDate)} إلى ${formatDate(testEndDate)}`);
-            
-            closeModal('createTestModal');
-        });
-        
-        // ============ وظائف مساعدة ============
-        
-        // إغلاق النافذة المنبثقة
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            if (modal) {
-                modal.style.display = 'none';
-                
-                // إذا كانت نافذة عرض طالب، قم بإزالتها من DOM
-                if (modalId === 'viewStudentModal') {
-                    setTimeout(() => {
-                        modal.remove();
-                    }, 300);
+                    tbody.appendChild(row);
                 }
-            }
-        }
-        
-        // التحقق من صحة البريد الإلكتروني
-        function validateEmail(email) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return re.test(email);
-        }
-        
-        // الحصول على نص الصف الدراسي
-        function getGradeText(grade) {
-            const grades = {
-                'first': 'الأول الثانوي',
-                'second': 'الثاني الثانوي',
-                'third': 'الثالث الثانوي',
-                'graduate': 'خريج'
-            };
-            return grades[grade] || 'غير محدد';
-        }
-        
-        // الحصول على نص نوع الأسئلة
-        function getQuestionMethodText(method) {
-            const methods = {
-                'multipleChoice': 'متعددة الخيارات',
-                'essay': 'مقالية',
-                'mixed': 'مختلطة'
-            };
-            return methods[method] || 'غير محدد';
-        }
-        
-        // تنسيق التاريخ
-        function formatDate(dateString) {
-            if (!dateString) return 'غير متوفر';
-            
-            const date = new Date(dateString);
-            if (isNaN(date.getTime())) return dateString;
-            
-            return date.toLocaleDateString('ar-SA', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
             });
         }
         
-        // توليد لون عشوائي
-        function getRandomColor() {
-            const colors = [
-                '#4361ee', '#3a0ca3', '#7209b7', '#f72585', 
-                '#4cc9f0', '#4895ef', '#560bad', '#b5179e'
-            ];
-            return colors[Math.floor(Math.random() * colors.length)];
-        }
-        
-        // حساب متوسط الستريك
-        function calculateAverageStreak() {
-            if (students.length === 0) return 0;
+        // تحديث جدول الاشتراكات
+        function updateSubscriptionsTable() {
+            const tbody = document.getElementById('subscriptionsTableBody');
+            tbody.innerHTML = '';
             
-            const totalStreak = students.reduce((sum, student) => sum + student.streak, 0);
-            return Math.round(totalStreak / students.length);
-        }
-        
-        // إغلاق النافذة عند النقر خارجها
-        window.addEventListener('click', function(event) {
-            if (event.target.classList.contains('modal-overlay')) {
-                event.target.style.display = 'none';
-                
-                // إذا كانت نافذة عرض طالب، قم بإزالتها من DOM
-                if (event.target.id === 'viewStudentModal') {
-                    setTimeout(() => {
-                        event.target.remove();
-                    }, 300);
-                }
-            }
-        });
-        
-        // إغلاق النافذة بمفتاح ESC
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const modals = document.querySelectorAll('.modal-overlay');
-                modals.forEach(modal => {
-                    modal.style.display = 'none';
+            appData.users.forEach(user => {
+                if (user.role === 'student') {
+                    const startDate = new Date(user.subscriptionStart);
+                    const endDate = new Date(startDate);
+                    endDate.setDate(endDate.getDate() + user.subscriptionDays);
                     
-                    // إذا كانت نافذة عرض طالب، قم بإزالتها من DOM
-                    if (modal.id === 'viewStudentModal') {
-                        setTimeout(() => {
-                            modal.remove();
-                        }, 300);
+                    const today = new Date();
+                    const diffTime = endDate - today;
+                    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                    
+                    let status = '';
+                    let statusClass = '';
+                    
+                    if (diffDays <= 0) {
+                        status = 'منتهي';
+                        statusClass = 'delete-btn';
+                    } else if (diffDays <= 3) {
+                        status = `ينتهي خلال ${diffDays} أيام`;
+                        statusClass = 'edit-btn';
+                    } else {
+                        status = 'نشط';
+                        statusClass = '';
                     }
+                    
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${user.id}</td>
+                        <td>${user.username}</td>
+                        <td>${user.subscriptionStart}</td>
+                        <td>${endDate.toISOString().split('T')[0]}</td>
+                        <td>${diffDays > 0 ? diffDays : 'انتهى'}</td>
+                        <td><span class="${statusClass}">${status}</span></td>
+                        <td>
+                            <button class="action-btn edit-btn" onclick="renewSubscription(${user.id})">
+                                <i class="fas fa-calendar-plus"></i> تجديد
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                }
+            });
+        }
+        
+        // تحديث خيارات المستخدمين في النماذج
+        function updateUserSelectOptions() {
+            const examUsersSelect = document.getElementById('examUsers');
+            const fileUsersSelect = document.getElementById('fileUsers');
+            
+            // مسح الخيارات الحالية
+            examUsersSelect.innerHTML = '<option value="all">جميع المستخدمين</option>';
+            fileUsersSelect.innerHTML = '<option value="all">جميع المستخدمين</option>';
+            
+            // إضافة المستخدمين
+            appData.users.forEach(user => {
+                if (user.role === 'student') {
+                    const option1 = document.createElement('option');
+                    option1.value = user.id;
+                    option1.textContent = user.username;
+                    examUsersSelect.appendChild(option1);
+                    
+                    const option2 = document.createElement('option');
+                    option2.value = user.id;
+                    option2.textContent = user.username;
+                    fileUsersSelect.appendChild(option2);
+                }
+            });
+        }
+        
+        // إظهار نموذج إضافة مستخدم جديد
+        function showAddUserModal() {
+            document.getElementById('addUserModal').style.display = 'flex';
+        }
+        
+        // إخفاء نموذج إضافة مستخدم جديد
+        function hideAddUserModal() {
+            document.getElementById('addUserModal').style.display = 'none';
+            document.getElementById('newUsername').value = '';
+            document.getElementById('newUserEmail').value = '';
+            document.getElementById('newUserPassword').value = '';
+            document.getElementById('subscriptionDays').value = '30';
+        }
+        
+        // حفظ مستخدم جديد
+        function saveNewUser() {
+            const username = document.getElementById('newUsername').value;
+            const email = document.getElementById('newUserEmail').value;
+            const password = document.getElementById('newUserPassword').value;
+            const subscriptionDays = parseInt(document.getElementById('subscriptionDays').value);
+            
+            if (!username || !email || !password) {
+                alert('الرجاء ملء جميع الحقول المطلوبة');
+                return;
+            }
+            
+            // التحقق من عدم تكرار اسم المستخدم
+            if (appData.users.some(u => u.username === username)) {
+                alert('اسم المستخدم موجود مسبقاً');
+                return;
+            }
+            
+            // إضافة المستخدم الجديد
+            const newUser = {
+                id: appData.nextUserId++,
+                username: username,
+                password: password,
+                email: email,
+                role: 'student',
+                joinDate: new Date().toISOString().split('T')[0],
+                subscriptionDays: subscriptionDays,
+                subscriptionStart: new Date().toISOString().split('T')[0],
+                lastLogin: '',
+                streak: 0,
+                totalLogins: 0
+            };
+            
+            appData.users.push(newUser);
+            
+            // تحديث الجداول والإحصائيات
+            updateStats();
+            updateUsersTable();
+            updateStreaksTable();
+            updateSubscriptionsTable();
+            updateUserSelectOptions();
+            
+            // إخفاء النموذج
+            hideAddUserModal();
+            
+            alert('تم إضافة المستخدم بنجاح');
+        }
+        
+        // تجديد اشتراك مستخدم
+        function renewSubscription(userId) {
+            const user = appData.users.find(u => u.id === userId);
+            
+            if (user) {
+                const days = prompt(`أدخل عدد الأيام الجديدة لتجديد اشتراك ${user.username}:`, "30");
+                
+                if (days && !isNaN(days) && parseInt(days) > 0) {
+                    user.subscriptionDays += parseInt(days);
+                    user.subscriptionStart = new Date().toISOString().split('T')[0];
+                    
+                    updateUsersTable();
+                    updateSubscriptionsTable();
+                    alert(`تم تجديد اشتراك ${user.username} لمدة ${days} يوم إضافي`);
+                }
+            }
+        }
+        
+        // حذف مستخدم
+        function deleteUser(userId) {
+            if (confirm('هل أنت متأكد من حذف هذا المستخدم؟')) {
+                appData.users = appData.users.filter(u => u.id !== userId);
+                
+                // تحديث الجداول والإحصائيات
+                updateStats();
+                updateUsersTable();
+                updateStreaksTable();
+                updateSubscriptionsTable();
+                updateUserSelectOptions();
+                
+                alert('تم حذف المستخدم بنجاح');
+            }
+        }
+        
+        // إظهار نموذج إضافة ملف جديد
+        function showAddFileModal() {
+            document.getElementById('addFileModal').style.display = 'flex';
+        }
+        
+        // إخفاء نموذج إضافة ملف جديد
+        function hideAddFileModal() {
+            document.getElementById('addFileModal').style.display = 'none';
+            document.getElementById('fileName').value = '';
+            document.getElementById('selectedFileName').textContent = '';
+        }
+        
+        // التعامل مع اختيار الملف
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (file) {
+                document.getElementById('selectedFileName').textContent = `الملف المحدد: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+            }
+        }
+        
+        // حفظ ملف جديد
+        function saveNewFile() {
+            const fileName = document.getElementById('fileName').value;
+            const fileInput = document.getElementById('fileInput');
+            const selectedUsers = Array.from(document.getElementById('fileUsers').selectedOptions).map(option => option.value === 'all' ? 'all' : parseInt(option.value));
+            
+            if (!fileName || fileInput.files.length === 0) {
+                alert('الرجاء إدخال اسم الملف واختيار ملف لرفعه');
+                return;
+            }
+            
+            const file = fileInput.files[0];
+            const fileSize = (file.size / 1024 / 1024).toFixed(2) + ' MB';
+            
+            // إضافة الملف الجديد
+            const newFile = {
+                id: appData.nextFileId++,
+                name: fileName + '.' + file.name.split('.').pop(),
+                size: fileSize,
+                uploadDate: new Date().toISOString().split('T')[0],
+                selectedUsers: selectedUsers
+            };
+            
+            appData.files.push(newFile);
+            
+            // تحديث الجداول والإحصائيات
+            updateStats();
+            updateFilesTable();
+            
+            // إخفاء النموذج
+            hideAddFileModal();
+            
+            alert('تم رفع الملف بنجاح');
+        }
+        
+        // تعديل ملف
+        function editFile(fileId) {
+            const file = appData.files.find(f => f.id === fileId);
+            
+            if (file) {
+                const newName = prompt('أدخل الاسم الجديد للملف:', file.name);
+                
+                if (newName) {
+                    file.name = newName;
+                    updateFilesTable();
+                    alert('تم تعديل اسم الملف بنجاح');
+                }
+            }
+        }
+        
+        // حذف ملف
+        function deleteFile(fileId) {
+            if (confirm('هل أنت متأكد من حذف هذا الملف؟')) {
+                appData.files = appData.files.filter(f => f.id !== fileId);
+                
+                // تحديث الجداول والإحصائيات
+                updateStats();
+                updateFilesTable();
+                
+                alert('تم حذف الملف بنجاح');
+            }
+        }
+        
+        // تعديل اختبار
+        function editExam(examId) {
+            const exam = appData.exams.find(e => e.id === examId);
+            
+            if (exam) {
+                const newName = prompt('أدخل الاسم الجديد للاختبار:', exam.name);
+                
+                if (newName) {
+                    exam.name = newName;
+                    updateExamsTable();
+                    alert('تم تعديل اسم الاختبار بنجاح');
+                }
+            }
+        }
+        
+        // حذف اختبار
+        function deleteExam(examId) {
+            if (confirm('هل أنت متأكد من حذف هذا الاختبار؟')) {
+                appData.exams = appData.exams.filter(e => e.id !== examId);
+                
+                // تحديث الجداول والإحصائيات
+                updateStats();
+                updateExamsTable();
+                
+                alert('تم حذف الاختبار بنجاح');
+            }
+        }
+        
+        // تبديل نوع السؤال (نص/صورة)
+        function toggleQuestionType() {
+            const questionType = document.querySelector('input[name="questionType"]:checked').value;
+            
+            if (questionType === 'text') {
+                document.getElementById('textQuestion').style.display = 'block';
+                document.getElementById('imageQuestion').style.display = 'none';
+            } else {
+                document.getElementById('textQuestion').style.display = 'none';
+                document.getElementById('imageQuestion').style.display = 'block';
+            }
+        }
+        
+        // تهيئة خيارات الأسئلة
+        function initializeQuestionOptions() {
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            // إضافة 4 خيارات افتراضية
+            for (let i = 0; i < 4; i++) {
+                addQuestionOption();
+            }
+            
+            // تحديد أول خيار كإجابة صحيحة
+            document.getElementById('correctOption0').checked = true;
+            document.getElementById('optionItem0').classList.add('correct-option');
+        }
+        
+        // إضافة خيار سؤال جديد
+        function addQuestionOption() {
+            const optionsContainer = document.getElementById('optionsContainer');
+            const optionIndex = optionsContainer.children.length;
+            
+            const optionItem = document.createElement('div');
+            optionItem.className = 'option-item';
+            optionItem.id = `optionItem${optionIndex}`;
+            
+            optionItem.innerHTML = `
+                <input type="radio" name="correctOption" id="correctOption${optionIndex}" onchange="markCorrectOption(${optionIndex})">
+                <input type="text" class="form-control" placeholder="نص الخيار ${optionIndex + 1}" id="optionText${optionIndex}">
+                <button type="button" class="action-btn delete-btn" onclick="removeOption(${optionIndex})" ${optionIndex < 2 ? 'disabled' : ''}>
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            optionsContainer.appendChild(optionItem);
+            
+            // تعيين حدث تغيير للإجابة الصحيحة
+            document.getElementById(`correctOption${optionIndex}`).addEventListener('change', function() {
+                markCorrectOption(optionIndex);
+            });
+        }
+        
+        // تحديد الخيار الصحيح
+        function markCorrectOption(optionIndex) {
+            // إزالة التحديد من جميع الخيارات
+            document.querySelectorAll('.option-item').forEach(item => {
+                item.classList.remove('correct-option');
+            });
+            
+            // إضافة التحديد للخيار الصحيح
+            document.getElementById(`optionItem${optionIndex}`).classList.add('correct-option');
+        }
+        
+        // إزالة خيار
+        function removeOption(optionIndex) {
+            const optionItem = document.getElementById(`optionItem${optionIndex}`);
+            if (optionItem && document.querySelectorAll('.option-item').length > 2) {
+                optionItem.remove();
+                
+                // إعادة ترقيم الخيارات المتبقية
+                const remainingOptions = document.querySelectorAll('.option-item');
+                remainingOptions.forEach((item, index) => {
+                    item.id = `optionItem${index}`;
+                    
+                    const radio = item.querySelector('input[type="radio"]');
+                    radio.id = `correctOption${index}`;
+                    radio.onchange = function() { markCorrectOption(index); };
+                    
+                    const textInput = item.querySelector('input[type="text"]');
+                    textInput.id = `optionText${index}`;
+                    textInput.placeholder = `نص الخيار ${index + 1}`;
+                    
+                    const removeBtn = item.querySelector('button');
+                    removeBtn.onclick = function() { removeOption(index); };
+                    removeBtn.disabled = index < 2;
                 });
             }
-        });
+        }
         
-        // تهيئة الصفحة
-        document.addEventListener('DOMContentLoaded', function() {
-            // تعبئة بيانات الدخول تلقائياً
-            document.getElementById('username').value = 'admin';
-            document.getElementById('password').value = 'admin';
+        // حفظ اختبار جديد
+        function saveNewExam() {
+            const examName = document.getElementById('examName').value;
+            const examDuration = parseInt(document.getElementById('examDuration').value);
+            const selectedUsers = Array.from(document.getElementById('examUsers').selectedOptions).map(option => option.value === 'all' ? 'all' : parseInt(option.value));
+            const questionType = document.querySelector('input[name="questionType"]:checked').value;
             
-            // إضافة تأثير اهتزاز للرسوم المتحركة
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes shake {
-                    0%, 100% {transform: translateX(0);}
-                    10%, 30%, 50%, 70%, 90% {transform: translateX(-5px);}
-                    20%, 40%, 60%, 80% {transform: translateX(5px);}
-                }
-            `;
-            document.head.appendChild(style);
-            
-            // حفظ البيانات الأولية
-            saveStudents();
-            
-            // تهيئة تواريخ الاختبارات
-            const today = new Date();
-            const nextWeek = new Date(today);
-            nextWeek.setDate(today.getDate() + 7);
-            
-            if (document.getElementById('testStartDate')) {
-                document.getElementById('testStartDate').value = today.toISOString().split('T')[0];
-                document.getElementById('testEndDate').value = nextWeek.toISOString().split('T')[0];
+            if (!examName) {
+                alert('الرجاء إدخال اسم الاختبار');
+                return;
             }
             
-            // تهيئة زر القائمة الجانبية للأجهزة الصغيرة
-            if (window.innerWidth <= 768) {
-                const menuToggle = document.createElement('button');
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                menuToggle.style.cssText = `
-                    position: fixed;
-                    bottom: 20px;
-                    left: 20px;
-                    width: 50px;
-                    height: 50px;
-                    border-radius: 50%;
-                    background: var(--gradient);
-                    color: white;
-                    border: none;
-                    font-size: 1.5rem;
-                    cursor: pointer;
-                    z-index: 1000;
-                    box-shadow: var(--shadow-lg);
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                `;
-                menuToggle.onclick = function() {
-                    document.getElementById('sidebar').classList.toggle('active');
-                };
+            // جمع بيانات السؤال
+            const questionText = document.getElementById('questionText').value;
+            const questionOptions = [];
+            let correctAnswerIndex = -1;
+            
+            document.querySelectorAll('.option-item').forEach((item, index) => {
+                const optionText = document.getElementById(`optionText${index}`).value;
+                const isCorrect = document.getElementById(`correctOption${index}`).checked;
                 
-                if (document.getElementById('dashboard').style.display === 'block') {
-                    document.body.appendChild(menuToggle);
+                if (optionText) {
+                    questionOptions.push(optionText);
+                    
+                    if (isCorrect) {
+                        correctAnswerIndex = index;
+                    }
                 }
+            });
+            
+            if (questionType === 'text' && !questionText) {
+                alert('الرجاء إدخال نص السؤال');
+                return;
             }
-        });
+            
+            if (questionOptions.length < 2) {
+                alert('الرجاء إدخال على الأقل خيارين للإجابة');
+                return;
+            }
+            
+            if (correctAnswerIndex === -1) {
+                alert('الرجاء تحديد الإجابة الصحيحة');
+                return;
+            }
+            
+            // إضافة الاختبار الجديد
+            const newExam = {
+                id: appData.nextExamId++,
+                name: examName,
+                questions: 1, // في النسخة الكاملة سيكون هناك أكثر من سؤال
+                duration: examDuration,
+                selectedUsers: selectedUsers,
+                questionsData: [{
+                    type: questionType,
+                    text: questionText,
+                    options: questionOptions,
+                    correctAnswer: correctAnswerIndex
+                }]
+            };
+            
+            appData.exams.push(newExam);
+            
+            // تحديث الجداول والإحصائيات
+            updateStats();
+            updateExamsTable();
+            
+            // إعادة تعيين النموذج
+            document.getElementById('examName').value = '';
+            document.getElementById('examDuration').value = '60';
+            document.getElementById('questionText').value = '';
+            initializeQuestionOptions();
+            
+            alert('تم حفظ الاختبار بنجاح');
+        }
     </script>
 </body>
 </html>
