@@ -1,0 +1,254 @@
+import React, { useState } from 'react';
+import { 
+  LayoutDashboard, 
+  Users, 
+  FileText, 
+  GraduationCap, 
+  LogOut, 
+  Search,
+  Bell,
+  Menu,
+  X,
+  ChevronRight,
+  Download
+} from 'lucide-react';
+
+/**
+ * تم تحويل الكود من تنسيق HTML تقليدي إلى مكون React حديث.
+ * تم حل مشكلة المترجم عن طريق إزالة وسوم HTML الخارجة عن نطاق JavaScript.
+ */
+
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [activeTab, setActiveTab] = useState('dashboard');
+  const [isSidebarOpen, setSidebarOpen] = useState(true);
+
+  // بيانات افتراضية للمنصة
+  const stats = [
+    { label: 'الطلاب المسجلين', value: '١,٢٥٠', color: 'bg-blue-500' },
+    { label: 'الملفات المتاحة', value: '٤٥٠', color: 'bg-purple-500' },
+    { label: 'الاختبارات المنجزة', value: '٨,٩٠٠', color: 'bg-green-500' },
+    { label: 'ساعات التدريب', value: '١٢,٠٠٠+', color: 'bg-orange-500' },
+  ];
+
+  const recentFiles = [
+    { id: 1, name: 'مذكرة القدرات الكمي - الجزء الأول', type: 'PDF', date: '٢٠٢٤/٠١/١٠' },
+    { id: 2, name: 'تجميعات المحوسب الحديثة', type: 'ZIP', date: '٢٠٢٤/٠١/٠٨' },
+    { id: 3, name: 'ملخص قوانين الهندسة', type: 'PDF', date: '٢٠٢٤/٠١/٠٥' },
+  ];
+
+  const LoginView = () => (
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4 font-sans" dir="rtl">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100">
+        <div className="p-8">
+          <div className="flex justify-center mb-6">
+            <div className="w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-200">
+              <GraduationCap className="text-white w-10 h-10" />
+            </div>
+          </div>
+          <h2 className="text-2xl font-bold text-center text-slate-800 mb-2">منصة FYO التعليمية</h2>
+          <p className="text-center text-slate-500 mb-8 text-sm">مرحباً بك مجدداً في رحلتك التعليمية</p>
+          
+          <form onSubmit={(e) => { e.preventDefault(); setIsLoggedIn(true); }} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-1">اسم المستخدم</label>
+              <input 
+                type="text" 
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all text-right"
+                placeholder="أدخل اسم المستخدم"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-1">كلمة المرور</label>
+              <input 
+                type="password" 
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all text-right"
+                placeholder="••••••••"
+                required
+              />
+            </div>
+            <button 
+              type="submit"
+              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-indigo-200 transition-all transform active:scale-95"
+            >
+              تسجيل الدخول
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+
+  const DashboardView = () => (
+    <div className="min-h-screen bg-slate-50 flex font-sans" dir="rtl">
+      {/* Sidebar */}
+      <aside className={`${isSidebarOpen ? 'w-64' : 'w-20'} bg-white border-l border-slate-200 transition-all duration-300 flex flex-col hidden md:flex`}>
+        <div className="p-6 flex items-center gap-3">
+          <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shrink-0">
+            <GraduationCap className="text-white w-6 h-6" />
+          </div>
+          {isSidebarOpen && <span className="font-bold text-xl text-indigo-900">FYO EDU</span>}
+        </div>
+
+        <nav className="flex-1 px-4 space-y-2 mt-4">
+          {[
+            { id: 'dashboard', label: 'الرئيسية', icon: LayoutDashboard },
+            { id: 'users', label: 'الطلاب', icon: Users },
+            { id: 'files', label: 'الملفات', icon: FileText },
+            { id: 'exams', label: 'الاختبارات', icon: GraduationCap },
+          ].map((item) => (
+            <button
+              key={item.id}
+              onClick={() => setActiveTab(item.id)}
+              className={`w-full flex items-center gap-4 p-3 rounded-xl transition-colors ${
+                activeTab === item.id ? 'bg-indigo-50 text-indigo-600' : 'text-slate-500 hover:bg-slate-50'
+              }`}
+            >
+              <item.icon size={22} />
+              {isSidebarOpen && <span className="font-medium">{item.label}</span>}
+            </button>
+          ))}
+        </nav>
+
+        <div className="p-4 border-t border-slate-100">
+          <button 
+            onClick={() => setIsLoggedIn(false)}
+            className="w-full flex items-center gap-4 p-3 rounded-xl text-red-500 hover:bg-red-50 transition-colors"
+          >
+            <LogOut size={22} />
+            {isSidebarOpen && <span className="font-medium">تسجيل الخروج</span>}
+          </button>
+        </div>
+      </aside>
+
+      {/* Main Content */}
+      <main className="flex-1 flex flex-col h-screen overflow-hidden">
+        {/* Header */}
+        <header className="h-20 bg-white border-b border-slate-200 flex items-center justify-between px-8 shrink-0">
+          <div className="flex items-center gap-4">
+            <button onClick={() => setSidebarOpen(!isSidebarOpen)} className="p-2 hover:bg-slate-100 rounded-lg text-slate-500">
+              <Menu size={24} />
+            </button>
+            <h1 className="text-xl font-bold text-slate-800">
+              {activeTab === 'dashboard' && 'نظرة عامة'}
+              {activeTab === 'users' && 'إدارة الطلاب'}
+              {activeTab === 'files' && 'المستندات والملفات'}
+              {activeTab === 'exams' && 'بنك الأسئلة'}
+            </h1>
+          </div>
+          
+          <div className="flex items-center gap-6">
+            <div className="relative hidden lg:block">
+              <Search className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+              <input 
+                type="text" 
+                placeholder="ابحث عن ملف أو طالب..."
+                className="bg-slate-100 border-none rounded-full py-2 pr-10 pl-4 w-64 focus:ring-2 focus:ring-indigo-500 outline-none text-sm"
+              />
+            </div>
+            <button className="relative p-2 text-slate-500 hover:bg-slate-100 rounded-full">
+              <Bell size={22} />
+              <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+            </button>
+            <div className="flex items-center gap-3 border-r pr-6 border-slate-200">
+              <div className="text-left hidden sm:block">
+                <p className="text-sm font-bold text-slate-800">أحمد المسؤول</p>
+                <p className="text-xs text-slate-500">مدير النظام</p>
+              </div>
+              <div className="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-bold">
+                أ
+              </div>
+            </div>
+          </div>
+        </header>
+
+        {/* Scrollable Area */}
+        <div className="flex-1 overflow-y-auto p-8">
+          {activeTab === 'dashboard' && (
+            <div className="space-y-8">
+              {/* Stats Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {stats.map((stat, i) => (
+                  <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+                    <div>
+                      <p className="text-slate-500 text-sm mb-1">{stat.label}</p>
+                      <h3 className="text-2xl font-bold text-slate-800">{stat.value}</h3>
+                    </div>
+                    <div className={`w-12 h-12 ${stat.color} rounded-xl opacity-10`}></div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Recent Files */}
+                <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+                  <div className="p-6 border-b border-slate-100 flex justify-between items-center">
+                    <h3 className="font-bold text-slate-800">أحدث الملفات المضافة</h3>
+                    <button className="text-indigo-600 text-sm font-medium">عرض الكل</button>
+                  </div>
+                  <div className="p-0">
+                    {recentFiles.map((file) => (
+                      <div key={file.id} className="flex items-center justify-between p-4 hover:bg-slate-50 transition-colors border-b last:border-none border-slate-50">
+                        <div className="flex items-center gap-4">
+                          <div className={`w-10 h-10 rounded-lg flex items-center justify-center ${
+                            file.type === 'PDF' ? 'bg-red-50 text-red-500' : 'bg-blue-50 text-blue-500'
+                          }`}>
+                            <FileText size={20} />
+                          </div>
+                          <div>
+                            <p className="text-sm font-bold text-slate-800">{file.name}</p>
+                            <p className="text-xs text-slate-400">{file.date}</p>
+                          </div>
+                        </div>
+                        <button className="p-2 text-slate-400 hover:text-indigo-600 transition-colors">
+                          <Download size={18} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Quick Actions */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-indigo-600 p-6 rounded-2xl text-white shadow-lg shadow-indigo-100 flex flex-col justify-between hover:scale-[1.02] transition-transform cursor-pointer">
+                    <div className="bg-white/20 w-10 h-10 rounded-lg flex items-center justify-center mb-4">
+                      <Users size={20} />
+                    </div>
+                    <div>
+                      <h4 className="font-bold mb-1">إضافة طالب</h4>
+                      <p className="text-indigo-100 text-xs">تسجيل مستخدم جديد في المنصة</p>
+                    </div>
+                  </div>
+                  <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between hover:scale-[1.02] transition-transform cursor-pointer group">
+                    <div className="bg-orange-50 w-10 h-10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                      <FileText size={20} className="text-orange-500 group-hover:text-white" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold mb-1 text-slate-800">رفع ملف</h4>
+                      <p className="text-slate-500 text-xs">إضافة مصادر تعليمية جديدة</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab !== 'dashboard' && (
+            <div className="h-full flex flex-col items-center justify-center text-slate-400 py-20">
+              <div className="w-24 h-24 bg-slate-100 rounded-full flex items-center justify-center mb-6">
+                <LayoutDashboard size={40} />
+              </div>
+              <h3 className="text-xl font-bold text-slate-800 mb-2">هذه الصفحة قيد التطوير</h3>
+              <p>نعمل حالياً على إضافة المزيد من المميزات لقسم {activeTab}</p>
+            </div>
+          )}
+        </div>
+      </main>
+    </div>
+  );
+
+  return isLoggedIn ? <DashboardView /> : <LoginView />;
+};
+
+export default App;
